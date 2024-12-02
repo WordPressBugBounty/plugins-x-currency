@@ -4,6 +4,7 @@ namespace XCurrency\WpMVC\Routing;
 
 \defined('ABSPATH') || exit;
 use XCurrency\WpMVC\Routing\Providers\RouteServiceProvider;
+use Exception;
 use XCurrency\WP_Error;
 use WP_HTTP_Response;
 use WP_REST_Request;
@@ -78,8 +79,12 @@ class Route
                 return apply_filters($properties['rest_response_filter_hook'], static::callback($callback), $wp_rest_request, $full_route);
             }
             return static::callback($callback);
-        }, 'permission_callback' => function () use($middleware) {
+        }, 'permission_callback' => function () use($middleware, $full_route) {
             $permission = Middleware::is_user_allowed($middleware);
+            $properties = RouteServiceProvider::get_properties();
+            if (!empty($properties['rest_permission_filter_hook'])) {
+                $permission = apply_filters($properties['rest_permission_filter_hook'], $permission, $middleware, $full_route);
+            }
             if ($permission instanceof WP_Error) {
                 static::set_status_code($permission->get_error_code());
             }
@@ -88,18 +93,40 @@ class Route
     }
     protected static function callback($callback)
     {
-        $response = RouteServiceProvider::$container->call($callback);
-        if (!\is_array($response)) {
-            exit;
-        }
-        $status_code = \intval($response['status_code']);
-        static::set_status_code($status_code);
-        $response = $response['data'];
-        if ($status_code > 399 && 600 > $status_code) {
-            $response['data']['status'] = $status_code;
+        try {
+            $response = RouteServiceProvider::$container->call($callback);
+            if (!\is_array($response)) {
+                exit;
+            }
+            $status_code = \intval($response['status_code']);
+            static::set_status_code($status_code);
+            $response = $response['data'];
+            if ($status_code > 399 && 600 > $status_code) {
+                $response['data']['status'] = $status_code;
+                return $response;
+            }
+            return $response;
+        } catch (Exception $ex) {
+            $status_code = \intval($ex->getCode());
+            static::set_status_code($status_code);
+            $response = ['data' => ['status_code' => $status_code]];
+            $message = $ex->getMessage();
+            if (!empty($message)) {
+                $response['message'] = $message;
+            } else {
+                if (\method_exists($ex, 'get_messages')) {
+                    $messages = $ex->get_messages();
+                    if (!empty($messages)) {
+                        $response['messages'] = $messages;
+                    } else {
+                        $response['message'] = 'Something went wrong.';
+                    }
+                } else {
+                    $response['message'] = 'Something went wrong.';
+                }
+            }
             return $response;
         }
-        return $response;
     }
     protected static function set_status_code(int $status_code)
     {

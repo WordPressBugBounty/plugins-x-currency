@@ -8,8 +8,12 @@ $baseDir = dirname($vendorDir);
 return array(
     'XCurrency\\WpMVC\\Routing\\' => array($vendorDir . '/wpmvc/routing/src'),
     'XCurrency\\WpMVC\\RequestValidator\\' => array($vendorDir . '/wpmvc/request-validator/src'),
+    'XCurrency\\WpMVC\\Helpers\\' => array($vendorDir . '/wpmvc/helpers/src'),
     'XCurrency\\WpMVC\\Database\\' => array($vendorDir . '/wpmvc/database/src'),
     'XCurrency\\WpMVC\\' => array($vendorDir . '/wpmvc/framework/src'),
+    'XCurrency\\Symfony\\Contracts\\Service\\' => array($vendorDir . '/symfony/service-contracts'),
+    'XCurrency\\Symfony\\Component\\String\\' => array($vendorDir . '/symfony/string'),
+    'XCurrency\\Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'XCurrency\\Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'XCurrency\\PhpDocReader\\' => array($vendorDir . '/php-di/phpdoc-reader/src/PhpDocReader'),
     'XCurrency\\Laravel\\SerializableClosure\\' => array($vendorDir . '/laravel/serializable-closure/src'),
@@ -18,4 +22,10 @@ return array(
     'XCurrency\\DI\\' => array($vendorDir . '/php-di/php-di/src'),
     'XCurrency\\Bootstrap\\' => array($baseDir . '/../bootstrap'),
     'XCurrency\\App\\' => array($baseDir . '/../app'),
+    'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
+    'Symfony\\Polyfill\\Php73\\' => array($vendorDir . '/symfony/polyfill-php73'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Polyfill\\Intl\\Normalizer\\' => array($vendorDir . '/symfony/polyfill-intl-normalizer'),
+    'Symfony\\Polyfill\\Intl\\Grapheme\\' => array($vendorDir . '/symfony/polyfill-intl-grapheme'),
+    'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
 );

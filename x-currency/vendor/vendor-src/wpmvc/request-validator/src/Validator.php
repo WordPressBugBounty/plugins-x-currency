@@ -3,6 +3,7 @@
 namespace XCurrency\WpMVC\RequestValidator;
 
 \defined("ABSPATH") || exit;
+use XCurrency\WpMVC\Exceptions\Exception;
 use WP_REST_Request;
 class Validator
 {
@@ -33,7 +34,7 @@ class Validator
         $this->wp_rest_request = $wp_rest_request;
         $this->mime = $mime;
     }
-    public function validate(array $rules)
+    public function validate(array $rules, bool $throw_errors = \true)
     {
         foreach ($rules as $input_name => $rule) {
             $explode_rules = \explode('|', $rule);
@@ -41,6 +42,9 @@ class Validator
             foreach ($explode_rules as $explode_rule) {
                 static::validate_rule($input_name, $explode_rule);
             }
+        }
+        if ($throw_errors && !empty($this->errors)) {
+            throw (new Exception('', 422))->set_messages($this->errors);
         }
         return $this->errors;
     }

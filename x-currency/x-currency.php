@@ -8,10 +8,10 @@ use XCurrency\App\Providers\ProVersionUpdateServiceProvider;
 /**
  * Plugin Name:       X-Currency
  * Description:       Currency Switcher for WooCommerce custom currency, exchange rates, currency by country, pay in selected currency
- * Version:           1.6.5
+ * Version:           1.6.6
  * Requires at least: 6.2
  * Requires PHP:      7.4
- * Tested up to:      6.6
+ * Tested up to:      6.7
  * Author:            DoatKolom
  * Author URI:        https://doatkolom.com/
  * License:           GPL v3 or later
@@ -79,11 +79,16 @@ final class XCurrency {
     public function stop_load_pro() : void {
         add_filter(
             'stop_load_x_currency_pro', function() {
+                if ( function_exists( 'x_currency_pro_version' ) ) {
+                    $current_version = x_currency_pro_version();
+                } else {
+                    $plugin_data     = get_plugin_data( ABSPATH . DIRECTORY_SEPARATOR . PLUGINDIR . DIRECTORY_SEPARATOR . 'x-currency-pro/x-currency-pro.php' );
+                    $current_version = $plugin_data['Version'];
+                }
 
-                $plugin_data          = get_plugin_data( ABSPATH . DIRECTORY_SEPARATOR . PLUGINDIR . DIRECTORY_SEPARATOR . 'x-currency-pro/x-currency-pro.php' );
                 $required_pro_version = '1.1.0';
 
-                if ( -1 === version_compare( $plugin_data['Version'], $required_pro_version ) ) {
+                if ( -1 === version_compare( $current_version, $required_pro_version ) ) {
                     add_action( 'admin_notices', [ $this, 'action_admin_notices' ] );
                     return true;
                 }

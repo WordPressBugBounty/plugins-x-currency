@@ -14,10 +14,10 @@ use XCurrency\App\Providers\SideStickyServiceProvider;
 use XCurrency\App\Http\Middleware\EnsureIsUserAdmin;
 use XCurrency\Database\Migrations\Currency;
 use XCurrency\Database\Migrations\Rounding;
-use XCurrency\WpMVC\App;
+use XCurrency\WpMVC\Helpers\Helpers;
 
 return [
-    'version'                   => get_plugin_data( App::$plugin_root_file )['Version'],
+    'version'                   => Helpers::get_plugin_version( 'x-currency' ),
 
     'rest_api'                  => [
         'namespace' => 'x-currency',

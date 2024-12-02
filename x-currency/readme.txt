@@ -3,13 +3,13 @@ Contributors: doatkolom
 Donate link: https://doatkolom.com/
 Tags: currency switcher, woocommerce currency switcher, currency switcher plugin, multi currency, woocommerce
 Requires at least: 6.2
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.6.5
+Stable tag: 1.6.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Easily handle multi currency with the Woo Currency Switcher. This free tool allows your customers to switch between currency options on your website. Streamline your global payments with the currency switcher.
+Woo Currency Switcher lets you handle multi-currency seamlessly, allowing customers to switch currencies on your WooCommerce store easily.
 
 == Description ==
 
@@ -118,6 +118,8 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 1.6.6 - 03 December 2024 =
+* Added: WordPress 6.7 compatibility.
 
 = 1.6.5 - 28 August 2024 =
 * Fixed: JavaScript click event issue for the switcher.
