@@ -104,6 +104,9 @@ class WoocommerceServiceProvider implements Provider {
                 add_filter( 'woocommerce_product_variation_get_regular_price', [$this, 'variation_get_regular_price'], 9999, 2 );
                 add_filter( 'woocommerce_variation_prices', [$this, 'variation_prices'], 1, 2 );
                 add_filter( 'woocommerce_get_price_html', [$this, 'woocommerce_get_price_html'], 9, 2 );
+
+                add_filter( 'woocommerce_coupon_get_minimum_amount', [ $this, 'coupon_min_max_amount' ] );
+                add_filter( 'woocommerce_coupon_get_maximum_amount', [ $this, 'coupon_min_max_amount' ] );
             }
 
             add_filter( 'wc_get_price_thousand_separator', [$this, 'price_thousand_separator'] );
@@ -122,6 +125,10 @@ class WoocommerceServiceProvider implements Provider {
             }
         }
         add_filter( 'woocommerce_currency_symbols', [$this, 'currency_symbol'] );
+    }
+
+    public function coupon_min_max_amount( $price ) {
+        return x_currency_exchange( $price );
     }
 
     public function round_price( $price ) {

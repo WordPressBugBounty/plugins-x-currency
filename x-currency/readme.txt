@@ -5,7 +5,7 @@ Tags: currency switcher, woocommerce currency switcher, currency switcher plugin
 Requires at least: 6.2
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.6.6
+Stable tag: 1.6.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,6 +118,9 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 1.6.7 - 04 December 2024 =
+* Added: Coupon min and max restriction amount exchange support.
+
 = 1.6.6 - 03 December 2024 =
 * Added: WordPress 6.7 compatibility.
 
