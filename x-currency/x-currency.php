@@ -8,10 +8,10 @@ use XCurrency\App\Providers\ProVersionUpdateServiceProvider;
 /**
  * Plugin Name:       X-Currency
  * Description:       Currency Switcher for WooCommerce custom currency, exchange rates, currency by country, pay in selected currency
- * Version:           1.6.7
+ * Version:           1.6.8
  * Requires at least: 6.2
  * Requires PHP:      7.4
- * Tested up to:      6.7
+ * Tested up to:      6.8
  * Author:            DoatKolom
  * Author URI:        https://doatkolom.com/
  * License:           GPL v3 or later

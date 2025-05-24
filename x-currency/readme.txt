@@ -3,9 +3,9 @@ Contributors: doatkolom
 Donate link: https://doatkolom.com/
 Tags: currency switcher, woocommerce currency switcher, currency switcher plugin, multi currency, woocommerce
 Requires at least: 6.2
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.6.7
+Stable tag: 1.6.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,6 +118,9 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 1.6.8 - 24 May 2025 =
+* Improved: Optimized JS and PHP.
+
 = 1.6.7 - 04 December 2024 =
 * Added: Coupon min and max restriction amount exchange support.
 

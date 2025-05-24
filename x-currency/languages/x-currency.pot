@@ -1,15 +1,15 @@
-# Copyright (C) 2024 DoatKolom
+# Copyright (C) 2025 DoatKolom
 # This file is distributed under the GPL v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: X-Currency 1.6.7\n"
+"Project-Id-Version: X-Currency 1.6.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/x-currency\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-04T17:26:08+00:00\n"
+"POT-Creation-Date: 2025-05-24T15:55:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0-alpha\n"
 "X-Domain: x-currency\n"
@@ -668,23 +668,11 @@ msgid "Switcher Style"
 msgstr ""
 
 #: assets/js/dashboard.js:1
-msgid "Default"
+msgid "Side Sticky"
 msgstr ""
 
 #: assets/js/dashboard.js:1
-msgid "Radio Dropdown"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Button/Switcher Elements"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Alignment"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Show Arrow"
+msgid "Switcher Elements"
 msgstr ""
 
 #: assets/js/dashboard.js:1
@@ -708,38 +696,6 @@ msgid "Sort Elements"
 msgstr ""
 
 #: assets/js/dashboard.js:1
-msgid "Dropdown Elements"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Full Width"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Flag Style"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Dropdown Arrow Style"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Currency List Wrapper"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Currency List Item"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Side Sticky"
-msgstr ""
-
-#: assets/js/dashboard.js:1
-msgid "Switcher Elements"
-msgstr ""
-
-#: assets/js/dashboard.js:1
 msgid "Switcher Position"
 msgstr ""
 
@@ -760,7 +716,15 @@ msgid "List Active Style"
 msgstr ""
 
 #: assets/js/dashboard.js:1
+msgid "Flag Style"
+msgstr ""
+
+#: assets/js/dashboard.js:1
 msgid "Code Style"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Alignment"
 msgstr ""
 
 #: assets/js/dashboard.js:1
@@ -789,6 +753,42 @@ msgstr ""
 
 #: assets/js/dashboard.js:1
 msgid "Lowercase"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Default"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Radio Dropdown"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Button/Switcher Elements"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Show Arrow"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Dropdown Elements"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Full Width"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Dropdown Arrow Style"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Currency List Wrapper"
+msgstr ""
+
+#: assets/js/dashboard.js:1
+msgid "Currency List Item"
 msgstr ""
 
 #: assets/js/dashboard.js:171
