@@ -37,15 +37,15 @@ class MenuServiceProvider implements Provider {
         add_submenu_page( 'x-currency', esc_html__( 'Overview', 'x-currency' ), esc_html__( 'Overview', 'x-currency' ), 'manage_options', 'x-currency', [$this, 'content'] );
         add_submenu_page( 'x-currency', esc_html__( 'Currencies', 'x-currency' ), esc_html__( 'Currencies', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/currencies' ) );
         add_submenu_page( 'x-currency', esc_html__( 'Switchers', 'x-currency' ), esc_html__( 'Switchers', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/switchers' ) );
-        add_submenu_page( 'x-currency', esc_html__( 'Global Settings', 'x-currency' ), esc_html__( 'Global Settings', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/global-settings' ) );
-        add_submenu_page( 'x-currency', esc_html__( 'Contact / Support', 'x-currency' ), esc_html__( 'Contact / Support', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/contact-support' ) );
+        add_submenu_page( 'x-currency', esc_html__( 'Global Settings', 'x-currency' ), esc_html__( 'Global Settings', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/settings' ) );
+        // add_submenu_page( 'x-currency', esc_html__( 'Contact / Support', 'x-currency' ), esc_html__( 'Contact / Support', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/contact-support' ) );
     }
 
     public function plugin_action_links( $links ) {
         $custom_links = [
-            '<a href="https://doatkolom.com/contact" target="_blank" title="' . esc_attr__( 'Create support ticket', 'x-currency' ) . '">' . esc_html__( 'Get Support', 'x-currency' ) . '</a>',
-            '<a href="https://demo.doatkolom.com/x-currency" target="_blank" title="' . esc_attr__( 'Demo', 'x-currency' ) . '">' . esc_html__( 'Demo', 'x-currency' ) . '</a>',
-            '<a href="' . esc_url( admin_url( 'admin.php?page=x-currency' ) . '#/currencies' ) . '" title="' . esc_attr__( 'Settings', 'x-currency' ) . '">' . esc_html__( 'Settings', 'x-currency' ) . '</a>'
+            // '<a href="https://doatkolom.com/contact" target="_blank" title="' . esc_attr__( 'Create support ticket', 'x-currency' ) . '">' . esc_html__( 'Get Support', 'x-currency' ) . '</a>',
+            // '<a href="https://demo.doatkolom.com/x-currency" target="_blank" title="' . esc_attr__( 'Demo', 'x-currency' ) . '">' . esc_html__( 'Demo', 'x-currency' ) . '</a>',
+            '<a href="' . esc_url( admin_url( 'admin.php?page=x-currency' ) . '#/currencies' ) . '" title="' . esc_attr__( 'Settings', 'x-currency' ) . '">' . esc_html__( 'Currencies', 'x-currency' ) . '</a>'
         ];
 
         foreach ( $custom_links as $link ) {

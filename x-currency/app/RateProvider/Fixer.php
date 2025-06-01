@@ -19,7 +19,7 @@ class Fixer extends ProviderBase {
         $needed_response = json_decode( $response_body, true );
 
         if ( isset( $needed_response['error'] ) ) {
-            throw new Exception( ! empty( $needed_response['error']['info'] ) ? $needed_response['error']['info'] : __( 'Something was wrong', 'x-currency' ) );
+            throw new Exception( ! empty( $needed_response['error']['info'] ) ? $needed_response['error']['info'] : __( 'Something was wrong', 'x-currency' ), 404 );
         }
 
         return $needed_response;

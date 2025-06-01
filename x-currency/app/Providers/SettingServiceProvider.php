@@ -98,6 +98,7 @@ class SettingServiceProvider implements Provider {
             $currency = $this->currency_repository->get_by_first( 'code', $_SESSION['x_currency_code'] );
 
             if ( $currency ) {
+                $currency->flag_url = x_currency_get_currency_flag_url( $currency );
                 $this->set_currency( $currency, $user_country );
                 return $currency;
             }
@@ -111,6 +112,7 @@ class SettingServiceProvider implements Provider {
 
                     $currency = $this->currency_repository->get_by_first( 'welcome_country', $user_country );
                     if ( $currency ) {
+                        $currency->flag_url = x_currency_get_currency_flag_url( $currency );
                         $this->set_currency( $currency, $user_country );
                         return $currency;
                     }
@@ -120,6 +122,7 @@ class SettingServiceProvider implements Provider {
                 if ( ! empty( $x_currency['global_settings']['user_welcome_currency'] ) ) {
                     $currency = $this->currency_repository->get_by_first( 'id', $x_currency['global_settings']['user_welcome_currency'] );
                     if ( $currency ) {
+                        $currency->flag_url = x_currency_get_currency_flag_url( $currency );
                         $this->set_currency( $currency, $user_country );
                         return $currency;
                     }
@@ -127,8 +130,8 @@ class SettingServiceProvider implements Provider {
             }
         }
 
-        $currency = $this->currency_repository->get_base_currency();
-
+        $currency           = $this->currency_repository->get_base_currency();
+        $currency->flag_url = x_currency_get_currency_flag_url( $currency );
         $this->set_currency( $currency, $user_country );
         return $currency;
     }

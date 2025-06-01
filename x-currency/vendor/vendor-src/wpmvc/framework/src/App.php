@@ -29,7 +29,7 @@ class App
         if (!empty(static::$loaded)) {
             return;
         }
-        if (!\function_exists('XCurrency\\get_plugin_data')) {
+        if (!\function_exists('get_plugin_data')) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
         $container = new Container();

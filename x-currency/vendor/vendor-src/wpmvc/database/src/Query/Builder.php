@@ -475,13 +475,15 @@ class Builder extends Relationship
         /**
          * @var wpdb $wpdb
          */
-        return $wpdb->prepare($sql, ...\array_map(
+        $sql_query = $wpdb->prepare($sql, ...\array_map(
             //phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
             function ($value) {
                 return $value instanceof DateTime ? $value->format('Y-m-d H:i:s') : $value;
             },
             $this->bindings
         ));
+        $this->bindings = [];
+        return $sql_query;
     }
     /**
      * Set query values for the using wpdb::prepare

@@ -17,7 +17,7 @@ class OpenExchangeRates extends ProviderBase {
         $needed_response = json_decode( $response_body, true );
 
         if ( isset( $needed_response['description'] ) ) {
-            throw new Exception( $needed_response['description'] );
+            throw new Exception( $needed_response['description'], 404 );
         }
         return $needed_response;
     }

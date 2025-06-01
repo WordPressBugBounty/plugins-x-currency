@@ -54,35 +54,31 @@ class SwitcherController extends Controller {
         );
     }
 
-    public function create( WP_REST_Request $wp_rest_request, Validator $validator ) {
+    public function create( WP_REST_Request $request, Validator $validator ) {
         $validator->validate(
             [
-                'name'          => 'required|string|max:200',
-                'active'        => 'required|boolean',
-                'custom_css'    => 'string',
-                'customizer_id' => 'required|string',
-                'template'      => 'required|json',
-                'type'          => 'required|string',
-                'package'       => 'required|string',
+                'name'     => 'required|string|max:200',
+                'active'   => 'required|boolean',
+                'template' => 'required|string',
+                'type'     => 'required|string|accepted:general,sticky'
             ]
         );
 
-        if ( $validator->is_fail() ) {
-            return Response::send(
-                [
-                    'messages' => $validator->errors
-                ], 422
-            );
-        }
+        $type     = $request->get_param( 'type' );
+        $template = $request->get_param( 'template' );
+        // $json_path = x_currency_dir( "app/PremadeSwitchers/{$type}/{$template}/content.json" );
+        $content_path = x_currency_dir( "app/PremadeSwitchers/{$type}/{$template}/content.txt" );
 
         $dto = new SwitcherDTO;
-        $dto->set_title( $wp_rest_request->get_param( 'name' ) );
-        $dto->set_active_status( $wp_rest_request->get_param( 'active' ) );
-        $dto->set_custom_css( (string) $wp_rest_request->get_param( 'custom_css' ) );
-        $dto->set_customizer_id( $wp_rest_request->get_param( 'customizer_id' ) );
-        $dto->set_template( $wp_rest_request->get_param( 'template' ) );
-        $dto->set_type( $wp_rest_request->get_param( 'type' ) );
-        $dto->set_package( $wp_rest_request->get_param( 'package' ) );
+        $dto->set_title( $request->get_param( 'name' ) );
+        $dto->set_active_status( $request->get_param( 'active' ) );
+        // $dto->set_customizer_id( $wp_rest_request->get_param( 'customizer_id' ) );
+        // $dto->set_template( file_get_contents( $json_path ) );
+        $dto->set_content( file_get_contents( $content_path ) );
+        $dto->set_type( 'general' === $type ? "shortcode" : $type );
+        // $dto->set_package( 'free' );
+
+        do_action( 'x_currency_before_create_switcher', $dto, $request );
 
         $switcher_id = $this->switcher_repository->create( $dto );
         
@@ -90,8 +86,7 @@ class SwitcherController extends Controller {
             [
                 'message' => esc_html__( 'Switcher Created Successfully!', 'x-currency' ),
                 'data'    => [
-                    'id'         => $switcher_id,
-                    'short_code' => "[" . x_currency_config()->get( 'app.switcher_post_type' ) . " id=" . $switcher_id . "]"
+                    'switcher_id' => $switcher_id
                 ],
                 'status'  => 'success'
             ] 
@@ -101,14 +96,14 @@ class SwitcherController extends Controller {
     public function update( WP_REST_Request $wp_rest_request, Validator $validator ) {
         $validator->validate(
             [
-                'id'            => 'required|integer',
-                'name'          => 'required|string|max:200',
-                'active'        => 'required|boolean',
-                'custom_css'    => 'string',
-                'customizer_id' => 'required|string',
-                'template'      => 'required|json',
-                'type'          => 'required|string',
-                'package'       => 'required|string',
+                'id'      => 'required|integer',
+                'name'    => 'required|string|max:200',
+                'active'  => 'required|boolean',
+                // 'custom_css'    => 'string',
+                // 'customizer_id' => 'required|string',
+                // 'template'      => 'required|json',
+                // 'type'          => 'required|string',
+                'content' => 'required|string',
             ]
         );
 
@@ -124,11 +119,12 @@ class SwitcherController extends Controller {
         $dto->set_id( $wp_rest_request->get_param( 'id' ) );
         $dto->set_title( $wp_rest_request->get_param( 'name' ) );
         $dto->set_active_status( $wp_rest_request->get_param( 'active' ) );
-        $dto->set_custom_css( (string) $wp_rest_request->get_param( 'custom_css' ) );
-        $dto->set_customizer_id( $wp_rest_request->get_param( 'customizer_id' ) );
-        $dto->set_template( $wp_rest_request->get_param( 'template' ) );
-        $dto->set_type( $wp_rest_request->get_param( 'type' ) );
-        $dto->set_package( $wp_rest_request->get_param( 'package' ) );
+        $dto->set_content( $wp_rest_request->get_param( 'content' ) );
+        // $dto->set_custom_css( (string) $wp_rest_request->get_param( 'custom_css' ) );
+        // $dto->set_customizer_id( $wp_rest_request->get_param( 'customizer_id' ) );
+        // $dto->set_template( $wp_rest_request->get_param( 'template' ) );
+        // $dto->set_type( $wp_rest_request->get_param( 'type' ) );
+        // $dto->set_package( $wp_rest_request->get_param( 'package' ) );
 
         $switcher_id = $this->switcher_repository->update( $dto );
 
@@ -141,6 +137,39 @@ class SwitcherController extends Controller {
                 ],
                 'status'  => 'success'
             ] 
+        );
+    }
+
+    public function update_status( WP_REST_Request $wp_rest_request, Validator $validator ) {
+        $validator->validate(
+            [
+                'id'     => 'required|numeric',
+                'active' => 'required|boolean'
+            ]
+        );
+
+        $this->switcher_repository->update_status( intval( $wp_rest_request->get_param( 'id' ) ), $wp_rest_request->get_param( 'active' ) );
+    
+        return Response::send(
+            [
+                'message' => esc_html__( 'Switcher status updated successfully!', 'x-currency' )
+            ]
+        );
+    }
+
+    public function delete( WP_REST_Request $wp_rest_request, Validator $validator ) {
+        $validator->validate(
+            [
+                'id' => 'required|numeric'
+            ]
+        );
+
+        wp_delete_post( intval( $wp_rest_request->get_param( 'id' ) ) );
+    
+        return Response::send(
+            [
+                'message' => esc_html__( 'Switcher delete successfully!', 'x-currency' )
+            ]
         );
     }
 }

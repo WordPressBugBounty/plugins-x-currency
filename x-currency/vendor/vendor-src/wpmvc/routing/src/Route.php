@@ -5,7 +5,7 @@ namespace XCurrency\WpMVC\Routing;
 \defined('ABSPATH') || exit;
 use XCurrency\WpMVC\Routing\Providers\RouteServiceProvider;
 use Exception;
-use XCurrency\WP_Error;
+use WP_Error;
 use WP_HTTP_Response;
 use WP_REST_Request;
 class Route

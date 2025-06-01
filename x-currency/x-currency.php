@@ -2,14 +2,16 @@
 
 defined( 'ABSPATH' ) || exit;
 
+use XCurrency\App\Repositories\CurrencyRepository;
+use XCurrency\App\Repositories\SettingRepository;
 use XCurrency\WpMVC\App;
 use XCurrency\App\Providers\ProVersionUpdateServiceProvider;
 
 /**
  * Plugin Name:       X-Currency
  * Description:       Currency Switcher for WooCommerce custom currency, exchange rates, currency by country, pay in selected currency
- * Version:           1.6.8
- * Requires at least: 6.2
+ * Version:           2.0.0
+ * Requires at least: 6.5
  * Requires PHP:      7.4
  * Tested up to:      6.8
  * Author:            DoatKolom
@@ -39,6 +41,12 @@ final class XCurrency {
         $application->boot( __FILE__, __DIR__ );
 
         x_currency_singleton( ProVersionUpdateServiceProvider::class )->boot();
+
+        register_activation_hook(
+            __FILE__, function() {
+                ( new XCurrency\Database\Migrations\Currency( x_currency_singleton( SettingRepository::class ), x_currency_singleton( CurrencyRepository::class ) ) )->execute();
+            } 
+        );
 
         if ( ! $this->is_compatible() ) {
             add_action( 'admin_notices', [$this, 'admin_notice_missing_main_plugin'] );
@@ -79,14 +87,14 @@ final class XCurrency {
     public function stop_load_pro() : void {
         add_filter(
             'stop_load_x_currency_pro', function() {
-                if ( function_exists( 'x_currency_pro_version' ) ) {
-                    $current_version = x_currency_pro_version();
+                if ( function_exists( 'x_currency_pro_config' ) ) {
+                    $current_version = x_currency_pro_config()->get( 'app.version' );
                 } else {
                     $plugin_data     = get_plugin_data( ABSPATH . DIRECTORY_SEPARATOR . PLUGINDIR . DIRECTORY_SEPARATOR . 'x-currency-pro/x-currency-pro.php' );
                     $current_version = $plugin_data['Version'];
                 }
 
-                $required_pro_version = '1.1.0';
+                $required_pro_version = '2.0.0';
 
                 if ( -1 === version_compare( $current_version, $required_pro_version ) ) {
                     add_action( 'admin_notices', [ $this, 'action_admin_notices' ] );
@@ -99,9 +107,25 @@ final class XCurrency {
 
     public function action_admin_notices() {
         ?>
-        <div class="notice notice-error" style="padding-top: 10px; padding-bottom: 10px;">
-            Your current X-Currency-Pro is not compatible with X-Currency Free version. Please update the X-Currency-Pro plugin.
-        </div>
+        <?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
+<div class="notice notice-error" style="padding: 20px; font-size: 15px; line-height: 1.6;">
+    <p style="margin-bottom: 10px;">
+        <strong style="font-size: 16px;">⚠️ X-Currency Pro Update Required</strong>
+    </p>
+    <p style="margin-bottom: 10px;">
+        Your current version of <strong>X-Currency Pro</strong> is not compatible with the installed <strong>X-Currency Free</strong> plugin.<br>
+        Please update X-Currency Pro to ensure compatibility.
+    </p>
+    <p style="margin-bottom: 10px;">
+        Automatic updates from your dashboard will be available <strong>after version 2.0.0</strong>.
+    </p>
+    <p style="margin-bottom: 0;">
+        <a href="https://facebook.com/groups/doatkolom" target="_blank" class="button button-primary">
+            Get X-Currency Pro from Facebook Group
+        </a>
+    </p>
+</div>
+
         <?php
     }
 

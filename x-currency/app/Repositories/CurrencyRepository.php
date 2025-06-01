@@ -32,18 +32,20 @@ class CurrencyRepository {
         );
     }
 
+    public function get_db_currencies() {
+        return $this->sort_currencies( Currency::query()->get() );
+    }
+
     public function get_currencies( $refresh = false ) {
         if ( ! $refresh && ! empty( $this->currencies ) ) {
             return $this->currencies;
         }
 
-        $currencies        = $this->sort_currencies( Currency::query()->get() );
+        $currencies        = $this->get_db_currencies();
         $active_currencies = [];
         $geo_currencies    = [];
 
         $base_currency = $this->get_base_currency();
-
-        global $x_currency;
 
         $country_code = x_currency_user_country_code();
 
@@ -64,17 +66,21 @@ class CurrencyRepository {
 
             $active_currencies[] = $currency;
 
-            if ( is_array( $currency->disable_countries ) ) {
-                if ( 'enable' === $currency->geo_countries_status ) {
-                    if ( in_array( $country_code, $currency->disable_countries ) ) {
-                        $geo_currencies[] = $currency;
-                    }
-                    
-                } elseif ( 'disable' === $currency->geo_countries_status ) {
-                    if ( ! in_array( $country_code, $currency->disable_countries ) ) {
-                        $geo_currencies[] = $currency;
+            if ( ! isset( $currency->geo_ip_status ) || $currency->geo_ip_status ) {
+                if ( is_array( $currency->disable_countries ) ) {
+                    if ( 'enable' === $currency->geo_countries_status ) {
+                        if ( in_array( $country_code, $currency->disable_countries ) ) {
+                            $geo_currencies[] = $currency;
+                        }
+                        
+                    } elseif ( 'disable' === $currency->geo_countries_status ) {
+                        if ( ! in_array( $country_code, $currency->disable_countries ) ) {
+                            $geo_currencies[] = $currency;
+                        }
                     }
                 }
+            } else {
+                $geo_currencies[] = $currency;
             }
         }
 
@@ -94,13 +100,21 @@ class CurrencyRepository {
         $flag_attachment                    = wp_get_attachment_image_src( $currency->flag );
 
         if ( empty( $flag_attachment[0] ) ) {
-            $flag_url = x_currency_url( 'media/common/dummy-flag.jpg' );
+            $flag_url = x_currency_get_currency_flag_url( $currency );
         } else {
             $flag_url = $flag_attachment[0];
         }
 
         $currency->flag_url = $flag_url;
 
+        return $currency;
+    }
+
+    public function get_by_id( int $id ) {
+        $currency = Currency::query()->where( 'id', $id )->first();
+        if ( $currency ) {
+            $currency = $this->prepare_currency( $currency );
+        }
         return $currency;
     }
 
@@ -141,7 +155,7 @@ class CurrencyRepository {
         $flag_attachment = wp_get_attachment_image_src( $this->base_currency->flag );
 
         if ( empty( $flag_attachment[0] ) ) {
-            $flag_url = x_currency_url( 'media/common/dummy-flag.jpg' );
+            $flag_url = x_currency_get_currency_flag_url( $this->base_currency );
         } else {
             $flag_url = $flag_attachment[0];
         }
@@ -153,7 +167,7 @@ class CurrencyRepository {
 
     private function get_base_currency_id() {
         $base_currency_option_key = x_currency_config()->get( 'app.base_currency_option_key' );
-        return get_option( $base_currency_option_key );
+        return intval( get_option( $base_currency_option_key ) );
     }
 
     public function get_by_first( string $field, $value, $all = false, $refresh = false ) {
@@ -191,11 +205,11 @@ class CurrencyRepository {
 
         $currency_id = Currency::query()->insert_get_id(
             [
-                'active'                   => (bool) $data['active'],
+                'active'                   => true,
                 'name'                     => $data['name'],
                 'code'                     => $currency_code,
                 'symbol'                   => $data['symbol'],
-                'flag'                     => $data['flag'],
+                'flag'                     => $data['flag'] ?? 0,
                 'rate'                     => $this->normalize_rate( $data['rate'] ),
                 'rate_type'                => $data['rate_type'],
                 'extra_fee'                => (float) $data['extra_fee'],
@@ -225,18 +239,16 @@ class CurrencyRepository {
     }
 
     public function update( array $data ) {
-
         $currency_code = str_replace( " ", "", strtoupper( $data['code'] ) );
         $currency_id   = (int) $data['id'];
         $currency      = Currency::query()->where( 'code', $currency_code )->first();
 
-        if ( $currency->id != $currency_id ) {
+        if ( $currency && $currency->id != $currency_id ) {
             throw new Exception( esc_html__( 'This currency code already exists', 'x-currency' ), 500 );
         }
 
         Currency::query()->where( 'id', $currency_id )->update(
             [
-                'active'                   => (bool) $data['active'],
                 'name'                     => $data['name'],
                 'code'                     => $currency_code,
                 'symbol'                   => $data['symbol'],
@@ -294,5 +306,23 @@ class CurrencyRepository {
             case 'sort':
                 $this->update_sort_ids( $ids );
         }
+    }
+
+    public function delete_by_id( int $id ) {
+        if ( $this->get_base_currency_id() === $id ) {
+            throw new Exception( esc_html__( "Sorry, you can not delete base currency.", "x-currency" ), 422 );
+        }
+        return Currency::query()->where( 'id', $id )->delete();
+    }
+
+    public function update_status( int $id, int $active ) {
+        if ( $this->get_base_currency_id() === $id ) {
+            throw new Exception( esc_html__( "Sorry, you can not update base currency status.", "x-currency" ), 422 );
+        }
+        return Currency::query()->where( 'id', $id )->update(
+            [
+                'active' => $active
+            ]
+        );
     }
 }

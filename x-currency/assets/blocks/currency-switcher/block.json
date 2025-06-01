@@ -1,0 +1,422 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "x-currency/currency-switcher",
+  "title": "Currency Switcher",
+  "description": "Insert an email field for users to enter their email address.",
+  "textdomain": "x-currency",
+  "attributes": {
+    "type": {
+      "type": "string",
+      "default": ""
+    },
+    "sw_alignment": {
+      "type": "string",
+      "default": "left"
+    },
+    "sw_arrow": {
+      "type": "boolean",
+      "default": true
+    },
+    "sw_flag": {
+      "type": "boolean",
+      "default": true
+    },
+    "sw_symbol": {
+      "type": "boolean",
+      "default": false
+    },
+    "sw_code": {
+      "type": "boolean",
+      "default": true
+    },
+    "sw_name": {
+      "type": "boolean",
+      "default": false
+    },
+    "sw_sort_el": {
+      "type": "array",
+      "default": [
+        {
+          "id": 1,
+          "title": "Flag"
+        },
+        {
+          "id": 2,
+          "title": "Symbol"
+        },
+        {
+          "id": 3,
+          "title": "Code"
+        },
+        {
+          "id": 4,
+          "title": "Name"
+        }
+      ]
+    },
+    "dr_alignment": {
+      "type": "string",
+      "default": "left"
+    },
+    "dr_arrow": {
+      "type": "boolean",
+      "default": false
+    },
+    "dr_flag": {
+      "type": "boolean",
+      "default": true
+    },
+    "dr_symbol": {
+      "type": "boolean",
+      "default": false
+    },
+    "dr_code": {
+      "type": "boolean",
+      "default": false
+    },
+    "dr_name": {
+      "type": "boolean",
+      "default": true
+    },
+    "dr_sort_el": {
+      "type": "array",
+      "default": [
+        {
+          "id": 1,
+          "title": "Flag"
+        },
+        {
+          "id": 2,
+          "title": "Symbol"
+        },
+        {
+          "id": 3,
+          "title": "Code"
+        },
+        {
+          "id": 4,
+          "title": "Name"
+        }
+      ]
+    },
+    "sw_full_width": {
+      "type": "boolean",
+      "default": false
+    },
+    "sw_width": {
+      "type": "number",
+      "default": 222
+    },
+    "sw_font_size": {
+      "type": "integer",
+      "default": 16
+    },
+    "sw_element_gap": {
+      "type": "integer",
+      "default": 8
+    },
+    "sw_padding": {
+      "type": "object",
+      "default": {
+        "top": "10px",
+        "left": "10px",
+        "right": "10px",
+        "bottom": "10px"
+      }
+    },
+    "sw_margin": {
+      "type": "object",
+      "default": {
+        "top": "0px",
+        "left": "0px",
+        "right": "0px",
+        "bottom": "0px"
+      }
+    },
+    "sw_border": {
+      "type": "object",
+      "default": {
+        "radius": "5px"
+      }
+    },
+    "dr_full_width": {
+      "type": "boolean",
+      "default": false
+    },
+    "dr_width": {
+      "type": "number",
+      "default": 222
+    },
+    "dr_max_height": {
+      "type": "number",
+      "default": 170
+    },
+    "dr_gap": {
+      "type": "number",
+      "default": 52
+    },
+    "dr_horizontal_position": {
+      "type": "number",
+      "default": 0
+    },
+    "dr_colors": {
+      "type": "object",
+      "default": {
+        "background": {
+          "default": "#FFFFFF"
+        }
+      }
+    },
+    "dr_padding": {
+      "type": "object",
+      "default": {
+        "top": "0px",
+        "left": "0px",
+        "right": "0px",
+        "bottom": "0px"
+      }
+    },
+    "dr_op_colors": {
+      "type": "object",
+      "default": {
+        "color": {
+          "default": "#101010"
+        },
+        "background": {
+          "default": "#D8DEE0"
+        }
+      }
+    },
+    "dr_op_font_size": {
+      "type": "integer",
+      "default": 15
+    },
+    "dr_ops_gap": {
+      "type": "integer",
+      "default": 0
+    },
+    "dr_op_elements_gap": {
+      "type": "integer",
+      "default": 8
+    },
+    "dr_op_padding": {
+      "type": "object",
+      "default": {
+        "top": "10px",
+        "left": "10px",
+        "right": "10px",
+        "bottom": "10px"
+      }
+    },
+    "sw_colors": {
+      "type": "object",
+      "default": {
+        "color": {
+          "default": "#000000"
+        },
+        "background": {
+          "default": "#FFFFFF",
+          "hover": "#4A6EE0"
+        }
+      }
+    },
+    "dr_arrow_colors": {
+      "type": "object",
+      "default": {
+        "color": {
+          "default": "#4A6EE0"
+        }
+      }
+    },
+    "dr_arrow_size": {
+      "type": "integer",
+      "default": 22
+    },
+    "dr_arrow_horizontal": {
+      "type": "integer",
+      "default": 50
+    },
+    "dr_arrow_vertical": {
+      "type": "integer",
+      "default": 50
+    },
+    "dr_border": {
+      "type": "object",
+      "default": {
+        "radius": "5px"
+      }
+    },
+    "fg_width": {
+      "type": "integer",
+      "default": 32
+    },
+    "fg_height": {
+      "type": "integer",
+      "default": 20
+    },
+    "fg_margin": {
+      "type": "object",
+      "default": {
+        "top": "0px",
+        "left": "0px",
+        "right": "0px",
+        "bottom": "0px"
+      }
+    },
+    "st_position": {
+      "type": "object",
+      "default": "right"
+    },
+    "st_vertical": {
+      "type": "object",
+      "default": {
+        "desktop": 40
+      }
+    },
+    "st_horizontal": {
+      "type": "object",
+      "default": {
+        "desktop": -27
+      }
+    },
+    "st_horizontal_hover": {
+      "type": "object",
+      "default": {
+        "desktop": -24
+      }
+    },
+    "st_item_horizontal_move_hover": {
+      "type": "number",
+      "default": 8
+    },
+    "st_list_colors": {
+      "type": "object",
+      "default": {
+        "color": {
+          "default": "#333333",
+          "hover": "#FFFFFF",
+          "active": "#333333"
+        },
+        "background": {
+          "default": "#E8E8E8",
+          "hover": "#4A6EE0",
+          "active": "#E8E8E8"
+        }
+      }
+    },
+    "st_list_font_size": {
+      "type": "object",
+      "default": {
+        "desktop": 15
+      }
+    },
+    "st_list_space_between": {
+      "type": "object",
+      "default": {
+        "desktop": 7
+      }
+    },
+    "st_list_element_space_between": {
+      "type": "object",
+      "default": 6
+    },
+    "st_list_padding": {
+      "type": "object",
+      "default": {
+        "top": "5px",
+        "left": "5px",
+        "right": "35px",
+        "bottom": "5px"
+      }
+    },
+    "st_list_border": {
+      "type": "object",
+      "default": {}
+    },
+    "st_list_border_active": {
+      "type": "object",
+      "default": {}
+    },
+    "st_code_colors": {
+      "type": "object",
+      "default": {
+        "color": {
+          "default": "#333333",
+          "hover": "#FFFFFF",
+          "active": "#333333"
+        },
+        "background": {
+          "default": "#E8E8E8",
+          "hover": "#4A6EE0",
+          "active": "#E8E8E8"
+        }
+      }
+    },
+    "st_code_alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "st_code_font_size": {
+      "type": "number",
+      "default": 16
+    },
+    "st_code_width": {
+      "type": "number",
+      "default": 35
+    },
+    "st_code_height": {
+      "type": "number",
+      "default": 30
+    },
+    "st_flag_margin": {
+      "type": "object",
+      "default": {
+        "top": "0px",
+        "left": "0px",
+        "right": "0px",
+        "bottom": "0px"
+      }
+    },
+    "st_flag_border": {
+      "type": "object",
+      "default": {}
+    },
+    "st_flag_width": {
+      "type": "number",
+      "default": {
+        "desktop": 27
+      }
+    },
+    "st_flag_height": {
+      "type": "number",
+      "default": {
+        "desktop": 27
+      }
+    },
+    "st_name_alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "st_name_transform": {
+      "type": "string",
+      "default": "capitalize"
+    },
+    "st_name_width": {
+      "type": "number",
+      "default": 180
+    },
+    "custom_css": {
+      "type": "string",
+      "default": "IA=="
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "movable": false,
+    "removable": false
+  },
+  "editorScript": "file:index.js",
+  "style": "file:style-index.css",
+  "editorStyle": "file:index.css"
+}

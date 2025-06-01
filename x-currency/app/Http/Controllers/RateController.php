@@ -5,8 +5,10 @@ namespace XCurrency\App\Http\Controllers;
 use Exception;
 use WP_REST_Request;
 use XCurrency\App\Http\Controllers\Controller;
+use XCurrency\App\Models\Currency;
 use XCurrency\App\Repositories\CurrencyRateRepository;
 use XCurrency\App\Repositories\CurrencyRepository;
+use XCurrency\WpMVC\RequestValidator\Validator;
 use XCurrency\WpMVC\Routing\Response;
 
 class RateController extends Controller {
@@ -19,46 +21,41 @@ class RateController extends Controller {
         $this->currency_repository      = $currency_repository;
     }
 
-    public function exchange_single( WP_REST_Request $wp_rest_request ) {
-        try {
-            $currency_id   = $wp_rest_request->get_param( 'currency_id' );
-            $currency_code = $wp_rest_request->get_param( 'currency_code' );
-            $this->currency_rate_repository->exchange( $currency_id, $currency_code );
+    public function exchange_single( WP_REST_Request $wp_rest_request, Validator $validator ) {
+        $validator->validate(
+            [
+                'id' => 'required|numeric'
+            ]
+        );
 
-            return Response::send(
-                [
-                    'status'  => 'success',
-                    'data'    => $this->currency_repository->get_all(),
-                    'message' => esc_html__( 'Currency rates updated successfully!', 'x-currency' )
-                ]
-            );
-        } catch ( Exception $exception ) {
-            return Response::send(
-                [
-                    'status'  => 'failed',
-                    'message' => $exception->getMessage()
-                ]
-            );
+        $currency_id = $wp_rest_request->get_param( 'id' );
+
+        $currency = Currency::query()->where( 'id', $currency_id )->first();
+
+        if ( ! $currency ) {
+            throw new Exception( esc_html__( "Currency not found", 'x-currency' ) );
         }
+
+        $this->currency_rate_repository->exchange( $currency_id, $currency->code );
+
+        return Response::send(
+            [
+                'status'  => 'success',
+                'data'    => $this->currency_repository->get_all(),
+                'message' => esc_html__( 'Currency rate updated successfully!', 'x-currency' )
+            ]
+        );
     }
 
     public function exchange_all() {
-        try {
-            $this->currency_rate_repository->exchange();
-            return Response::send(
-                [
-                    'status'  => 'success',
-                    'data'    => $this->currency_repository->get_all(),
-                    'message' => esc_html__( 'Currency rates updated successfully!', 'x-currency' )
-                ]
-            );
-        } catch ( Exception $exception ) {
-            return Response::send(
-                [
-                    'status'  => 'failed',
-                    'message' => $exception->getMessage()
-                ]
-            );
-        }
+        $this->currency_rate_repository->exchange();
+
+        return Response::send(
+            [
+                'status'  => 'success',
+                'data'    => $this->currency_repository->get_all(),
+                'message' => esc_html__( 'Currency rates updated successfully!', 'x-currency' )
+            ]
+        );
     }
 }

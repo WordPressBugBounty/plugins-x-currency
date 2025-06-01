@@ -5,7 +5,7 @@ namespace XCurrency\WpMVC\Routing;
 \defined('ABSPATH') || exit;
 use XCurrency\WpMVC\Routing\Providers\RouteServiceProvider;
 use XCurrency\WpMVC\Routing\Contracts\Middleware as MiddlewareContract;
-use XCurrency\WP_Error;
+use WP_Error;
 class Middleware
 {
     protected static array $middleware = [];

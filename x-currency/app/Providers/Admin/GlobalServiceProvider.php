@@ -15,7 +15,6 @@ class GlobalServiceProvider implements Provider {
 
     public function boot() {
         add_action( 'admin_notices', [ $this, 'action_admin_notices' ] );
-        add_filter( 'plugin_action_links_x-currency-new/x-currency-new.php', [$this, 'plugin_action_links'] );
         add_filter( 'woocommerce_general_settings', [$this, 'woocommerce_general_settings'] );
     }
 
@@ -23,24 +22,6 @@ class GlobalServiceProvider implements Provider {
         if ( ! function_exists( 'x_currency_pro' ) && ! get_transient( 'x-currency-fb-g-notice' ) ) {
             View::render( 'pro-notice' );
         }
-    }
-
-    /**
-     * @param $links
-     * @return mixed
-     */
-    public function plugin_action_links( $links ) {
-        $custom_links = [
-            '<a href="https://doatkolom.com/contact" target="_blank" title="' . esc_attr__( 'Create support ticket', 'x-currency' ) . '">' . esc_html__( 'Get Support', 'x-currency' ) . '</a>',
-            '<a href="https://demo.doatkolom.com/x-currency" target="_blank" title="' . esc_attr__( 'Demo', 'x-currency' ) . '">' . esc_html__( 'Demo', 'x-currency' ) . '</a>',
-            '<a href="' . esc_url( admin_url( 'admin.php?page=x-currency' ) . '#/currencies' ) . '" title="' . esc_attr__( 'Settings', 'x-currency' ) . '">' . esc_html__( 'Settings', 'x-currency' ) . '</a>'
-        ];
-
-        foreach ( $custom_links as $link ) {
-            array_unshift( $links, $link );
-        }
-
-        return $links;
     }
 
     /**

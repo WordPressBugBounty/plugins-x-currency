@@ -2,57 +2,50 @@
 
 use XCurrency\WpMVC\Enqueue\Enqueue;
 
-$version = x_currency_version();
+Enqueue::style( 'x-currency-icon', 'font/style' );
 
-/**
- * Load dashboard related assets that helps to use icons and admin menu 
- */ 
-Enqueue::script( 'x-currency-admin-menu', 'js/admin-script', [] );
-wp_enqueue_style( 'x-currency-icon', x_currency_url( 'media/font/style.css' ), [], $version );
-
-if ( 'toplevel_page_x-currency' !== get_current_screen()->id ) {
+if ( 'toplevel_page_x-currency' !== $hook_suffix ) {
     return;
 }
 
-wp_enqueue_media();
-/**
- * Load dashboard related assets that helps to create dashboard 
- */ 
-Enqueue::script( 'x-currency-store', 'js/store', ['lodash', 'backbone', 'jquery'], true );
+add_filter( 'should_load_block_editor_scripts_and_styles', "__return_true" );
 
-do_action( 'x_currency_admin_script_before' );
+wp_enqueue_registered_block_scripts_and_styles();
 
-Enqueue::script( 'x-currency-switcher', 'js/switcher.js', [], true );
-Enqueue::script( 'x-currency-admin', 'js/dashboard', ['x-currency-store', 'x-currency-switcher'], true );
-Enqueue::style( 'x-currency-admin', 'css/dashboard', ['wp-components'] );
+Enqueue::style( 'x-currency-shortcode', 'build/css/shortcode' );
+Enqueue::script( 'x-currency-old-switcher', 'build/js/x-currency-old-switcher', [], true );
+Enqueue::script( 'x-currency-admin', 'build/js/admin-main-script.js', ['lodash', 'jquery'] );
 
-wp_set_script_translations( 'x-currency-admin', 'x-currency' );
-wp_add_inline_style(
-    'x-currency-admin', "
-:root{
---x-currency-bg-image: url(" . x_currency_url( 'media/common/dot-bg.png' ) . ");
-}" 
-);
+$countries    = new WC_Countries;
+$country_list = [];
 
-wp_localize_script(
-    'x-currency-store', 'x_currency', [
-        'base_currency' => x_currency_base_id()
-    ] 
-);
+foreach ( $countries->get_countries() as $key => $country ) {
+    $country_list[] = ['value' => $key, 'label' => $country];
+}
 
 wp_localize_script(
     'x-currency-admin', 'x_currency', [
-        'version'       => $version,
-        'apiUrl'        => get_rest_url( '', '' ),
-        'media_url'     => x_currency_url( 'media/' ),
-        'prefix'        => x_currency_config()->get( 'app.post_type' ),
-        'api_version'   => 'v1',
-        'nonce'         => wp_create_nonce( 'wp_rest' ),
-        'base_currency' => x_currency_base_id(),
-        'preview'       => x_currency_url( 'resources/views/customizer/preview.html' ),
+        'base_currency_id'  => x_currency_base_id(),
+        'premade_templates' => x_currency_config()->get( 'premade-switchers' ),
+        'version'           => x_currency_version(),
+        'apiUrl'            => get_rest_url( null, '' ),
+        'url'               => x_currency_url( '/' ),
+        'prefix'            => x_currency_config()->get( 'app.post_type' ),
+        'nonce'             => wp_create_nonce( 'wp_rest' ),
+        'base_currency'     => x_currency_base_id(),
+        'asset_url'         => x_currency_url( 'assets' ),
+        'preview'           => x_currency_url( 'resources/views/customizer/preview.html' ),
+        'countries'         => $country_list,
+        'countries_code'    => x_currency_countries_code()
     ] 
 );
 
+wp_enqueue_editor();
+wp_enqueue_media();
+
+Enqueue::style( 'x-currency-admin', 'build/css/admin-main-style', ['wp-components', 'wp-edit-blocks', 'wp-block-editor'] );
+
+//Old switcher
 global $x_currency_custom_inline_styles;
 
 if ( ! empty( $x_currency_custom_inline_styles ) && is_array( $x_currency_custom_inline_styles ) ) {

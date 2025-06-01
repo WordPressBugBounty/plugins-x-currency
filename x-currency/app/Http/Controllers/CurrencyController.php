@@ -3,10 +3,12 @@
 namespace XCurrency\App\Http\Controllers;
 
 use Exception;
+use WC_Payment_Gateways;
 use WP_REST_Request;
 use XCurrency\App\Http\Controllers\Controller;
 use XCurrency\App\Repositories\CurrencyRateRepository;
 use XCurrency\App\Repositories\CurrencyRepository;
+use XCurrency\WpMVC\RequestValidator\Validator;
 use XCurrency\WpMVC\Routing\Response;
 
 class CurrencyController extends Controller {
@@ -49,22 +51,68 @@ class CurrencyController extends Controller {
     }
 
     public function update( WP_REST_Request $wp_rest_request ) {
-        try {
-            $this->currency_repository->update( $wp_rest_request->get_params() );
-            return Response::send(
-                [
-                    'message' => esc_html__( 'Currency updated successfully!', 'x-currency' ),
-                    'status'  => 'success'
-                ]
-            );
-        } catch ( Exception $exception ) {
-            return Response::send(
-                [
-                    'message' => $exception->getMessage(),
-                    'status'  => 'failed'
-                ]
-            );
+        $this->currency_repository->update( $wp_rest_request->get_params() );
+        return Response::send(
+            [
+                'message' => esc_html__( 'Currency updated successfully!', 'x-currency' ),
+                'status'  => 'success'
+            ]
+        );
+    }
+
+    public function delete( WP_REST_Request $wp_rest_request, Validator $validator ) {
+        $validator->validate(
+            [
+                'id' => 'required|numeric'
+            ]
+        );
+
+        $this->currency_repository->delete_by_id( intval( $wp_rest_request->get_param( 'id' ) ) );
+    
+        return Response::send(
+            [
+                'message' => esc_html__( 'Currency delete successfully!', 'x-currency' )
+            ]
+        );
+    }
+
+    public function update_status( WP_REST_Request $wp_rest_request, Validator $validator ) {
+        $validator->validate(
+            [
+                'id'     => 'required|numeric',
+                'active' => 'required|boolean'
+            ]
+        );
+
+        $this->currency_repository->update_status( intval( $wp_rest_request->get_param( 'id' ) ), $wp_rest_request->get_param( 'active' ) );
+    
+        return Response::send(
+            [
+                'message' => esc_html__( 'Currency status updated successfully!', 'x-currency' )
+            ]
+        );
+    }
+
+    public function show( WP_REST_Request $wp_rest_request, Validator $validator ) {
+        $validator->validate(
+            [
+                'id' => 'required|numeric'
+            ]
+        );
+
+        $currency = $this->currency_repository->get_by_id( intval( $wp_rest_request->get_param( 'id' ) ) );
+
+        if ( ! $currency ) {
+            throw new Exception( "Currency not found" );
         }
+
+        $currency->disable_payment_gateways = maybe_unserialize( $currency->disable_payment_gateways );
+    
+        return Response::send(
+            [
+                'currency' => $currency
+            ]
+        );
     }
 
     public function input_fields() {
@@ -227,6 +275,22 @@ class CurrencyController extends Controller {
         );
     }
 
+    public function sort( WP_REST_Request $wp_rest_request, Validator $validator ) {
+        $validator->validate(
+            [
+                'ids' => 'required|array'
+            ]
+        );
+
+        $this->currency_repository->update_sort_ids( $wp_rest_request->get_param( 'ids' ) );
+
+        return Response::send(
+            [
+                'message' => esc_html__( 'Currency sorted successfully!', 'x-currency' )
+            ]
+        );
+    }
+
     public function organizer( WP_REST_Request $wp_rest_request ) {
         try {
             $data = $wp_rest_request->get_params();
@@ -260,7 +324,7 @@ class CurrencyController extends Controller {
         $symbols = x_currency_symbols();
         $data    = [];
         foreach ( get_woocommerce_currencies() as $code => $name ) {
-            $data[$code] = [
+            $data[] = [
                 'name'               => $name,
                 'code'               => $code,
                 'symbol'             => isset( $symbols[$code] ) ? $symbols[$code] : '',
@@ -271,14 +335,13 @@ class CurrencyController extends Controller {
                 'thousand_separator' => ',',
                 'decimal_separator'  => '.',
                 'max_decimal'        => 2,
-                'position'           => 'left'
+                'symbol_position'    => 'left'
             ];
         }
 
         return Response::send(
             [
-                'data'   => $data,
-                'status' => 'success'
+                'data' => $data
             ]
         );
     }
@@ -296,6 +359,21 @@ class CurrencyController extends Controller {
             [
                 'attachment_url' => $attachment_url,
                 'status'         => 'success'
+            ] 
+        );
+    }
+
+    public function payment_gateways() {
+        $payment_gateways    = [];
+        $wc_payment_gateways = WC_Payment_Gateways::instance();
+
+        foreach ( $wc_payment_gateways->get_available_payment_gateways() as $key => $value ) {
+            $payment_gateways[] = ['value' => $key, 'label' => $value->title];
+        }
+
+        return Response::send(
+            [
+                'data' => $payment_gateways
             ] 
         );
     }

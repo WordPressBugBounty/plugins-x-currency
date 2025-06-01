@@ -27,7 +27,7 @@ $selected_currency = x_currency_selected();
  */
 $currency_repository = x_currency_singleton( CurrencyRepository::class );
 
-$template_json = json_decode( get_post_meta( $template_id, 'template', true ), true );
+$template_json = json_decode( $template, true );
 
 /**
  * Start generating switcher style 
@@ -203,7 +203,7 @@ if ( wp_is_block_theme() ) {
 }
 
 ?>
-<div class="x-currency x-currency-shortcode switcher-<?php x_currency_render( $template_id )?> open-bottom">
+<div class="x-currency x-currency-shortcode x-currency-shortcode-old switcher-<?php x_currency_render( $template_id )?> open-bottom">
     <button class="switch">
         <div class="switch-elements">
             <?php

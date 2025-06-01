@@ -30,11 +30,31 @@ class SideStickyServiceProvider implements Provider {
             $currency_repository = x_currency_singleton( CurrencyRepository::class );
             $currencies          = $currency_repository->get_geo();
 
-            foreach ( $switcher_list as $template_id => $switcher ) {
+            foreach ( $switcher_list as $switcher ) {
                 if ( $switcher['page'] == 'all' || $switcher['page'] == $current_page_id ) {
-                    $content .= View::get( 'sticky-switcher', compact( 'currencies', 'template_id' ) );
+                    $template = get_post_meta( $switcher['id'], 'template', true );
+                    if ( empty( $template ) ) {
+                        $content .= View::get(
+                            'block-switcher', [
+                                'template_id' => $switcher['id']
+                            ]
+                        );
+                    } else {
+                        // Old switcher, using before 2.0.0
+                        $content .= View::get(
+                            'sticky-switcher', [
+                                'template_id' => $switcher['id'],
+                                'template'    => $template,
+                                'currencies'  => $currencies
+                            ] 
+                        );
+                    }
                 }
             }
+        }
+
+        if ( ! empty( $content ) ) {
+            wp_enqueue_script_module( 'x-currency/blocks-frontend' );
         }
 
         add_action(

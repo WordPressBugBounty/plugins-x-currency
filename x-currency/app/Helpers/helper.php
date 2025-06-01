@@ -42,7 +42,7 @@ function x_currency_base() {
 }
 
 function x_currency_base_id() {
-    return x_currency_base()->id;
+    return intval( x_currency_base()->id );
 }
 
 function x_currency_base_code() {
@@ -355,3 +355,23 @@ function x_currency_symbols() {
         'ZMW' => 'ZK'
     ];
 }
+
+// Helper function to replace placeholders in HTML
+function x_currency_replace_currency_placeholders( $html, $currency ) {
+    return str_replace(
+        ['CURRENCY_CODE', 'CURRENCY_SYMBOL', 'CURRENCY_NAME', 'CURRENCY_FLAG_URL'],
+        [$currency->code, $currency->symbol, $currency->name, x_currency_get_currency_flag_url( $currency )],
+        $html
+    );
+}
+
+function x_currency_get_currency_flag_url( $currency ) {
+    $countries_codes = x_currency_countries_code();
+    $country_code    = $countries_codes[$currency->code] ?? '';
+    return ! empty( $currency->flag_url ) ? $currency->flag_url : x_currency_url( "assets/images/flags/{$country_code}.png" );
+}
+
+function x_currency_countries_code() {
+    return [ "AED" => "ae", "AFN" => "af", "ALL" => "al", "AMD" => "am", "ANG" => "an", "AOA" => "ao", "ARS" => "ar", "AUD" => "au", "AWG" => "aw", "AZN" => "az", "BAM" => "ba", "BBD" => "bb", "BDT" => "bd", "BGN" => "bg", "BHD" => "bh", "BIF" => "bi", "BMD" => "bm", "BND" => "bn", "BOB" => "bo", "BRL" => "br", "BSD" => "bs", "BTC" => "btc", "BTN" => "bt", "BWP" => "bw", "BYR" => "by", "BYN" => "by", "BZD" => "bz", "CAD" => "ca", "CDF" => "cd", "CHF" => "ch", "CLP" => "cl", "CNY" => "cn", "COP" => "co", "CRC" => "cr", "CUC" => "cu", "CUP" => "cu", "CVE" => "cv", "CZK" => "cz", "DJF" => "dj", "DKK" => "dk", "DOP" => "do", "DZD" => "dz", "EGP" => "eg", "ERN" => "er", "ETB" => "et", "EUR" => "eu", "FJD" => "fj", "FKP" => "fk", "GBP" => "gb", "GEL" => "ge", "GGP" => "gg", "GHS" => "gh", "GIP" => "gi", "GMD" => "gm", "GNF" => "gn", "GTQ" => "gt", "GYD" => "gy", "HKD" => "hk", "HNL" => "hn", "HRK" => "hr", "HTG" => "ht", "HUF" => "hu", "IDR" => "id", "ILS" => "il", "IMP" => "im", "INR" => "in", "IQD" => "iq", "IRR" => "ir", "IRT" => "ir", "ISK" => "is", "JEP" => "je", "JMD" => "jm", "JOD" => "jo", "JPY" => "jp", "KES" => "ke", "KGS" => "kg", "KHR" => "kh", "KMF" => "km", "KPW" => "kp", "KRW" => "kr", "KWD" => "kw", "KYD" => "ky", "KZT" => "kz", "LAK" => "la", "LBP" => "lb", "LKR" => "lk", "LRD" => "lr", "LSL" => "ls", "LYD" => "ly", "MAD" => "ma", "MDL" => "md", "MGA" => "mg", "MKD" => "mk", "MMK" => "mm", "MNT" => "mn", "MOP" => "mo", "MRU" => "mr", "MUR" => "mu", "MVR" => "mv", "MWK" => "mw", "MXN" => "mx", "MYR" => "my", "MZN" => "mz", "NAD" => "na", "NGN" => "ng", "NIO" => "ni", "NOK" => "no", "NPR" => "np", "NZD" => "nz", "OMR" => "om", "PAB" => "pa", "PEN" => "pe", "PGK" => "pg", "PHP" => "ph", "PKR" => "pk", "PLN" => "pl", "PRB" => "pmr", "PYG" => "py", "QAR" => "qa", "RON" => "ro", "RSD" => "rs", "RUB" => "ru", "RWF" => "rw", "SAR" => "sa", "SBD" => "sb", "SCR" => "sc", "SDG" => "sd", "SEK" => "se", "SGD" => "sg", "SHP" => "sh", "SLL" => "sl", "SOS" => "so", "SRD" => "sr", "SSP" => "ss", "STN" => "st", "SYP" => "sy", "SZL" => "sz", "THB" => "th", "TJS" => "tj", "TMT" => "tm", "TND" => "tn", "TOP" => "to", "TRY" => "tr", "TTD" => "tt", "TWD" => "tw", "TZS" => "tz", "UAH" => "ua", "UGX" => "ug", "USD" => "us", "UYU" => "uy", "UZS" => "uz", "VEF" => "ve", "VES" => "ve", "VND" => "vn", "VUV" => "vu", "WST" => "ws", "XAF" => "cf", "YER" => "ye", "ZAR" => "za", "ZMW" => "zm" ];    
+}
+// "XCD" => "xc", "XOF" => "xo", "XPF" => "xp",

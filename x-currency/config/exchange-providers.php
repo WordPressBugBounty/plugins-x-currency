@@ -1,5 +1,7 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\App\RateProvider\CurrencyFreaks;
 use XCurrency\App\RateProvider\Fixer;
 use XCurrency\App\RateProvider\FixerApiLayer;

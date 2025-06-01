@@ -20,7 +20,7 @@ class CurrencyRateRepository {
         $settings = $this->setting_repository->db_settings();
 
         if ( empty( $settings['default_rate_provider'] ) ) {
-            throw new Exception( esc_html__( 'Please go to the global settings page and place your Currency Rate Aggregator API token', 'x-currency' ) );
+            throw new Exception( esc_html__( 'Please go to the global settings page and place your Currency Rate Aggregator API token', 'x-currency' ), 404 );
         }
 
         $rate_provider = $settings['default_rate_provider'];

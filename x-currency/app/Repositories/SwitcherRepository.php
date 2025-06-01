@@ -9,7 +9,7 @@ class SwitcherRepository {
             'post_type'   => x_currency_config()->get( 'app.switcher_post_type' ),
             'post_status' => 'publish, draft',
             'numberposts' => -1,
-            'order'       => 'ASC'
+            'order'       => 'DESC'
         ];
 
         return get_posts( $args );
@@ -35,9 +35,10 @@ class SwitcherRepository {
 
     public function create( SwitcherDTO $dto ) {
         $args = [
-            'post_title'  => $dto->get_title(),
-            'post_type'   => x_currency_config()->get( 'app.switcher_post_type' ),
-            'post_status' => $dto->is_active_status() == true ? 'publish' : 'draft'
+            'post_title'   => $dto->get_title(),
+            'post_type'    => x_currency_config()->get( 'app.switcher_post_type' ),
+            'post_status'  => $dto->is_active_status() == true ? 'publish' : 'draft',
+            'post_content' => $dto->get_content()
         ];
 
         $post_id = wp_insert_post( $args );
@@ -50,9 +51,13 @@ class SwitcherRepository {
         }
 
         add_post_meta( $post_id, 'type', $dto->get_type() );
-        add_post_meta( $post_id, 'customizer_id', $dto->get_customizer_id() );
-        add_post_meta( $post_id, 'template', $dto->get_template() );
-        add_post_meta( $post_id, 'package', $dto->get_package() );
+        
+        if ( $dto->get_type() == 'sticky' ) {
+            add_post_meta( $post_id, 'page', $dto->get_page() );
+        }
+    
+        // add_post_meta( $post_id, 'template', $dto->get_template() );
+        // add_post_meta( $post_id, 'package', $dto->get_package() );
 
         return $post_id;
     }
@@ -61,10 +66,11 @@ class SwitcherRepository {
         $post_id = $dto->get_id();
 
         $args = [
-            'ID'          => $dto->get_id(),
-            'post_title'  => $dto->get_title(),
-            'post_type'   => x_currency_config()->get( 'app.switcher_post_type' ),
-            'post_status' => $dto->is_active_status() == true ? 'publish' : 'draft'
+            'ID'           => $dto->get_id(),
+            'post_title'   => $dto->get_title(),
+            'post_type'    => x_currency_config()->get( 'app.switcher_post_type' ),
+            'post_status'  => $dto->is_active_status() == true ? 'publish' : 'draft',
+            'post_content' => $dto->get_content()
         ];
 
         wp_update_post( $args );
@@ -73,13 +79,23 @@ class SwitcherRepository {
         if ( ! empty( $custom_css ) ) {
             update_post_meta( $post_id, 'custom_css', $custom_css );
         }
-
-        update_post_meta( $post_id, 'type', $dto->get_type() );
-        update_post_meta( $post_id, 'customizer_id', $dto->get_customizer_id() );
-        update_post_meta( $post_id, 'template', $dto->get_template() );
-        update_post_meta( $post_id, 'package', $dto->get_package() );
+        // block_switcher meta for old switcher support
+        update_post_meta( $post_id, 'block_switcher', 1 );
+        // update_post_meta( $post_id, 'customizer_id', $dto->get_customizer_id() );
+        // update_post_meta( $post_id, 'template', $dto->get_template() );
+        // update_post_meta( $post_id, 'package', $dto->get_package() );
 
         return $post_id;
+    }
+
+    public function update_status( int $id, bool $active ) {
+        wp_update_post(
+            [
+                'ID'          => $id,
+                'post_type'   => x_currency_config()->get( 'app.switcher_post_type' ),
+                'post_status' => $active == true ? 'publish' : 'draft'
+            ] 
+        );
     }
 
     /**
@@ -93,9 +109,10 @@ class SwitcherRepository {
             $meta_values               = $this->post_meta( $value->ID );
             $meta_values['id']         = $value->ID;
             $meta_values['name']       = $value->post_title;
+            $meta_values['content']    = $value->post_content;
             $meta_values['short_code'] = "[" . $post_type . " id=" . $value->ID . "]";
             $meta_values['active']     = $value->post_status == 'publish' ? true : false;
-            $final_posts[$value->ID]   = $meta_values;
+            $final_posts[]             = $meta_values;
         }
         return $final_posts;
     }

@@ -18,7 +18,7 @@ class FixerApiLayer extends ProviderBase {
         $needed_response = json_decode( $response_body, true );
 
         if ( 200 !== wp_remote_retrieve_response_code( $response ) ) {
-            throw new Exception( ! empty( $needed_response['message'] ) ? $needed_response['message'] :  __( 'Something was wrong', 'x-currency' ) );
+            throw new Exception( ! empty( $needed_response['message'] ) ? $needed_response['message'] :  __( 'Something was wrong', 'x-currency' ), 404 );
         }
 
         return $needed_response;

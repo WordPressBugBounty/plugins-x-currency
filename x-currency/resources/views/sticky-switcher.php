@@ -3,7 +3,7 @@
 use XCurrency\App\Stylesheet;
 
 $selected_currency = x_currency_selected();
-$template_json     = json_decode( get_post_meta( $template_id, 'template', true ), true );
+$template_json     = json_decode( $template, true );
 
 /**
  * Start generating switcher style 
@@ -13,7 +13,6 @@ $sheet->add_device( 'mobile', 400 );
 $sheet->add_device( 'tablet', 620 );
 
 $css_prefix = ".x-currency-sticky.switcher-{$template_id}";
-
 
 $sheet->add_css(
     "
@@ -250,7 +249,7 @@ if ( wp_is_block_theme() ) {
 }
 
 ?>
-<div class="x-currency x-currency-sticky switcher-<?php x_currency_render( $template_id )?>">
+<div class="x-currency x-currency-sticky x-currency-sticky-old switcher-<?php x_currency_render( $template_id )?>">
     <ul class="dropdown-ul">
         <?php foreach ( $currencies as $currency ) : ?>
             <li class="dropdown-li <?php $selected_currency->id === $currency->id ? x_currency_render( 'active' ) : ''?>" data-code="<?php x_currency_render( $currency->code )?>">

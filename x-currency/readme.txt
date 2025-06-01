@@ -2,10 +2,10 @@
 Contributors: doatkolom
 Donate link: https://doatkolom.com/
 Tags: currency switcher, woocommerce currency switcher, currency switcher plugin, multi currency, woocommerce
-Requires at least: 6.2
+Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.6.8
+Stable tag: 2.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -118,6 +118,11 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 2.0.0 - 1 Jun 2025 =
+* New: Introduced the ability to set a specific currency for the checkout page, with optional country-based conditions.
+* Improved: Enhanced dashboard UI and overall user experience.
+* Improved: Optimized performance for faster load times.
+
 = 1.6.8 - 24 May 2025 =
 * Improved: Optimized JS and PHP.
 

@@ -22,12 +22,15 @@ class Currency implements Migration {
     }
 
     public function execute(): bool {
-
         global $wpdb;
 
         $charset_collate = $wpdb->get_charset_collate();
 
-        $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}x_currency(
+        if ( ! function_exists( 'dbDelta' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+        }
+
+        $sql = "CREATE TABLE {$wpdb->prefix}x_currency (
 			id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
 			active BOOLEAN,
 			name VARCHAR(100) NOT NULL,
@@ -44,16 +47,19 @@ class Currency implements Migration {
 			decimal_separator VARCHAR(50) NOT NULL,
 			symbol_position VARCHAR(50) NOT NULL,
 			disable_payment_gateways LONGTEXT NOT NULL,
+			geo_ip_status TINYINT(1) DEFAULT 0,
 			geo_countries_status VARCHAR(50) DEFAULT 'disable',
 			disable_countries LONGTEXT,
 			welcome_country VARCHAR(50)
 		) {$charset_collate}";
 
-        if ( ! function_exists( 'dbDelta' ) ) {
-            require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-        }
-
         dbDelta( $sql );
+
+        ModelsCurrency::query()->where( 'disable_countries', '!=', 'a:0:{}' )->update(
+            [
+                'geo_ip_status' => 1
+            ]
+        );
 
         $sort_ids = get_option( 'x-currency-currency-sort-keys' );
 

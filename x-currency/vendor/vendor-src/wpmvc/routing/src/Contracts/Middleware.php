@@ -4,7 +4,7 @@ namespace XCurrency\WpMVC\Routing\Contracts;
 
 \defined('ABSPATH') || exit;
 use WP_REST_Request;
-use XCurrency\WP_Error;
+use WP_Error;
 interface Middleware
 {
     /**
