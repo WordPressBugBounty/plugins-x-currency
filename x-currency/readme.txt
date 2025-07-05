@@ -5,7 +5,7 @@ Tags: currency switcher, woocommerce currency switcher, currency switcher plugin
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -96,6 +96,7 @@ It's a modern style where currency list will appear into a modal with a bigger v
 <li><a href="https://wordpress.org/plugins/shopengine/" target="_blank"><strong>ShopEngine</strong></a> Elementor WooCommerce Builder Addons, Variation Swatches, Wishlist, Products Compare – All in One Solution</li>
 <li><a href="https://crocoblock.com/plugins/jetwoobuilder/" target="_blank"><strong>JetWooBuilder</strong></a> Top-rated Elementor WooCommerce plugin</li>
 <li><a href="https://wordpress.org/plugins/breeze/" target="_blank"><strong>Breeze</strong></a> WordPress Cache Plugin</li>
+<li><a href="https://wordpress.org/plugins/packeta/" target="_blank"><strong>Packeta</strong></a></li>
 </ul>
 
 
@@ -118,6 +119,9 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 2.0.1 - 5 July 2025 =
+* Added: Packetery plugin compatibility.
+
 = 2.0.0 - 1 Jun 2025 =
 * New: Introduced the ability to set a specific currency for the checkout page, with optional country-based conditions.
 * Improved: Enhanced dashboard UI and overall user experience.

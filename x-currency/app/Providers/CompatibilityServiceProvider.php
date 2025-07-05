@@ -34,6 +34,15 @@ class CompatibilityServiceProvider implements Provider {
             } 
         );
 
+        /**
+         * Packetery Compatibility
+         */
+        add_filter(
+            'packetery_price', function ( float $price ) {
+                return (float) x_currency_exchange( $price );
+            } 
+        );
+
         add_action( 'x_currency_before_send_rest_response', [$this, 'cache_clear'] );
     }
 
