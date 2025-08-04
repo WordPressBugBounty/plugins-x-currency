@@ -5,7 +5,7 @@ Tags: currency switcher, woocommerce currency switcher, currency switcher plugin
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -119,6 +119,9 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 2.0.2 - 5 Aug 2025 =
+* Fixed: Improve currency switcher dropdown positioning with responsive logic and optimizations.
+
 = 2.0.1 - 5 July 2025 =
 * Added: Packetery plugin compatibility.
 
