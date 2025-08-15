@@ -118,6 +118,19 @@ if ( ! function_exists( 'x_currency_exchange' ) ) {
     }
 }
 
+if ( ! function_exists( 'x_currency_exchange_revert' ) ) {
+    /**
+     * @param $price
+     * @return mixed
+     */
+    function x_currency_exchange_revert( $price ) {
+        if ( ! empty( $price ) ) {
+            $price = $price / x_currency_selected()->rate;
+        }
+        return apply_filters( 'x_currency_exchange_revert', $price );
+    }
+}
+
 if ( ! function_exists( 'x_currency_price_format' ) ) {
     /**
      * @param $symbol_position

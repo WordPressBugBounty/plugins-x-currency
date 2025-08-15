@@ -7,8 +7,6 @@ defined( 'ABSPATH' ) || exit;
 use WC_Product;
 
 class BaseCurrencyExchange {
-    private array $products_prices = [];
-
     private array $updated_prices = [];
 
     public function __construct() {
@@ -50,15 +48,7 @@ class BaseCurrencyExchange {
      * @return mixed
      */
     public function product_regular_price( $price, WC_Product $product ) {
-        if ( isset( $this->products_prices[$product->get_id()]['regular_price'] ) ) {
-            return $this->products_prices[$product->get_id()]['regular_price'];
-        }
-
-        $updated_price = x_currency_exchange( $price );
-
-        $this->products_prices[$product->get_id()]['regular_price'] = $updated_price;
-
-        return $updated_price;
+        return x_currency_exchange( $price );
     }
 
     /**
@@ -66,15 +56,7 @@ class BaseCurrencyExchange {
      * @return mixed
      */
     public function simple_product_price( $price, WC_Product $product ) {
-        if ( isset( $this->products_prices[$product->get_id()]['price'] ) ) {
-            return $this->products_prices[$product->get_id()]['price'];
-        }
-
-        $updated_price = x_currency_exchange( $price );
-
-        $this->products_prices[$product->get_id()]['price'] = $updated_price;
-
-        return $updated_price;
+        return x_currency_exchange( $price );
     }
 
     /**
@@ -82,15 +64,7 @@ class BaseCurrencyExchange {
      * @return mixed
      */
     public function product_sale_price( $price, WC_Product $product ) {
-        if ( isset( $this->products_prices[$product->get_id()]['sale_price'] ) ) {
-            return $this->products_prices[$product->get_id()]['sale_price'];
-        }
-
-        $updated_price = x_currency_exchange( $price );
-
-        $this->products_prices[$product->get_id()]['sale_price'] = $updated_price;
-
-        return $updated_price;
+        return x_currency_exchange( $price );
     }
 
     /**
@@ -99,15 +73,7 @@ class BaseCurrencyExchange {
      * @return mixed
      */
     public function variation_get_price( $price, WC_Product $product ) {
-        if ( isset( $this->products_prices[$product->get_id()]['price'] ) ) {
-            return $this->products_prices[$product->get_id()]['price'];
-        }
-
-        $updated_price =  isset( $this->updated_prices['price'][$product->get_ID()] ) ? $this->updated_prices['price'][$product->get_ID()] : x_currency_exchange( $price );
-
-        $this->products_prices[$product->get_id()]['price'] = $updated_price;
-
-        return $updated_price;
+        return x_currency_exchange( $price );
     }
 
     /**
@@ -116,15 +82,7 @@ class BaseCurrencyExchange {
      * @return mixed
      */
     public function variation_get_regular_price( $price, WC_Product $product ) {
-        if ( isset( $this->products_prices[$product->get_id()]['regular_price'] ) ) {
-            return $this->products_prices[$product->get_id()]['regular_price'];
-        }
-
-        $updated_price = isset( $this->updated_prices['regular_price'][$product->get_ID()] ) ? $this->updated_prices['regular_price'][$product->get_ID()] : x_currency_exchange( $price );
-
-        $this->products_prices[$product->get_id()]['regular_price'] = $updated_price;
-
-        return $updated_price;
+        return x_currency_exchange( $price );
     }
 
         /**

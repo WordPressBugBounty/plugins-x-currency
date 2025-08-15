@@ -7,7 +7,6 @@ use XCurrency\App\Providers\Admin\GlobalServiceProvider;
 use XCurrency\App\Providers\Admin\MenuServiceProvider;
 use XCurrency\App\Providers\SettingServiceProvider;
 use XCurrency\App\Providers\WoocommerceServiceProvider;
-use XCurrency\App\Providers\CompatibilityServiceProvider;
 use XCurrency\App\Providers\ScheduleServiceProvider;
 use XCurrency\App\Providers\LocalizationServiceProvider;
 use XCurrency\App\Providers\ShortCodeServiceProvider;
@@ -16,6 +15,9 @@ use XCurrency\App\Http\Middleware\EnsureIsUserAdmin;
 use XCurrency\Database\Migrations\Currency;
 use XCurrency\Database\Migrations\Rounding;
 use XCurrency\Database\Migrations\GeoIP;
+use XCurrency\App\Providers\Compatibility\YithAddon;
+use XCurrency\App\Providers\Compatibility\Compatibility;
+use XCurrency\App\Providers\Compatibility\PPOM;
 use XCurrency\WpMVC\Helpers\Helpers;
 
 return [
@@ -38,8 +40,11 @@ return [
         ShortCodeServiceProvider::class,
         SideStickyServiceProvider::class,
         WoocommerceServiceProvider::class,
-        CompatibilityServiceProvider::class,
-        BlockServiceProvider::class
+        BlockServiceProvider::class,
+
+        Compatibility::class,
+        YithAddon::class,
+        PPOM::class,
     ],
 
     'admin_providers'           => [

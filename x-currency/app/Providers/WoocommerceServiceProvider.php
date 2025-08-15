@@ -3,8 +3,6 @@
 namespace XCurrency\App\Providers;
 
 use WC_Product;
-use WC_Product_Simple;
-use WC_Product_Variation;
 use XCurrency\App\Repositories\CurrencyRepository;
 use XCurrency\App\Woocommerce\ApproximateProductPrice;
 use XCurrency\App\Woocommerce\BaseCurrencyExchange;
@@ -29,21 +27,9 @@ class WoocommerceServiceProvider implements Provider {
     /**
      * @var mixed
      */
-    public $variation_price;
-
-    /**
-     * @var mixed
-     */
-    public $simple_product_price = false;
-
-    /**
-     * @var mixed
-     */
     private array $updated_prices = [];
 
     private $simple_product_specific_price = [];
-
-    private $products_prices = [];
 
     private $cart_coupon_free_shipping_check = false;
 
@@ -202,13 +188,7 @@ class WoocommerceServiceProvider implements Provider {
      * @return mixed
      */
     public function product_regular_price( $price, WC_Product $product ) {
-        if ( isset( $this->products_prices[$product->get_id()]['regular_price'] ) ) {
-            return $this->products_prices[$product->get_id()]['regular_price'];
-        }
-
         $price = $this->get_product_regular_and_sale_price( $price, 'regular', $product );
-
-        $this->products_prices[$product->get_id()]['regular_price'] = $price;
 
         return $price;
     }
@@ -218,18 +198,11 @@ class WoocommerceServiceProvider implements Provider {
      * @return mixed
      */
     public function product_sale_price( $price, WC_Product $product ) {
-
-        if ( isset( $this->products_prices[$product->get_id()]['sale_price'] ) ) {
-            return $this->products_prices[$product->get_id()]['sale_price'];
-        }
-
         if ( ! empty( $price ) && ! empty( $this->global_settings['specific_product_price'] ) && ( $product->is_type( 'simple' ) || $product->is_type( 'external' ) ) ) {
             $price = $this->get_product_regular_and_sale_price( $price, 'sale', $product );
         } else {
             $price = x_currency_exchange( $price );
         }
-
-        $this->products_prices[$product->get_id()]['sale_price'] = $price;
 
         return $price;
     }
@@ -239,11 +212,6 @@ class WoocommerceServiceProvider implements Provider {
      * @return mixed
      */
     public function simple_product_price( $price, WC_Product $product ) {
-
-        if ( isset( $this->products_prices[$product->get_id()]['price'] ) ) {
-            return $this->products_prices[$product->get_id()]['price'];
-        }
-
         $this->get_simple_product_specific_price( $product );
 
         $lower_currency_code = strtolower( $this->settings->code );
@@ -255,8 +223,6 @@ class WoocommerceServiceProvider implements Provider {
         } else {
             $price = x_currency_exchange( $price );
         }
-
-        $this->products_prices[$product->get_id()]['price'] = $price;
 
         return $price;
     }
@@ -423,10 +389,6 @@ class WoocommerceServiceProvider implements Provider {
      * @return mixed
      */
     public function variation_get_regular_price( $price, WC_Product $product ) {
-        if ( isset( $this->products_prices[$product->get_id()]['regular_price'] ) ) {
-            return $this->products_prices[$product->get_id()]['regular_price'];
-        }
-
         if ( empty( $this->updated_prices ) && ! empty( $this->global_settings['specific_product_price'] ) ) {
             $currency_code          = strtolower( $this->settings->code );
             $variation_fixed_prices = json_decode( get_post_meta( $product->get_parent_id(), 'x_currency_variation', true ), true );
@@ -439,8 +401,6 @@ class WoocommerceServiceProvider implements Provider {
             $updated_price = isset( $this->updated_prices['regular_price'][$product->get_ID()] ) ? $this->updated_prices['regular_price'][$product->get_ID()] : x_currency_exchange( $price );
         }
 
-        $this->products_prices[$product->get_id()]['regular_price'] = $updated_price;
-
         return $updated_price;
     }
 
@@ -450,10 +410,6 @@ class WoocommerceServiceProvider implements Provider {
      * @return mixed
      */
     public function variation_get_price( $price, WC_Product $product ) {
-        if ( isset( $this->products_prices[$product->get_id()]['price'] ) ) {
-            return $this->products_prices[$product->get_id()]['price'];
-        }
-
         if ( empty( $this->updated_prices ) && ! empty( $this->global_settings['specific_product_price'] ) ) {
             $currency_code          = strtolower( $this->settings->code );
             $variation_fixed_prices = json_decode( get_post_meta( $product->get_parent_id(), 'x_currency_variation', true ), true );
@@ -467,8 +423,6 @@ class WoocommerceServiceProvider implements Provider {
         if ( ! isset( $updated_price ) ) {
             $updated_price =  isset( $this->updated_prices['price'][$product->get_ID()] ) ? $this->updated_prices['price'][$product->get_ID()] : x_currency_exchange( $price );
         }
-
-        $this->products_prices[$product->get_id()]['price'] = $updated_price;
 
         return $updated_price;
     }

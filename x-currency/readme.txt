@@ -5,7 +5,7 @@ Tags: currency switcher, woocommerce currency switcher, currency switcher plugin
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -97,15 +97,10 @@ It's a modern style where currency list will appear into a modal with a bigger v
 <li><a href="https://crocoblock.com/plugins/jetwoobuilder/" target="_blank"><strong>JetWooBuilder</strong></a> Top-rated Elementor WooCommerce plugin</li>
 <li><a href="https://wordpress.org/plugins/breeze/" target="_blank"><strong>Breeze</strong></a> WordPress Cache Plugin</li>
 <li><a href="https://wordpress.org/plugins/packeta/" target="_blank"><strong>Packeta</strong></a></li>
+<li><a href="https://wordpress.org/plugins/woocommerce-product-addon/" target="_blank"><strong>PPOM</strong></a> - Product Addons & Custom Fields for WooCommerce</li>
+<li><a href="https://wordpress.org/plugins/yith-woocommerce-product-add-ons/" target="_blank"><strong>YITH</strong></a> WooCommerce Product Add-Ons</li>
 </ul>
 
-
-### 🔥 OUR OTHER PLUGINS
-If you like using X-Currency Switcher, then consider checking out our other plugins:
-
-<ul>
-<li><a href="https://wordpress.org/plugins/superdocs/" target="_blank"><strong>SuperDocs</strong></a> – The Ultimate Knowledge Base, Wiki And Documentation Builder</li>
-</ul>
 == Frequently Asked Questions ==
 
 = Does it work with any WordPress theme? =
@@ -119,6 +114,10 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 2.0.3 - 16 Aug 2025 =
+* New: YITH WooCommerce Product Add-Ons compatibility.
+* New: PPOM – Product Addons & Custom Fields for WooCommerce compatibility.
+
 = 2.0.2 - 5 Aug 2025 =
 * Fixed: Improve currency switcher dropdown positioning with responsive logic and optimizations.
 
