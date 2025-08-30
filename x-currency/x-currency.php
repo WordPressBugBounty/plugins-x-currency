@@ -10,7 +10,7 @@ use XCurrency\App\Providers\ProVersionUpdateServiceProvider;
 /**
  * Plugin Name:       X-Currency
  * Description:       Currency Switcher for WooCommerce custom currency, exchange rates, currency by country, pay in selected currency
- * Version:           2.0.3
+ * Version:           2.0.4
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Tested up to:      6.8
@@ -52,6 +52,9 @@ final class XCurrency {
             add_action( 'admin_notices', [$this, 'admin_notice_missing_main_plugin'] );
             return;
         }
+
+        $client = new \XCurrency\Appsero\Client( '5b5a97ed-213e-4a32-baef-a62e9ec0c2f5', 'X-Currency', __FILE__ );
+        $client->insights()->init();
 
         /**
          * Fires once activated plugins have loaded.

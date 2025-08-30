@@ -4,17 +4,9 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit35a82cedcdb675adb8ed9883be49233f
+class ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f
 {
     public static $files = array (
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
-        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
     );
 
@@ -26,9 +18,6 @@ class ComposerStaticInit35a82cedcdb675adb8ed9883be49233f
             'XCurrency\\WpMVC\\Helpers\\' => 24,
             'XCurrency\\WpMVC\\Database\\' => 25,
             'XCurrency\\WpMVC\\' => 16,
-            'XCurrency\\Symfony\\Contracts\\Service\\' => 36,
-            'XCurrency\\Symfony\\Component\\String\\' => 35,
-            'XCurrency\\Symfony\\Component\\Console\\' => 36,
             'XCurrency\\Psr\\Container\\' => 24,
             'XCurrency\\PhpDocReader\\' => 23,
             'XCurrency\\Laravel\\SerializableClosure\\' => 38,
@@ -36,16 +25,8 @@ class ComposerStaticInit35a82cedcdb675adb8ed9883be49233f
             'XCurrency\\Database\\' => 19,
             'XCurrency\\DI\\' => 13,
             'XCurrency\\Bootstrap\\' => 20,
+            'XCurrency\\Appsero\\' => 18,
             'XCurrency\\App\\' => 14,
-        ),
-        'S' => 
-        array (
-            'Symfony\\Polyfill\\Php80\\' => 23,
-            'Symfony\\Polyfill\\Php73\\' => 23,
-            'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
-            'Symfony\\Polyfill\\Intl\\Grapheme\\' => 31,
-            'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
     );
 
@@ -69,18 +50,6 @@ class ComposerStaticInit35a82cedcdb675adb8ed9883be49233f
         'XCurrency\\WpMVC\\' => 
         array (
             0 => __DIR__ . '/..' . '/wpmvc/framework/src',
-        ),
-        'XCurrency\\Symfony\\Contracts\\Service\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/service-contracts',
-        ),
-        'XCurrency\\Symfony\\Component\\String\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/string',
-        ),
-        'XCurrency\\Symfony\\Component\\Console\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/console',
         ),
         'XCurrency\\Psr\\Container\\' => 
         array (
@@ -110,53 +79,26 @@ class ComposerStaticInit35a82cedcdb675adb8ed9883be49233f
         array (
             0 => __DIR__ . '/../..' . '/../bootstrap',
         ),
+        'XCurrency\\Appsero\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/appsero/client/src',
+        ),
         'XCurrency\\App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/../app',
         ),
-        'Symfony\\Polyfill\\Php80\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
-        ),
-        'Symfony\\Polyfill\\Php73\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php73',
-        ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Polyfill\\Intl\\Normalizer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer',
-        ),
-        'Symfony\\Polyfill\\Intl\\Grapheme\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme',
-        ),
-        'Symfony\\Polyfill\\Ctype\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
-        ),
     );
 
     public static $classMap = array (
-        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
-        'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
-        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
-        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
-        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
-        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit35a82cedcdb675adb8ed9883be49233f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit35a82cedcdb675adb8ed9883be49233f::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit35a82cedcdb675adb8ed9883be49233f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f::$classMap;
 
         }, null, ClassLoader::class);
     }

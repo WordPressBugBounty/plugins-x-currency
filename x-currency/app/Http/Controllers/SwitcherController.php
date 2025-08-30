@@ -64,19 +64,15 @@ class SwitcherController extends Controller {
             ]
         );
 
-        $type     = $request->get_param( 'type' );
-        $template = $request->get_param( 'template' );
-        // $json_path = x_currency_dir( "app/PremadeSwitchers/{$type}/{$template}/content.json" );
+        $type         = $request->get_param( 'type' );
+        $template     = $request->get_param( 'template' );
         $content_path = x_currency_dir( "app/PremadeSwitchers/{$type}/{$template}/content.txt" );
 
         $dto = new SwitcherDTO;
         $dto->set_title( $request->get_param( 'name' ) );
         $dto->set_active_status( $request->get_param( 'active' ) );
-        // $dto->set_customizer_id( $wp_rest_request->get_param( 'customizer_id' ) );
-        // $dto->set_template( file_get_contents( $json_path ) );
         $dto->set_content( file_get_contents( $content_path ) );
         $dto->set_type( 'general' === $type ? "shortcode" : $type );
-        // $dto->set_package( 'free' );
 
         do_action( 'x_currency_before_create_switcher', $dto, $request );
 

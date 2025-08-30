@@ -57,9 +57,8 @@ class Report {
         <script data-cfasync="false" type="text/javascript">
             jQuery(document).ready(function($) {
                 $('#x-currency').change(function() {
-                    let currency = $(this).val();
                     let url = new URL(window.location.href);
-                    url.searchParams.set('x-currency', currency);
+                    url.searchParams.set('x-currency', $(this).val());
                     url.searchParams.set('x_currency_nonce', "<?php x_currency_render( wp_create_nonce( 'x_currency_nonce' ) )?>");
                     window.location = url.href;
                 });
