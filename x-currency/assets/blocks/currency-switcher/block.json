@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "x-currency/currency-switcher",
   "title": "Currency Switcher",
-  "description": "Insert an email field for users to enter their email address.",
+  "description": "A currency switcher block for WooCommerce stores with customizable display options including flags, symbols, and currency codes in multiple layout styles.",
   "textdomain": "x-currency",
   "attributes": {
     "type": {
@@ -409,6 +409,10 @@
     "custom_css": {
       "type": "string",
       "default": "IA=="
+    },
+    "zindex": {
+      "type": "number",
+      "default": 99999
     }
   },
   "supports": {

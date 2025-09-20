@@ -5,7 +5,7 @@ Tags: currency switcher, woocommerce currency switcher, currency switcher plugin
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -123,6 +123,9 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 2.0.5 - 20 Sep 2025 =
+* New: Added z-index control for currency switcher.
+
 = 2.0.4 - 30 Aug 2025 =
 * Improved: Tweak php and js code.
 
