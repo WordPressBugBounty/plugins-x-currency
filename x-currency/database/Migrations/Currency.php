@@ -50,7 +50,8 @@ class Currency implements Migration {
 			geo_ip_status TINYINT(1) DEFAULT 0,
 			geo_countries_status VARCHAR(50) DEFAULT 'disable',
 			disable_countries LONGTEXT,
-			welcome_country VARCHAR(50)
+			welcome_country VARCHAR(50),
+			updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 		) {$charset_collate}";
 
         dbDelta( $sql );
