@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\RateProvider;
 
+defined( 'ABSPATH' ) || exit;
+
 abstract class ProviderBase {
     abstract public function get_url();
 

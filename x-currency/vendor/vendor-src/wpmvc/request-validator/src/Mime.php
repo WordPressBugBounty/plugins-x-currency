@@ -2,20 +2,20 @@
 
 namespace XCurrency\WpMVC\RequestValidator;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 class Mime
 {
-    public function validate(array $file, string $allowed_mimes) : bool
+    public function validate(array $file, string $allowed_mimes): bool
     {
         if (empty($file['tmp_name']) || empty($file['name'])) {
             return \false;
         }
-        $allowed_mimes = \explode(',', $allowed_mimes);
-        $file_mime_type = \mime_content_type($file['tmp_name']);
-        $available_mimes = \array_keys($this->list(), $file_mime_type);
-        $file_extension = \pathinfo($file['name'], \PATHINFO_EXTENSION);
+        $allowed_mimes = explode(',', $allowed_mimes);
+        $file_mime_type = mime_content_type($file['tmp_name']);
+        $available_mimes = array_keys($this->list(), $file_mime_type);
+        $file_extension = pathinfo($file['name'], \PATHINFO_EXTENSION);
         foreach ($allowed_mimes as $allowed_mime) {
-            if (\in_array($allowed_mime, $available_mimes) && $allowed_mime === $file_extension) {
+            if (in_array($allowed_mime, $available_mimes) && $allowed_mime === $file_extension) {
                 return \true;
             }
         }

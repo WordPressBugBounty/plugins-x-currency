@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Providers;
 
+defined( 'ABSPATH' ) || exit;
+
 use Exception;
 use XCurrency\App\Repositories\CurrencyRateRepository;
 use XCurrency\App\Repositories\CurrencyRepository;
@@ -67,6 +69,7 @@ class SettingServiceProvider implements Provider {
             $_SESSION['user_country_code']   = $country_code;
             $x_currency['user_country_code'] = $country_code;
         } else {
+            //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
             $x_currency['user_country_code'] = isset( $_SESSION['user_country_code'] ) ? $_SESSION['user_country_code'] : '';
         }
 
@@ -95,6 +98,7 @@ class SettingServiceProvider implements Provider {
 
         if ( ! empty( $_SESSION['x_currency_code'] ) ) {
 
+            //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
             $currency = $this->currency_repository->get_by_first( 'code', $_SESSION['x_currency_code'] );
 
             if ( $currency ) {

@@ -2,9 +2,10 @@
 
 namespace XCurrency\App\Providers\Admin;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\App\Repositories\CurrencyRepository;
 use XCurrency\WpMVC\Contracts\Provider;
-use XCurrency\WpMVC\View\View;
 
 class GlobalServiceProvider implements Provider {
     public CurrencyRepository $currency_repository;
@@ -14,14 +15,7 @@ class GlobalServiceProvider implements Provider {
     }
 
     public function boot() {
-        add_action( 'admin_notices', [ $this, 'action_admin_notices' ] );
         add_filter( 'woocommerce_general_settings', [$this, 'woocommerce_general_settings'] );
-    }
-
-    public function action_admin_notices() : void {
-        if ( ! function_exists( 'x_currency_pro' ) && ! get_transient( 'x-currency-fb-g-notice' ) ) {
-            View::render( 'pro-notice' );
-        }
     }
 
     /**
@@ -49,7 +43,7 @@ class GlobalServiceProvider implements Provider {
 
             if ( $value['id'] == 'pricing_options' ) {
                 $x_currency_logo    = '<h3 class="cursor-text" style="margin: 0px;color: var(--wp-admin-theme-color);"><i class="xc-icon-logo" style="margin-right: 10px;"></i>X-Currency</h3>';
-                $data[$key]['desc'] = $x_currency_logo . esc_html__( 'X-Currency plugin is activated. Please go to ', 'x-currency' ) . '<a href="' . admin_url( 'admin.php?page=x-currency' ) . '#/global-settings' . '">' . esc_html__( 'X-Currency setting page', 'x-currency' ) . '</a>' . esc_html__( ' to change default currency.', 'x-currency' );
+                $data[$key]['desc'] = $x_currency_logo . esc_html__( 'X-Currency plugin is activated. Please go to ', 'x-currency' ) . '<a href="' . admin_url( 'admin.php?page=x-currency' ) . '#/settings/general' . '">' . esc_html__( 'X-Currency setting page', 'x-currency' ) . '</a>' . esc_html__( ' to change default currency.', 'x-currency' );
             }
         }
 

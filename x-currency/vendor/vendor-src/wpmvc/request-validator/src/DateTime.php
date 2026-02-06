@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\RequestValidator;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use DateTime as PhpDateTime;
 trait DateTime
 {
@@ -119,7 +119,7 @@ trait DateTime
     }
     private function is_it_valid_date($date, string $format)
     {
-        if (!\is_string($date)) {
+        if (!is_string($date)) {
             return \false;
         }
         $input_date = PhpDateTime::createFromFormat($format, $date);
@@ -127,13 +127,13 @@ trait DateTime
     }
     private function get_timestamp(string $date, string $format)
     {
-        $date_array = \date_parse_from_format($format, $date);
-        return \mktime(!empty($date_array['hour']) ? $date_array['hour'] : 12, !empty($date_array['minute']) ? $date_array['minute'] : 0, !empty($date_array['second']) ? $date_array['second'] : 0, $date_array['month'], $date_array['day'], $date_array['year']);
+        $date_array = date_parse_from_format($format, $date);
+        return mktime(!empty($date_array['hour']) ? $date_array['hour'] : 12, !empty($date_array['minute']) ? $date_array['minute'] : 0, !empty($date_array['second']) ? $date_array['second'] : 0, $date_array['month'], $date_array['day'], $date_array['year']);
     }
     private function get_format()
     {
         foreach ($this->explode_rules as $key => $value) {
-            $substrings = \explode(':', $value, 2);
+            $substrings = explode(':', $value, 2);
             if ($substrings[0] !== 'date') {
                 continue;
             }

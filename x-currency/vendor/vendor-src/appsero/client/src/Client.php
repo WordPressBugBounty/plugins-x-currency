@@ -102,7 +102,7 @@ class Client
      */
     public function insights()
     {
-        if (!\class_exists(__NAMESPACE__ . '\\Insights')) {
+        if (!class_exists(__NAMESPACE__ . '\Insights')) {
             require_once __DIR__ . '/Insights.php';
         }
         // if already instantiated, return the cached one
@@ -120,13 +120,13 @@ class Client
     public function updater()
     {
         // do not show update notice on ajax request and rest api request
-        if (wp_doing_ajax() || \defined('REST_REQUEST') && REST_REQUEST) {
+        if (wp_doing_ajax() || defined('REST_REQUEST') && REST_REQUEST) {
             return;
         }
         // show deprecated notice
-        _deprecated_function(__CLASS__ . '::updater', '2.0', '\\Appsero\\Updater::init($client);, for more details please visit: https://appsero.com/docs/appsero-developers-guide/appsero-client/appsero-sdk-updater-changes/');
+        _deprecated_function(__CLASS__ . '::updater', '2.0', '\Appsero\Updater::init($client);, for more details please visit: https://appsero.com/docs/appsero-developers-guide/appsero-client/appsero-sdk-updater-changes/');
         // initialize the new updater
-        if (\method_exists('XCurrency\\Appsero\\Updater', 'init')) {
+        if (method_exists('XCurrency\Appsero\Updater', 'init')) {
             \XCurrency\Appsero\Updater::init($this);
         }
     }
@@ -137,7 +137,7 @@ class Client
      */
     public function license()
     {
-        if (!\class_exists(__NAMESPACE__ . '\\License')) {
+        if (!class_exists(__NAMESPACE__ . '\License')) {
             require_once __DIR__ . '/License.php';
         }
         // if already instantiated, return the cached one
@@ -164,16 +164,16 @@ class Client
      */
     protected function set_basename_and_slug()
     {
-        if (\strpos($this->file, WP_CONTENT_DIR . '/themes/') === \false) {
+        if (strpos($this->file, WP_CONTENT_DIR . '/themes/') === \false) {
             $this->basename = plugin_basename($this->file);
-            list($this->slug, $mainfile) = \explode('/', $this->basename);
+            list($this->slug, $mainfile) = explode('/', $this->basename);
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
-            $plugin_data = \get_plugin_data($this->file, \false, \false);
+            $plugin_data = get_plugin_data($this->file, \false, \false);
             $this->project_version = $plugin_data['Version'];
             $this->type = 'plugin';
         } else {
-            $this->basename = \str_replace(WP_CONTENT_DIR . '/themes/', '', $this->file);
-            list($this->slug, $mainfile) = \explode('/', $this->basename);
+            $this->basename = str_replace(WP_CONTENT_DIR . '/themes/', '', $this->file);
+            list($this->slug, $mainfile) = explode('/', $this->basename);
             $theme = wp_get_theme($this->slug);
             $this->project_version = $theme->version;
             $this->type = 'theme';
@@ -191,8 +191,8 @@ class Client
     public function send_request($params, $route, $blocking = \false)
     {
         $url = $this->endpoint() . $route;
-        $headers = ['user-agent' => 'Appsero/' . \md5(esc_url(home_url())) . ';', 'Accept' => 'application/json'];
-        $response = wp_remote_post($url, ['method' => 'POST', 'timeout' => 30, 'redirection' => 5, 'httpversion' => '1.0', 'blocking' => $blocking, 'headers' => $headers, 'body' => \array_merge($params, ['client' => $this->version]), 'cookies' => []]);
+        $headers = ['user-agent' => 'Appsero/' . md5(esc_url(home_url())) . ';', 'Accept' => 'application/json'];
+        $response = wp_remote_post($url, ['method' => 'POST', 'timeout' => 30, 'redirection' => 5, 'httpversion' => '1.0', 'blocking' => $blocking, 'headers' => $headers, 'body' => array_merge($params, ['client' => $this->version]), 'cookies' => []]);
         return $response;
     }
     /**
@@ -202,7 +202,7 @@ class Client
      */
     public function is_local_server()
     {
-        $is_local = isset($_SERVER['REMOTE_ADDR']) && \in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'], \true);
+        $is_local = isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'], \true);
         return apply_filters('appsero_is_local', $is_local);
     }
     /**
@@ -211,7 +211,7 @@ class Client
     // phpcs:ignore
     public function _etrans($text)
     {
-        \call_user_func('_e', $text, $this->textdomain);
+        call_user_func('_e', $text, $this->textdomain);
     }
     /**
      * Translate function __()
@@ -219,7 +219,7 @@ class Client
     // phpcs:ignore
     public function __trans($text)
     {
-        return \call_user_func('__', $text, $this->textdomain);
+        return call_user_func('__', $text, $this->textdomain);
     }
     /**
      * Set project textdomain

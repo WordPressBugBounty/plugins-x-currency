@@ -2,14 +2,14 @@
 
 namespace XCurrency\WpMVC;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 class Config
 {
     protected static array $configs = [];
     public function get(string $config_key)
     {
-        $keys = \explode('.', $config_key);
-        $config = $this->get_config(\array_shift($keys));
+        $keys = explode('.', $config_key);
+        $config = $this->get_config(array_shift($keys));
         foreach ($keys as $key) {
             if (!isset($config[$key])) {
                 return null;
@@ -24,7 +24,7 @@ class Config
             return static::$configs[$config_file];
         }
         $config_file_path = App::get_dir("config/{$config_file}.php");
-        $config = (include $config_file_path);
+        $config = include $config_file_path;
         static::$configs[$config_file] = $config;
         return $config;
     }

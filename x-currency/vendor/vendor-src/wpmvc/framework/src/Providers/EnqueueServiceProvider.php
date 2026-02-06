@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Providers;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use XCurrency\WpMVC\Contracts\Provider;
 use XCurrency\WpMVC\App;
 class EnqueueServiceProvider implements Provider
@@ -15,9 +15,9 @@ class EnqueueServiceProvider implements Provider
     /**
      * Enqueue scripts for all admin pages.
      *
-     * @param string $hook_suffix The current admin page.
+     * @param $hook_suffix The current admin page (ignoring param type due to third-party compatibility).
      */
-    public function action_admin_enqueue_scripts(string $hook_suffix) : void
+    public function action_admin_enqueue_scripts($hook_suffix): void
     {
         require_once App::get_dir('enqueues/admin-enqueue.php');
     }
@@ -25,7 +25,7 @@ class EnqueueServiceProvider implements Provider
      * Fires when scripts and styles are enqueued.
      *
      */
-    public function action_wp_enqueue_scripts() : void
+    public function action_wp_enqueue_scripts(): void
     {
         require_once App::get_dir('enqueues/frontend-enqueue.php');
     }

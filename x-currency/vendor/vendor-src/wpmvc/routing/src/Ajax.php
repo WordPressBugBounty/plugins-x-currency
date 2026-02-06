@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Routing;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use XCurrency\WpMVC\Routing\Providers\RouteServiceProvider;
 use WP_REST_Request;
 use WP_REST_Server;
@@ -18,12 +18,12 @@ class Ajax extends Route
             return;
         }
         $route = static::get_final_route($route);
-        $middleware = \array_merge(static::$group_middleware, $middleware);
+        $middleware = array_merge(static::$group_middleware, $middleware);
         global $wp;
         /**
          * @var WP $wp
          */
-        $match = \preg_match('@^' . $route . '$@i', \rtrim('/' . $wp->request, '/'), $matches);
+        $match = preg_match('@^' . $route . '$@i', rtrim('/' . $wp->request, '/'), $matches);
         if (!$match) {
             return;
         }
@@ -41,7 +41,7 @@ class Ajax extends Route
         }
         $url_params = [];
         foreach ($matches as $param => $value) {
-            if (!\is_int($param)) {
+            if (!is_int($param)) {
                 $url_params[$param] = $value;
             }
         }
@@ -55,11 +55,11 @@ class Ajax extends Route
      */
     protected static function admin_init(array $middleware)
     {
-        if (!\in_array('admin', $middleware)) {
+        if (!in_array('admin', $middleware)) {
             return;
         }
-        if (!\defined('WP_ADMIN')) {
-            \define('WP_ADMIN', \true);
+        if (!defined('WP_ADMIN')) {
+            define('WP_ADMIN', \true);
         }
         /** Load WordPress Administration APIs */
         require_once ABSPATH . 'wp-admin/includes/admin.php';

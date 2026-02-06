@@ -2,10 +2,10 @@
 
 namespace XCurrency\Laravel\SerializableClosure\Support;
 
-\defined('T_NAME_QUALIFIED') || \define('T_NAME_QUALIFIED', -4);
-\defined('T_NAME_FULLY_QUALIFIED') || \define('T_NAME_FULLY_QUALIFIED', -5);
-\defined('T_FN') || \define('T_FN', -6);
-\defined('T_NULLSAFE_OBJECT_OPERATOR') || \define('T_NULLSAFE_OBJECT_OPERATOR', -7);
+defined('T_NAME_QUALIFIED') || define('T_NAME_QUALIFIED', -4);
+defined('T_NAME_FULLY_QUALIFIED') || define('T_NAME_FULLY_QUALIFIED', -5);
+defined('T_FN') || define('T_FN', -6);
+defined('T_NULLSAFE_OBJECT_OPERATOR') || define('T_NULLSAFE_OBJECT_OPERATOR', -7);
 use Closure;
 use ReflectionFunction;
 class ReflectionClosure extends ReflectionFunction
@@ -39,10 +39,10 @@ class ReflectionClosure extends ReflectionFunction
      *
      * @return bool
      */
-    public function isStatic() : bool
+    public function isStatic(): bool
     {
         if ($this->isStaticClosure === null) {
-            $this->isStaticClosure = \strtolower(\substr($this->getCode(), 0, 6)) === 'static';
+            $this->isStaticClosure = strtolower(substr($this->getCode(), 0, 6)) === 'static';
         }
         return $this->isStaticClosure;
     }
@@ -56,9 +56,9 @@ class ReflectionClosure extends ReflectionFunction
         if ($this->isShortClosure === null) {
             $code = $this->getCode();
             if ($this->isStatic()) {
-                $code = \substr($code, 6);
+                $code = substr($code, 6);
             }
-            $this->isShortClosure = \strtolower(\substr(\trim($code), 0, 2)) === 'fn';
+            $this->isShortClosure = strtolower(substr(trim($code), 0, 2)) === 'fn';
         }
         return $this->isShortClosure;
     }
@@ -75,21 +75,21 @@ class ReflectionClosure extends ReflectionFunction
         $fileName = $this->getFileName();
         $line = $this->getStartLine() - 1;
         $className = null;
-        if (null !== ($className = $this->getClosureScopeClass())) {
-            $className = '\\' . \trim($className->getName(), '\\');
+        if (null !== $className = $this->getClosureScopeClass()) {
+            $className = '\\' . trim($className->getName(), '\\');
         }
         $builtin_types = self::getBuiltinTypes();
         $class_keywords = ['self', 'static', 'parent'];
         $ns = $this->getClosureNamespaceName();
         $nsf = $ns == '' ? '' : ($ns[0] == '\\' ? $ns : '\\' . $ns);
-        $_file = \var_export($fileName, \true);
-        $_dir = \var_export(\dirname($fileName), \true);
-        $_namespace = \var_export($ns, \true);
-        $_class = \var_export(\trim($className ?: '', '\\'), \true);
+        $_file = var_export($fileName, \true);
+        $_dir = var_export(dirname($fileName), \true);
+        $_namespace = var_export($ns, \true);
+        $_class = var_export(trim($className ?: '', '\\'), \true);
         $_function = $ns . ($ns == '' ? '' : '\\') . '{closure}';
-        $_method = ($className == '' ? '' : \trim($className, '\\') . '::') . $_function;
-        $_function = \var_export($_function, \true);
-        $_method = \var_export($_method, \true);
+        $_method = ($className == '' ? '' : trim($className, '\\') . '::') . $_function;
+        $_function = var_export($_function, \true);
+        $_method = var_export($_method, \true);
         $_trait = null;
         $tokens = $this->getTokens();
         $state = $lastState = 'start';
@@ -105,7 +105,7 @@ class ReflectionClosure extends ReflectionFunction
         $lineAdd = 0;
         $isUsingScope = \false;
         $isUsingThisObject = \false;
-        for ($i = 0, $l = \count($tokens); $i < $l; $i++) {
+        for ($i = 0, $l = count($tokens); $i < $l; $i++) {
             $token = $tokens[$i];
             switch ($state) {
                 case 'start':
@@ -151,7 +151,7 @@ class ReflectionClosure extends ReflectionFunction
                             $state = 'closure_args';
                             break;
                         default:
-                            $code .= \is_array($token) ? $token[1] : $token;
+                            $code .= is_array($token) ? $token[1] : $token;
                     }
                     break;
                 case 'named_function':
@@ -175,7 +175,7 @@ class ReflectionClosure extends ReflectionFunction
                         case \T_NS_SEPARATOR:
                         case \T_STRING:
                             $id_start = $token[1];
-                            $id_start_ci = \strtolower($id_start);
+                            $id_start_ci = strtolower($id_start);
                             $id_name = '';
                             $context = 'args';
                             $state = 'id_name';
@@ -201,13 +201,13 @@ class ReflectionClosure extends ReflectionFunction
                             $open++;
                             break;
                         default:
-                            $code .= \is_array($token) ? $token[1] : $token;
+                            $code .= is_array($token) ? $token[1] : $token;
                     }
                     break;
                 case 'use':
                     switch ($token[0]) {
                         case \T_VARIABLE:
-                            $use[] = \substr($token[1], 1);
+                            $use[] = substr($token[1], 1);
                             $code .= $token[1];
                             break;
                         case '{':
@@ -220,7 +220,7 @@ class ReflectionClosure extends ReflectionFunction
                             $state = 'return';
                             break;
                         default:
-                            $code .= \is_array($token) ? $token[1] : $token;
+                            $code .= is_array($token) ? $token[1] : $token;
                             break;
                     }
                     break;
@@ -234,7 +234,7 @@ class ReflectionClosure extends ReflectionFunction
                         case \T_NS_SEPARATOR:
                         case \T_STRING:
                             $id_start = $token[1];
-                            $id_start_ci = \strtolower($id_start);
+                            $id_start_ci = strtolower($id_start);
                             $id_name = '';
                             $context = 'return_type';
                             $state = 'id_name';
@@ -258,7 +258,7 @@ class ReflectionClosure extends ReflectionFunction
                             $open++;
                             break;
                         default:
-                            $code .= \is_array($token) ? $token[1] : $token;
+                            $code .= is_array($token) ? $token[1] : $token;
                             break;
                     }
                     break;
@@ -267,7 +267,7 @@ class ReflectionClosure extends ReflectionFunction
                         case \T_CURLY_OPEN:
                         case \T_DOLLAR_OPEN_CURLY_BRACES:
                         case '{':
-                            $code .= \is_array($token) ? $token[1] : $token;
+                            $code .= is_array($token) ? $token[1] : $token;
                             $open++;
                             break;
                         case '}':
@@ -324,10 +324,10 @@ class ReflectionClosure extends ReflectionFunction
                             $code .= $inside_structure ? $token[1] : $_method;
                             break;
                         case \T_COMMENT:
-                            if (\substr($token[1], 0, 8) === '#trackme') {
-                                $timestamp = \time();
+                            if (substr($token[1], 0, 8) === '#trackme') {
+                                $timestamp = time();
                                 $code .= '/**' . \PHP_EOL;
-                                $code .= '* Date      : ' . \date(\DATE_W3C, $timestamp) . \PHP_EOL;
+                                $code .= '* Date      : ' . date(\DATE_W3C, $timestamp) . \PHP_EOL;
                                 $code .= '* Timestamp : ' . $timestamp . \PHP_EOL;
                                 $code .= '* Line      : ' . ($line + 1) . \PHP_EOL;
                                 $code .= '* File      : ' . $_file . \PHP_EOL . '*/' . \PHP_EOL;
@@ -346,7 +346,7 @@ class ReflectionClosure extends ReflectionFunction
                         case \T_NS_SEPARATOR:
                         case \T_STRING:
                             $id_start = $token[1];
-                            $id_start_ci = \strtolower($id_start);
+                            $id_start_ci = strtolower($id_start);
                             $id_name = '';
                             $context = 'root';
                             $state = 'id_name';
@@ -404,12 +404,12 @@ class ReflectionClosure extends ReflectionFunction
                                         break;
                                     }
                                 }
-                                $_trait = \var_export($_trait, \true);
+                                $_trait = var_export($_trait, \true);
                             }
                             $code .= $_trait;
                             break;
                         default:
-                            $code .= \is_array($token) ? $token[1] : $token;
+                            $code .= is_array($token) ? $token[1] : $token;
                     }
                     break;
                 case 'ignore_next':
@@ -455,7 +455,7 @@ class ReflectionClosure extends ReflectionFunction
                         case \T_STRING:
                         case \T_STATIC:
                             $id_start = $token[1];
-                            $id_start_ci = \strtolower($id_start);
+                            $id_start_ci = strtolower($id_start);
                             $id_name = '';
                             $state = 'id_name';
                             break 2;
@@ -479,7 +479,7 @@ class ReflectionClosure extends ReflectionFunction
                     break;
                 case 'id_name':
                     switch ($token[0]) {
-                        case $token[0] === ':' && $context !== 'instanceof':
+                        case $token[0] === ':' && !in_array($context, ['instanceof', 'new'], \true):
                             if ($lastState === 'closure' && $context === 'root') {
                                 $state = 'closure';
                                 $code .= $id_start . $token;
@@ -497,12 +497,12 @@ class ReflectionClosure extends ReflectionFunction
                             if ($isShortClosure) {
                                 $open++;
                             }
-                            if ($context === 'new' || \false !== \strpos($id_name, '\\')) {
+                            if ($context === 'new' || \false !== strpos($id_name, '\\')) {
                                 if ($id_start_ci === 'self' || $id_start_ci === 'static') {
                                     if (!$inside_structure) {
                                         $isUsingScope = \true;
                                     }
-                                } elseif ($id_start !== '\\' && !\in_array($id_start_ci, $class_keywords)) {
+                                } elseif ($id_start !== '\\' && !in_array($id_start_ci, $class_keywords)) {
                                     if ($classes === null) {
                                         $classes = $this->getClasses();
                                     }
@@ -513,18 +513,16 @@ class ReflectionClosure extends ReflectionFunction
                                         $id_start = $nsf . '\\' . $id_start;
                                     }
                                 }
-                            } else {
-                                if ($id_start !== '\\') {
-                                    if ($functions === null) {
-                                        $functions = $this->getFunctions();
-                                    }
-                                    if (isset($functions[$id_start_ci])) {
-                                        $id_start = $functions[$id_start_ci];
-                                    } elseif ($nsf !== '\\' && \function_exists($nsf . '\\' . $id_start)) {
-                                        $id_start = $nsf . '\\' . $id_start;
-                                        // Cache it to functions array
-                                        $functions[$id_start_ci] = $id_start;
-                                    }
+                            } else if ($id_start !== '\\') {
+                                if ($functions === null) {
+                                    $functions = $this->getFunctions();
+                                }
+                                if (isset($functions[$id_start_ci])) {
+                                    $id_start = $functions[$id_start_ci];
+                                } elseif ($nsf !== '\\' && function_exists($nsf . '\\' . $id_start)) {
+                                    $id_start = $nsf . '\\' . $id_start;
+                                    // Cache it to functions array
+                                    $functions[$id_start_ci] = $id_start;
                                 }
                             }
                             $code .= $id_start . $id_name . '(';
@@ -541,7 +539,7 @@ class ReflectionClosure extends ReflectionFunction
                                     if (!$inside_structure) {
                                         $isUsingScope = $token[0] === \T_DOUBLE_COLON;
                                     }
-                                } elseif (!(\PHP_MAJOR_VERSION >= 7 && \in_array($id_start_ci, $builtin_types))) {
+                                } elseif (!(\PHP_MAJOR_VERSION >= 7 && in_array($id_start_ci, $builtin_types))) {
                                     if ($classes === null) {
                                         $classes = $this->getClasses();
                                     }
@@ -557,14 +555,14 @@ class ReflectionClosure extends ReflectionFunction
                             $state = $token[0] === \T_DOUBLE_COLON ? 'ignore_next' : $lastState;
                             break;
                         default:
-                            if ($id_start !== '\\' && !\defined($id_start)) {
+                            if ($id_start !== '\\' && !defined($id_start)) {
                                 if ($constants === null) {
                                     $constants = $this->getConstants();
                                 }
                                 if (isset($constants[$id_start])) {
                                     $id_start = $constants[$id_start];
                                 } elseif ($context === 'new') {
-                                    if (\in_array($id_start_ci, $class_keywords)) {
+                                    if (in_array($id_start_ci, $class_keywords)) {
                                         if (!$inside_structure) {
                                             $isUsingScope = \true;
                                         }
@@ -580,11 +578,11 @@ class ReflectionClosure extends ReflectionFunction
                                         }
                                     }
                                 } elseif ($context === 'use' || $context === 'instanceof' || $context === 'args' || $context === 'return_type' || $context === 'extends' || $context === 'root') {
-                                    if (\in_array($id_start_ci, $class_keywords)) {
+                                    if (in_array($id_start_ci, $class_keywords)) {
                                         if (!$inside_structure && !$id_start_ci === 'static') {
                                             $isUsingScope = \true;
                                         }
-                                    } elseif (!(\PHP_MAJOR_VERSION >= 7 && \in_array($id_start_ci, $builtin_types))) {
+                                    } elseif (!(\PHP_MAJOR_VERSION >= 7 && in_array($id_start_ci, $builtin_types))) {
                                         if ($classes === null) {
                                             $classes = $this->getClasses();
                                         }
@@ -612,7 +610,7 @@ class ReflectionClosure extends ReflectionFunction
                         case \T_NS_SEPARATOR:
                         case \T_STRING:
                             $id_start = $token[1];
-                            $id_start_ci = \strtolower($id_start);
+                            $id_start_ci = strtolower($id_start);
                             $id_name = '';
                             $state = 'id_name';
                             $context = 'extends';
@@ -627,7 +625,7 @@ class ReflectionClosure extends ReflectionFunction
                             $i--;
                             break;
                         default:
-                            $code .= \is_array($token) ? $token[1] : $token;
+                            $code .= is_array($token) ? $token[1] : $token;
                     }
                     break;
             }
@@ -635,27 +633,25 @@ class ReflectionClosure extends ReflectionFunction
         if ($isShortClosure) {
             $this->useVariables = $this->getStaticVariables();
         } else {
-            $this->useVariables = empty($use) ? $use : \array_intersect_key($this->getStaticVariables(), \array_flip($use));
+            $this->useVariables = empty($use) ? $use : array_intersect_key($this->getStaticVariables(), array_flip($use));
         }
         $this->isShortClosure = $isShortClosure;
         $this->isBindingRequired = $isUsingThisObject;
         $this->isScopeRequired = $isUsingScope;
-        if (\PHP_VERSION_ID >= 80100) {
-            $attributesCode = \array_map(function ($attribute) {
-                $arguments = $attribute->getArguments();
-                $name = $attribute->getName();
-                $arguments = \implode(', ', \array_map(function ($argument, $key) {
-                    $argument = \sprintf("'%s'", \str_replace("'", "\\'", $argument));
-                    if (\is_string($key)) {
-                        $argument = \sprintf('%s: %s', $key, $argument);
-                    }
-                    return $argument;
-                }, $arguments, \array_keys($arguments)));
-                return "#[{$name}({$arguments})]";
-            }, $this->getAttributes());
-            if (!empty($attributesCode)) {
-                $code = \implode("\n", \array_merge($attributesCode, [$code]));
-            }
+        $attributesCode = array_map(function ($attribute) {
+            $arguments = $attribute->getArguments();
+            $name = $attribute->getName();
+            $arguments = implode(', ', array_map(function ($argument, $key) {
+                $argument = var_export($argument, \true);
+                if (is_string($key)) {
+                    $argument = sprintf('%s: %s', $key, $argument);
+                }
+                return $argument;
+            }, $arguments, array_keys($arguments)));
+            return "#[{$name}({$arguments})]";
+        }, $this->getAttributes());
+        if (!empty($attributesCode)) {
+            $code = implode("\n", array_merge($attributesCode, [$code]));
         }
         $this->code = $code;
         return $this->code;
@@ -667,23 +663,7 @@ class ReflectionClosure extends ReflectionFunction
      */
     protected static function getBuiltinTypes()
     {
-        // PHP 8.1
-        if (\PHP_VERSION_ID >= 80100) {
-            return ['array', 'callable', 'string', 'int', 'bool', 'float', 'iterable', 'void', 'object', 'mixed', 'false', 'null', 'never'];
-        }
-        // PHP 8
-        if (\PHP_MAJOR_VERSION === 8) {
-            return ['array', 'callable', 'string', 'int', 'bool', 'float', 'iterable', 'void', 'object', 'mixed', 'false', 'null'];
-        }
-        // PHP 7
-        switch (\PHP_MINOR_VERSION) {
-            case 0:
-                return ['array', 'callable', 'string', 'int', 'bool', 'float'];
-            case 1:
-                return ['array', 'callable', 'string', 'int', 'bool', 'float', 'iterable', 'void'];
-            default:
-                return ['array', 'callable', 'string', 'int', 'bool', 'float', 'iterable', 'void', 'object'];
-        }
+        return ['array', 'callable', 'string', 'int', 'bool', 'float', 'iterable', 'void', 'object', 'mixed', 'false', 'null', 'never'];
     }
     /**
      * Gets the use variables by the closure.
@@ -699,7 +679,7 @@ class ReflectionClosure extends ReflectionFunction
         $use = [];
         $state = 'start';
         foreach ($tokens as &$token) {
-            $is_array = \is_array($token);
+            $is_array = is_array($token);
             switch ($state) {
                 case 'start':
                     if ($is_array && $token[0] === \T_USE) {
@@ -709,7 +689,7 @@ class ReflectionClosure extends ReflectionFunction
                 case 'use':
                     if ($is_array) {
                         if ($token[0] === \T_VARIABLE) {
-                            $use[] = \substr($token[1], 1);
+                            $use[] = substr($token[1], 1);
                         }
                     } elseif ($token == ')') {
                         break 2;
@@ -717,7 +697,7 @@ class ReflectionClosure extends ReflectionFunction
                     break;
             }
         }
-        $this->useVariables = empty($use) ? $use : \array_intersect_key($this->getStaticVariables(), \array_flip($use));
+        $this->useVariables = empty($use) ? $use : array_intersect_key($this->getStaticVariables(), array_flip($use));
         return $this->useVariables;
     }
     /**
@@ -752,7 +732,7 @@ class ReflectionClosure extends ReflectionFunction
     protected function getHashedFileName()
     {
         if ($this->hashedName === null) {
-            $this->hashedName = \sha1($this->getFileName());
+            $this->hashedName = sha1($this->getFileName());
         }
         return $this->hashedName;
     }
@@ -765,7 +745,7 @@ class ReflectionClosure extends ReflectionFunction
     {
         $key = $this->getHashedFileName();
         if (!isset(static::$files[$key])) {
-            static::$files[$key] = \token_get_all(\file_get_contents($this->getFileName()));
+            static::$files[$key] = token_get_all(file_get_contents($this->getFileName()));
         }
         return static::$files[$key];
     }
@@ -783,7 +763,7 @@ class ReflectionClosure extends ReflectionFunction
             $results = [];
             $start = \false;
             foreach ($tokens as &$token) {
-                if (!\is_array($token)) {
+                if (!is_array($token)) {
                     if ($start) {
                         $results[] = $token;
                     }
@@ -810,11 +790,13 @@ class ReflectionClosure extends ReflectionFunction
      */
     protected function getClasses()
     {
-        $key = $this->getHashedFileName();
-        if (!isset(static::$classes[$key])) {
-            $this->fetchItems();
+        $line = $this->getStartLine();
+        foreach ($this->getStructures() as $struct) {
+            if ($struct['type'] === 'namespace' && $struct['start'] <= $line && $struct['end'] >= $line) {
+                return $struct['classes'];
+            }
         }
-        return static::$classes[$key];
+        return [];
     }
     /**
      * Get the functions.
@@ -875,13 +857,27 @@ class ReflectionClosure extends ReflectionFunction
         $name = '';
         $alias = '';
         $isFunc = $isConst = \false;
-        $startLine = $endLine = 0;
+        $startLine = $lastKnownLine = 0;
         $structType = $structName = '';
         $structIgnore = \false;
+        $namespace = '';
+        $namespaceStartLine = 0;
+        $namespaceBraced = \false;
+        $namespaceClasses = [];
         foreach ($tokens as $token) {
+            if (is_array($token)) {
+                $lastKnownLine = $token[2];
+            }
             switch ($state) {
                 case 'start':
                     switch ($token[0]) {
+                        case \T_NAMESPACE:
+                            $structures[] = ['type' => 'namespace', 'name' => $namespace, 'start' => $namespaceStartLine, 'end' => $token[2] - 1, 'classes' => $namespaceClasses];
+                            $namespace = '';
+                            $namespaceClasses = [];
+                            $state = 'namespace';
+                            $namespaceStartLine = $token[2];
+                            break;
                         case \T_CLASS:
                         case \T_INTERFACE:
                         case \T_TRAIT:
@@ -905,6 +901,27 @@ class ReflectionClosure extends ReflectionFunction
                         case \T_DOUBLE_COLON:
                             $state = 'invoke';
                             break;
+                        case '}':
+                            if ($namespaceBraced) {
+                                $structures[] = ['type' => 'namespace', 'name' => $namespace, 'start' => $namespaceStartLine, 'end' => $lastKnownLine, 'classes' => $namespaceClasses];
+                                $namespaceBraced = \false;
+                                $namespace = '';
+                                $namespaceClasses = [];
+                            }
+                            break;
+                    }
+                    break;
+                case 'namespace':
+                    switch ($token[0]) {
+                        case \T_STRING:
+                        case \T_NAME_QUALIFIED:
+                            $namespace = $token[1];
+                            break;
+                        case ';':
+                        case '{':
+                            $state = 'start';
+                            $namespaceBraced = $token[0] === '{';
+                            break;
                     }
                     break;
                 case 'use':
@@ -924,8 +941,8 @@ class ReflectionClosure extends ReflectionFunction
                             break;
                         case \T_NAME_QUALIFIED:
                             $name .= $token[1];
-                            $pieces = \explode('\\', $token[1]);
-                            $alias = \end($pieces);
+                            $pieces = explode('\\', $token[1]);
+                            $alias = end($pieces);
                             break;
                         case \T_AS:
                             $lastState = 'use';
@@ -943,11 +960,12 @@ class ReflectionClosure extends ReflectionFunction
                             }
                             if ($alias !== '') {
                                 if ($isFunc) {
-                                    $functions[\strtolower($alias)] = $name;
+                                    $functions[strtolower($alias)] = $name;
                                 } elseif ($isConst) {
                                     $constants[$alias] = $name;
                                 } else {
-                                    $classes[\strtolower($alias)] = $name;
+                                    $classes[strtolower($alias)] = $name;
+                                    $namespaceClasses[strtolower($alias)] = $name;
                                 }
                             }
                             $name = $alias = '';
@@ -962,8 +980,8 @@ class ReflectionClosure extends ReflectionFunction
                             break;
                         case \T_NAME_QUALIFIED:
                             $name .= $token[1];
-                            $pieces = \explode('\\', $token[1]);
-                            $alias = \end($pieces);
+                            $pieces = explode('\\', $token[1]);
+                            $alias = end($pieces);
                             break;
                         case \T_STRING:
                             $name .= $token[1];
@@ -980,11 +998,12 @@ class ReflectionClosure extends ReflectionFunction
                             }
                             if ($alias !== '') {
                                 if ($isFunc) {
-                                    $functions[\strtolower($alias)] = $prefix . $name;
+                                    $functions[strtolower($alias)] = $prefix . $name;
                                 } elseif ($isConst) {
                                     $constants[$alias] = $prefix . $name;
                                 } else {
-                                    $classes[\strtolower($alias)] = $prefix . $name;
+                                    $classes[strtolower($alias)] = $prefix . $name;
+                                    $namespaceClasses[strtolower($alias)] = $prefix . $name;
                                 }
                             }
                             $name = $alias = '';
@@ -1038,20 +1057,17 @@ class ReflectionClosure extends ReflectionFunction
                         case '}':
                             if (--$open == 0) {
                                 if (!$structIgnore) {
-                                    $structures[] = ['type' => $structType, 'name' => $structName, 'start' => $startLine, 'end' => $endLine];
+                                    $structures[] = ['type' => $structType, 'name' => $structName, 'start' => $startLine, 'end' => $lastKnownLine];
                                 }
                                 $structIgnore = \false;
                                 $state = 'start';
                             }
                             break;
-                        default:
-                            if (\is_array($token)) {
-                                $endLine = $token[2];
-                            }
                     }
                     break;
             }
         }
+        $structures[] = ['type' => 'namespace', 'name' => $namespace, 'start' => $namespaceStartLine, 'end' => \PHP_INT_MAX, 'classes' => $namespaceClasses];
         static::$classes[$key] = $classes;
         static::$functions[$key] = $functions;
         static::$constants[$key] = $constants;
@@ -1064,12 +1080,14 @@ class ReflectionClosure extends ReflectionFunction
      */
     protected function getClosureNamespaceName()
     {
-        $ns = $this->getNamespaceName();
-        // First class callables...
-        if ($this->getName() !== '{closure}' && empty($ns) && !\is_null($this->getClosureScopeClass())) {
-            $ns = $this->getClosureScopeClass()->getNamespaceName();
+        $startLine = $this->getStartLine();
+        $endLine = $this->getEndLine();
+        foreach ($this->getStructures() as $struct) {
+            if ($struct['type'] === 'namespace' && $struct['start'] <= $startLine && $struct['end'] >= $endLine) {
+                return $struct['name'];
+            }
         }
-        return $ns;
+        return '';
     }
     /**
      * Parse the given token.
@@ -1079,10 +1097,10 @@ class ReflectionClosure extends ReflectionFunction
      */
     protected function parseNameQualified($token)
     {
-        $pieces = \explode('\\', $token);
-        $id_start = \array_shift($pieces);
-        $id_start_ci = \strtolower($id_start);
-        $id_name = '\\' . \implode('\\', $pieces);
+        $pieces = explode('\\', $token);
+        $id_start = array_shift($pieces);
+        $id_start_ci = strtolower($id_start);
+        $id_name = '\\' . implode('\\', $pieces);
         return [$id_start, $id_start_ci, $id_name];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Repositories;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\WpMVC\Helpers\Helpers;
 use XCurrency\App\Models\Currency;
 
@@ -54,7 +56,7 @@ class SettingRepository {
             set_transient( 'x-currency-currency-update', $transient_time, $transient_time );
         }
 
-        if ( $old_base_currency != $settings['base_currency'] ) {
+        if ( isset( $settings['base_currency'] ) && $old_base_currency != $settings['base_currency'] ) {
 
             $currency = Currency::query()->where( 'id', $settings['base_currency'] )->first();
 
@@ -127,7 +129,7 @@ class SettingRepository {
         $currency_options = [];
         foreach ( get_woocommerce_currencies() as $currency_code => $currency_name ) {
             $symbol = isset( $symbols[$currency_code] ) ? $symbols[$currency_code] : '';
-            array_push( $currency_options, ['value' => $currency_code, 'label' => $currency_name . ' (' . html_entity_decode( $symbol ) . ')'] );
+            array_push( $currency_options, ['value' => $currency_code, 'label' => $currency_name . ' (' . html_entity_decode( $symbol, ENT_QUOTES | ENT_HTML401 ) . ')'] );
         }
 
         return [

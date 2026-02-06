@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Exceptions;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use Throwable;
 class Exception extends \Exception
 {

@@ -2,9 +2,9 @@
 
 namespace XCurrency\App\Woocommerce;
 
-use XCurrency\App\Repositories\CurrencyRepository;
-
 defined( 'ABSPATH' ) || exit;
+
+use XCurrency\App\Repositories\CurrencyRepository;
 
 class Product {
     public function boot() {
@@ -104,7 +104,7 @@ class Product {
                 <?php
         endforeach;
         else : ?>
-            <h4 style="margin: 5px 10px; font-weight: normal;"><?php esc_html_e( 'Specific product price for each currency.', 'x-currency' )?> <?php echo sprintf( esc_html__( 'To use this feature, %s this option.', 'x-currency' ), '<a href="' . esc_url( admin_url( 'admin.php?page=' . 'x-currency' ) ) . '#/global-settings">' . esc_html__( 'Enable', 'x-currency' ) . '</a>' )?></h4>
+            <h4 style="margin: 5px 10px; font-weight: normal;"><?php esc_html_e( 'Specific product price for each currency.', 'x-currency' )?> <?php echo sprintf( esc_html__( 'To use this feature, %s this option.', 'x-currency' ), '<a href="' . esc_url( admin_url( 'admin.php?page=' . 'x-currency' ) ) . '#/settings/specific-price">' . esc_html__( 'Enable', 'x-currency' ) . '</a>' )?></h4>
         <?php endif;?>
         <script data-cfasync="false" type="text/javascript">
             jQuery(($) => {

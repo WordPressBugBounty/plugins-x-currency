@@ -15,6 +15,7 @@ use XCurrency\App\Http\Middleware\EnsureIsUserAdmin;
 use XCurrency\Database\Migrations\Currency;
 use XCurrency\Database\Migrations\Rounding;
 use XCurrency\Database\Migrations\GeoIP;
+use XCurrency\Database\Migrations\SubtractAmount;
 use XCurrency\App\Providers\Compatibility\YithAddon;
 use XCurrency\App\Providers\Compatibility\Compatibility;
 use XCurrency\App\Providers\Compatibility\PPOM;
@@ -64,9 +65,10 @@ return [
     'settings_option_key'       => 'x-currency-settings',
     'migration_db_option_key'   => 'x-currency-migrations',
     'migrations'                => [
-        'currency' => Currency::class,
-        'rounding' => Rounding::class,
-        'geo_ip'   => GeoIP::class
+        'currency'        => Currency::class,
+        'rounding'        => Rounding::class,
+        'geo_ip'          => GeoIP::class,
+        'subtract_amount' => SubtractAmount::class
     ],
     'rest_response_action_hook' => 'x_currency_before_send_rest_response',
     'rest_response_filter_hook' => 'x_currency_rest_response'

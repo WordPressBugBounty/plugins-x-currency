@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Providers;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\App\Repositories\CurrencyRepository;
 use XCurrency\App\Repositories\SwitcherRepository;
 use XCurrency\WpMVC\Contracts\Provider;

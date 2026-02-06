@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\DTO;
 
+defined( 'ABSPATH' ) || exit;
+
 class SwitcherDTO
 {
     private int $id;

@@ -1,607 +1,615 @@
-# Copyright (C) 2025 DoatKolom
+# Copyright (C) 2026 Crafium
 # This file is distributed under the GPL v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: X-Currency 2.0.6\n"
+"Project-Id-Version: X-Currency 2.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/x-currency\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-28T19:42:24+00:00\n"
+"POT-Creation-Date: 2026-01-08T15:50:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: x-currency\n"
 
 #. Plugin Name of the plugin
-#: x-currency.php
-#: app/Providers/Admin/MenuServiceProvider.php:36
+#: x-currency.php:11
+#: app/Providers/Admin/MenuServiceProvider.php:53
 msgid "X-Currency"
 msgstr ""
 
 #. Description of the plugin
-#: x-currency.php
+#: x-currency.php:12
 msgid "Currency Switcher for WooCommerce custom currency, exchange rates, currency by country, pay in selected currency"
 msgstr ""
 
 #. Author of the plugin
-#: x-currency.php
-msgid "DoatKolom"
+#: x-currency.php:17
+msgid "Crafium"
 msgstr ""
 
 #. Author URI of the plugin
-#: x-currency.php
-msgid "https://doatkolom.com/"
+#: x-currency.php:18
+msgid "https://crafium.com/"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:38
+#: app/Http/Controllers/CurrencyController.php:40
 msgid "Currency created successfully!"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:57
+#: app/Http/Controllers/CurrencyController.php:59
 msgid "Currency updated successfully!"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:74
+#: app/Http/Controllers/CurrencyController.php:76
 msgid "Currency delete successfully!"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:91
+#: app/Http/Controllers/CurrencyController.php:93
 msgid "Currency status updated successfully!"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:127
-#: assets/build/chunks/818.js:1
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:129
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/903.js:1
 msgid "Active"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:132
-#: assets/build/chunks/818.js:1
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:134
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/903.js:1
 msgid "Name"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:133
+#: app/Http/Controllers/CurrencyController.php:135
 msgid "Enter currency name"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:136
+#: app/Http/Controllers/CurrencyController.php:138
 msgid "Currency name field is required"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:140
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:142
+#: assets/build/chunks/431.js:1
 msgid "Code"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:141
+#: app/Http/Controllers/CurrencyController.php:143
 msgid "Enter currency code"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:144
+#: app/Http/Controllers/CurrencyController.php:146
 msgid "Currency code field is required"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:148
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:150
+#: assets/build/chunks/431.js:1
 msgid "Symbol"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:149
+#: app/Http/Controllers/CurrencyController.php:151
 msgid "Enter currency symbol"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:152
+#: app/Http/Controllers/CurrencyController.php:154
 msgid "Currency symbol field is required"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:156
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:158
+#: assets/build/chunks/431.js:1
 msgid "Flag"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:159
+#: app/Http/Controllers/CurrencyController.php:161
 msgid "Currency flag field is required"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:164
+#: app/Http/Controllers/CurrencyController.php:166
 msgid "Rate( 1 Base Currency = ? )"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:165
+#: app/Http/Controllers/CurrencyController.php:167
 msgid "Enter currency rate"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:168
-#: app/Http/Controllers/CurrencyController.php:179
+#: app/Http/Controllers/CurrencyController.php:170
+#: app/Http/Controllers/CurrencyController.php:181
 msgid "Currency rate field is required"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:172
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:174
+#: assets/build/chunks/431.js:1
 msgid "Rate Type"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:176
-#: app/Repositories/SettingRepository.php:284
+#: app/Http/Controllers/CurrencyController.php:178
+#: app/Repositories/SettingRepository.php:286
 msgid "Auto"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:177
-#: app/Http/Controllers/CurrencyController.php:192
-#: app/Repositories/SettingRepository.php:138
-#: app/Repositories/SettingRepository.php:285
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:179
+#: app/Http/Controllers/CurrencyController.php:194
+#: app/Repositories/SettingRepository.php:140
+#: app/Repositories/SettingRepository.php:287
+#: assets/build/chunks/431.js:1
 msgid "Fixed"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:183
-#: app/Repositories/SettingRepository.php:251
+#: app/Http/Controllers/CurrencyController.php:185
+#: app/Repositories/SettingRepository.php:253
 msgid "Extra fee for the total amount of the cart"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:184
+#: app/Http/Controllers/CurrencyController.php:186
 msgid "Enter extra fee"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:189
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:191
+#: assets/build/chunks/431.js:1
 msgid "Extra Fee Type"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:193
+#: app/Http/Controllers/CurrencyController.php:195
 msgid "%"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:198
+#: app/Http/Controllers/CurrencyController.php:200
 msgid "Currency thousand separator"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:199
+#: app/Http/Controllers/CurrencyController.php:201
 msgid "Enter thousand separator"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:202
+#: app/Http/Controllers/CurrencyController.php:204
 msgid "Currency thousand separator field is required"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:206
+#: app/Http/Controllers/CurrencyController.php:208
 msgid "Currency decimal separator"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:207
+#: app/Http/Controllers/CurrencyController.php:209
 msgid "Enter decimal separator"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:210
+#: app/Http/Controllers/CurrencyController.php:212
 msgid "Currency decimal separator field is required"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:215
+#: app/Http/Controllers/CurrencyController.php:217
 msgid "Currency decimal"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:232
+#: app/Http/Controllers/CurrencyController.php:234
 msgid "Select currency decimal"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:234
+#: app/Http/Controllers/CurrencyController.php:236
 msgid "Currency decimal field is required"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:238
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:240
+#: assets/build/chunks/431.js:1
 msgid "Rounding"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:240
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:242
+#: assets/build/chunks/431.js:1
 msgid "Disabled"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:241
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:243
+#: assets/build/chunks/431.js:1
 msgid "Up"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:242
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:244
+#: assets/build/chunks/431.js:1
 msgid "Down"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:243
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:245
+#: assets/build/chunks/431.js:1
 msgid "Nearest"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:250
+#: app/Http/Controllers/CurrencyController.php:252
 msgid "Currency symbol position"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:252
-#: assets/blocks/currency-switcher/index.js:356
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:254
+#: assets/blocks/currency-switcher/index.js:651
+#: assets/build/chunks/431.js:1
 msgid "Left"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:253
+#: app/Http/Controllers/CurrencyController.php:255
 msgid "Left space"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:254
-#: assets/blocks/currency-switcher/index.js:356
-#: assets/build/chunks/999.js:1
+#: app/Http/Controllers/CurrencyController.php:256
+#: assets/blocks/currency-switcher/index.js:651
+#: assets/build/chunks/431.js:1
 msgid "Right"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:255
+#: app/Http/Controllers/CurrencyController.php:257
 msgid "Right space"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:257
+#: app/Http/Controllers/CurrencyController.php:259
 msgid "Select symbol position"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:259
+#: app/Http/Controllers/CurrencyController.php:261
 msgid "Currency symbol position field is required"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:265
+#: app/Http/Controllers/CurrencyController.php:267
 msgid "Disable payment gateways for this currency"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:267
+#: app/Http/Controllers/CurrencyController.php:269
 msgid "Here WooCommerce payment gateways will appear."
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:289
+#: app/Http/Controllers/CurrencyController.php:291
 msgid "Currency sorted successfully!"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:300
+#: app/Http/Controllers/CurrencyController.php:302
 msgid "Currency organized successfully!"
 msgstr ""
 
-#: app/Http/Controllers/CurrencyController.php:307
+#: app/Http/Controllers/CurrencyController.php:309
 msgid "Something is wrong"
 msgstr ""
 
-#: app/Http/Controllers/GeoIpController.php:28
+#: app/Http/Controllers/GeoIpController.php:30
 msgid "Country List Type"
 msgstr ""
 
-#: app/Http/Controllers/GeoIpController.php:31
+#: app/Http/Controllers/GeoIpController.php:33
 #: app/Woocommerce/Coupon.php:82
 #: app/Woocommerce/Product.php:107
 #: app/Woocommerce/Shipping.php:72
 msgid "Enable"
 msgstr ""
 
-#: app/Http/Controllers/GeoIpController.php:32
+#: app/Http/Controllers/GeoIpController.php:34
 msgid "Disable"
 msgstr ""
 
-#: app/Http/Controllers/GeoIpController.php:35
+#: app/Http/Controllers/GeoIpController.php:37
 msgid "This feature will work if geo location is enable"
 msgstr ""
 
-#: app/Http/Controllers/GeoIpController.php:40
+#: app/Http/Controllers/GeoIpController.php:42
 msgid "Country List"
 msgstr ""
 
-#: app/Http/Controllers/GeoIpController.php:42
+#: app/Http/Controllers/GeoIpController.php:44
 msgid "The countries you select here, will be disabled/enabled based on the 'Country list type' field"
 msgstr ""
 
-#: app/Http/Controllers/GeoIpController.php:46
-#: assets/build/chunks/138.js:1
+#: app/Http/Controllers/GeoIpController.php:48
+#: assets/build/chunks/603.js:1
 msgid "Welcome Country"
 msgstr ""
 
-#: app/Http/Controllers/GeoIpController.php:50
+#: app/Http/Controllers/GeoIpController.php:52
 msgid "This feature will work if your user's welcome currency is auto"
 msgstr ""
 
-#: app/Http/Controllers/GeoIpController.php:67
+#: app/Http/Controllers/GeoIpController.php:69
 msgid "Currency geo location updated successfully!"
 msgstr ""
 
-#: app/Http/Controllers/RateController.php:36
+#: app/Http/Controllers/RateController.php:38
 msgid "Currency not found"
 msgstr ""
 
-#: app/Http/Controllers/RateController.php:45
+#: app/Http/Controllers/RateController.php:47
 msgid "Currency rate updated successfully!"
 msgstr ""
 
-#: app/Http/Controllers/RateController.php:57
+#: app/Http/Controllers/RateController.php:59
 msgid "Currency rates updated successfully!"
 msgstr ""
 
-#: app/Http/Controllers/SettingController.php:50
+#: app/Http/Controllers/SettingController.php:52
 msgid "Settings Input Retrieved Successfully!"
 msgstr ""
 
-#: app/Http/Controllers/SettingController.php:83
+#: app/Http/Controllers/SettingController.php:85
 msgid "Settings was updated successfully"
 msgstr ""
 
-#: app/Http/Controllers/SwitcherController.php:22
+#: app/Http/Controllers/SwitcherController.php:24
 msgid "Switcher List Retrieved Successfully!"
 msgstr ""
 
-#: app/Http/Controllers/SwitcherController.php:51
+#: app/Http/Controllers/SwitcherController.php:53
 msgid "Switcher organized successfully!"
 msgstr ""
 
-#: app/Http/Controllers/SwitcherController.php:83
+#: app/Http/Controllers/SwitcherController.php:85
 msgid "Switcher Created Successfully!"
 msgstr ""
 
-#: app/Http/Controllers/SwitcherController.php:129
+#: app/Http/Controllers/SwitcherController.php:131
 msgid "Switcher Updated Successfully!"
 msgstr ""
 
-#: app/Http/Controllers/SwitcherController.php:151
+#: app/Http/Controllers/SwitcherController.php:153
 msgid "Switcher status updated successfully!"
 msgstr ""
 
-#: app/Http/Controllers/SwitcherController.php:167
+#: app/Http/Controllers/SwitcherController.php:169
 msgid "Switcher delete successfully!"
 msgstr ""
 
-#: app/Providers/Admin/GlobalServiceProvider.php:52
+#: app/Providers/Admin/GlobalServiceProvider.php:46
 msgid "X-Currency plugin is activated. Please go to "
 msgstr ""
 
-#: app/Providers/Admin/GlobalServiceProvider.php:52
+#: app/Providers/Admin/GlobalServiceProvider.php:46
 msgid "X-Currency setting page"
 msgstr ""
 
-#: app/Providers/Admin/GlobalServiceProvider.php:52
+#: app/Providers/Admin/GlobalServiceProvider.php:46
 msgid " to change default currency."
 msgstr ""
 
-#: app/Providers/Admin/MenuServiceProvider.php:37
-#: assets/build/chunks/669.js:1
+#: app/Providers/Admin/MenuServiceProvider.php:54
+#: assets/build/chunks/597.js:1
 msgid "Overview"
 msgstr ""
 
-#: app/Providers/Admin/MenuServiceProvider.php:38
-#: app/Providers/Admin/MenuServiceProvider.php:48
-#: assets/build/chunks/999.js:1
+#: app/Providers/Admin/MenuServiceProvider.php:55
+#: app/Providers/Admin/MenuServiceProvider.php:67
+#: assets/build/chunks/431.js:1
 msgid "Currencies"
 msgstr ""
 
-#: app/Providers/Admin/MenuServiceProvider.php:39
-#: assets/build/chunks/818.js:1
+#: app/Providers/Admin/MenuServiceProvider.php:56
+#: assets/build/chunks/903.js:1
 msgid "Switchers"
 msgstr ""
 
-#: app/Providers/Admin/MenuServiceProvider.php:40
+#: app/Providers/Admin/MenuServiceProvider.php:57
 msgid "Global Settings"
 msgstr ""
 
-#: app/Providers/Admin/MenuServiceProvider.php:48
-#: assets/build/chunks/138.js:1
+#: app/Providers/Admin/MenuServiceProvider.php:58
+msgid "Our Plugins"
+msgstr ""
+
+#: app/Providers/Admin/MenuServiceProvider.php:61
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: app/Providers/Admin/MenuServiceProvider.php:67
+#: assets/build/chunks/603.js:1
 msgid "Settings"
 msgstr ""
 
-#: app/Providers/WoocommerceServiceProvider.php:554
+#: app/Providers/WoocommerceServiceProvider.php:559
 #, php-format
 msgid "Extra fee %s for %s currency"
 msgstr ""
 
-#: app/RateProvider/CurrencyFreaks.php:21
-#: app/RateProvider/Fixer.php:22
-#: app/RateProvider/FixerApiLayer.php:21
+#: app/RateProvider/CurrencyFreaks.php:23
+#: app/RateProvider/Fixer.php:24
+#: app/RateProvider/FixerApiLayer.php:24
 msgid "Something was wrong"
 msgstr ""
 
-#: app/Repositories/CurrencyRateRepository.php:23
+#: app/Repositories/CurrencyRateRepository.php:25
 msgid "Please go to the global settings page and place your Currency Rate Aggregator API token"
 msgstr ""
 
-#: app/Repositories/CurrencyRepository.php:203
-#: app/Repositories/CurrencyRepository.php:247
+#: app/Repositories/CurrencyRepository.php:205
+#: app/Repositories/CurrencyRepository.php:250
 msgid "This currency code already exists"
 msgstr ""
 
-#: app/Repositories/CurrencyRepository.php:313
+#: app/Repositories/CurrencyRepository.php:317
 msgid "Sorry, you can not delete base currency."
 msgstr ""
 
-#: app/Repositories/CurrencyRepository.php:320
+#: app/Repositories/CurrencyRepository.php:324
 msgid "Sorry, you can not update base currency status."
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:136
+#: app/Repositories/SettingRepository.php:138
 msgid "User welcome currency"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:139
+#: app/Repositories/SettingRepository.php:141
 msgid "Base on geo ip"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:149
+#: app/Repositories/SettingRepository.php:151
 msgid "Welcome currency"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:150
-#: app/Repositories/SettingRepository.php:162
-#: assets/build/chunks/138.js:1
+#: app/Repositories/SettingRepository.php:152
+#: app/Repositories/SettingRepository.php:164
+#: assets/build/chunks/603.js:1
 msgid "Select a currency"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:152
+#: app/Repositories/SettingRepository.php:154
 msgid "Default currency field is required"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:161
+#: app/Repositories/SettingRepository.php:163
 msgid "Base currency"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:164
+#: app/Repositories/SettingRepository.php:166
 msgid "Base currency field is required"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:170
-#: assets/build/chunks/669.js:1
+#: app/Repositories/SettingRepository.php:172
+#: assets/build/chunks/597.js:1
 msgid "Currency rate aggregator"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:172
+#: app/Repositories/SettingRepository.php:174
 msgid "Fixer"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:173
+#: app/Repositories/SettingRepository.php:175
 msgid "Fixer Api Layer"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:174
+#: app/Repositories/SettingRepository.php:176
 msgid "CurrencyFreaks"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:175
+#: app/Repositories/SettingRepository.php:177
 msgid "OpenExchangeRates"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:178
+#: app/Repositories/SettingRepository.php:180
 msgid "Select a aggregator"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:182
+#: app/Repositories/SettingRepository.php:184
 msgid "Fixer api token"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:183
+#: app/Repositories/SettingRepository.php:185
 msgid "Enter fixer api token"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:186
+#: app/Repositories/SettingRepository.php:188
 msgid "Fixer api token field is required"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:192
+#: app/Repositories/SettingRepository.php:194
 msgid "Fixer api layer api token"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:193
+#: app/Repositories/SettingRepository.php:195
 msgid "Enter fixer api layer api token"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:196
+#: app/Repositories/SettingRepository.php:198
 msgid "Fixer api layer api token field is required"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:202
+#: app/Repositories/SettingRepository.php:204
 msgid "CurrencyFreaks api token"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:203
+#: app/Repositories/SettingRepository.php:205
 msgid "Enter CurrencyFreaks api token"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:206
+#: app/Repositories/SettingRepository.php:208
 msgid "CurrencyFreaks api token field is required"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:212
+#: app/Repositories/SettingRepository.php:214
 msgid "OpenExchangeRates api token"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:213
+#: app/Repositories/SettingRepository.php:215
 msgid "Enter OpenExchangeRates api token"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:216
+#: app/Repositories/SettingRepository.php:218
 msgid "OpenExchangeRates api token field is required"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:222
+#: app/Repositories/SettingRepository.php:224
 msgid "Currency auto update"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:228
+#: app/Repositories/SettingRepository.php:230
 msgid "Currency rate auto update time"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:229
+#: app/Repositories/SettingRepository.php:231
 msgid "Enter currency rate auto update time"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:232
+#: app/Repositories/SettingRepository.php:234
 msgid "Currency auto update time field is required"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:237
+#: app/Repositories/SettingRepository.php:239
 msgid "Currency rate auto update time type"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:238
+#: app/Repositories/SettingRepository.php:240
 msgid "Enter currency rate auto update time type"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:241
+#: app/Repositories/SettingRepository.php:243
 msgid "Currency auto update time type field is required"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:244
-#: assets/build/chunks/138.js:1
+#: app/Repositories/SettingRepository.php:246
+#: assets/build/chunks/603.js:1
 msgid "Second"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:245
-#: assets/build/chunks/138.js:1
+#: app/Repositories/SettingRepository.php:247
+#: assets/build/chunks/603.js:1
 msgid "Minute"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:246
-#: assets/build/chunks/138.js:1
+#: app/Repositories/SettingRepository.php:248
+#: assets/build/chunks/603.js:1
 msgid "Hour"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:257
+#: app/Repositories/SettingRepository.php:259
 msgid "Show message of the cart total extra fee"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:263
+#: app/Repositories/SettingRepository.php:265
 msgid "Specific shipping amount for each currency"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:269
+#: app/Repositories/SettingRepository.php:271
 msgid "Specific coupon amount for each currency"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:275
+#: app/Repositories/SettingRepository.php:277
 msgid "Specific product price for each currency"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:282
-#: assets/build/chunks/138.js:1
+#: app/Repositories/SettingRepository.php:284
+#: assets/build/chunks/603.js:1
 msgid "Approximate Currency Type"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:291
-#: assets/build/chunks/138.js:1
+#: app/Repositories/SettingRepository.php:293
+#: assets/build/chunks/603.js:1
 msgid "Approximate Currency"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:297
+#: app/Repositories/SettingRepository.php:299
 msgid "Approximate product price"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:303
+#: app/Repositories/SettingRepository.php:305
 msgid "Approximate cart and checkout total amount"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:308
+#: app/Repositories/SettingRepository.php:310
 msgid "Prices without cents"
 msgstr ""
 
-#: app/Repositories/SettingRepository.php:313
+#: app/Repositories/SettingRepository.php:315
 msgid "No GET data in link"
 msgstr ""
 
@@ -630,8 +638,8 @@ msgid "To use this feature, %s this option."
 msgstr ""
 
 #: app/Woocommerce/Order.php:72
-#: assets/build/chunks/138.js:1
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/603.js:1
 msgid "Base Currency"
 msgstr ""
 
@@ -703,751 +711,772 @@ msgstr ""
 msgid "If you want to automatically exchange order amounts, leave the field blank."
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "PRO Version Required"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Custom CSS is an advanced feature. There will be no limits of design implementation."
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Switcher Elements"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Dropdown Elements"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Switcher Position"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Position"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Vertical (%)"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Horizontal (px)"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Horizontal Hover (px)"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Item Move Horizontal (px)"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Switcher Style"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Full Width"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Width"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Font Size"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Element Gap"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Padding"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Margin"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Border"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Dropdown Style"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Max Height"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Gap From Switcher"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Horizontal Position"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Dropdown Option Style"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Options Gap"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Elements Gap"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Flag Style"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Dropdown Arrow Style"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Vertical"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "List Style"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Border (Active)"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Code Style"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Height"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Name Style"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Text Transform"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Z Index"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
-#: assets/build/chunks/138.js:1
-#: assets/build/chunks/818.js:1
+#: assets/blocks/currency-switcher/index.js:651
+#: assets/build/chunks/603.js:1
+#: assets/build/chunks/903.js:1
 msgid "General"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Style"
 msgstr ""
 
-#: assets/blocks/currency-switcher/index.js:356
+#: assets/blocks/currency-switcher/index.js:651
 msgid "Custom CSS"
 msgstr ""
 
-#: assets/build/chunks/138.js:1
-msgid "Round Prices to Whole Numbers"
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/597.js:1
+#: assets/build/chunks/603.js:1
+#: assets/build/chunks/903.js:1
+msgid "Enable Currency Selection Popup"
 msgstr ""
 
-#: assets/build/chunks/138.js:1
-msgid "Enable this option to display prices without cents (e.g., $10 instead of $10.99). Useful for a simplified pricing strategy."
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/597.js:1
+#: assets/build/chunks/603.js:1
+#: assets/build/chunks/903.js:1
+msgid "Display a welcome popup allowing visitors to choose their preferred currency when they first arrive at your site. Click the Setup button to configure and activate this feature."
 msgstr ""
 
-#: assets/build/chunks/138.js:1
-msgid "Remove Currency Data from URLs"
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/597.js:1
+#: assets/build/chunks/603.js:1
+#: assets/build/chunks/903.js:1
+msgid "Popup setup successfully."
 msgstr ""
 
-#: assets/build/chunks/138.js:1
-msgid "This option removes the currency parameter from the URL to keep links cleaner and more user-friendly."
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/597.js:1
+#: assets/build/chunks/603.js:1
+#: assets/build/chunks/903.js:1
+msgid "Setup"
 msgstr ""
 
-#: assets/build/chunks/138.js:1
-msgid "Save Changes"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Welcome Currency"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Set an initial currency for users based on their location or a fixed currency of your choice. This setting helps personalize the shopping experience for users."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Currency Type"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Please select a currency type."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Based on Geo IP"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Fixed Currency"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Please select a welcome currency."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Approximate Price Settings"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Configure approximate pricing settings to show estimated prices based on a specific or automatic currency selection. This helps provide clarity to users in their preferred currency."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Auto (Based on user location)"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Select currency type"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Please select an approximate currency."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Enable Approximate Product Prices"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Show estimated prices for individual products in the user's preferred currency."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Enable Approximate Cart and Checkout Prices"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Display an estimated total amount for the cart and checkout pages in the user's preferred currency."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Shipping amount by currency"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Specify the exact shipping cost based on the currency selected"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Coupon amount by currency"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Set the value for coupons based on the selected currency"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Product price by currency"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Define the price for each product in different currencies"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Enable Geo IP Rules"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-#: assets/build/chunks/818.js:1
-#: assets/build/chunks/999.js:1
-msgid "Action"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Select whether to include or exclude the countries listed below."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Include"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Exclude"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Select an action"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Countries"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Select countries"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Select the default country for new visitors"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Select a default country"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Currency Rate Aggregator"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Choose the API provider for update currency rate."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Enable Extra Fee for Cart Total"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Enable this option to apply an extra fee to the cart total."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Display Extra Fee Message in Cart"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Enable this option to show a message explaining the extra fee in the cart."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Currency Rate Auto Update"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Automatically update currency rates at a specified interval."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Enable Auto Update"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Update Interval"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Please enter the update interval."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Enter interval value"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Interval Type"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Please select the interval type."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Select interval type"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Get Pro Now"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "⚠️ Changing the base currency can have major effects on your store!"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "This may affect all product pricing and currency conversions. Please proceed with caution."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Select the base currency for your store. All other currencies will be converted based on this, and all product prices will be set using this currency."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Please select a base currency."
-msgstr ""
-
-#: assets/build/chunks/138.js:1
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/603.js:1
 msgid "PRO"
 msgstr ""
 
-#: assets/build/chunks/138.js:1
-msgid "Checkout Currency"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Geo IP Rules"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Rate Auto Update"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Approximate Price"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-#: assets/build/chunks/999.js:1
-msgid "Extra Fee"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Rate Aggregator"
-msgstr ""
-
-#: assets/build/chunks/138.js:1
-msgid "Specific Price"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Unlimited custom currencies"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "WooCommerce analytics compatibility"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Control checkout page currency"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Sticky switcher page condition"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Responsive design"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Navigation menu switcher"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Elementor widget integration"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Custom CSS support"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Create custom currencies with custom code"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Cryptocurrency compatibility"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Update base currency"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Custom currency flags"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Automatic currency updates"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Customizable currency update intervals"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Currency-based payment gateways"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Geo-IP-based welcome currency"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Switcher template system for shortcodes and sticky elements"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Pre-built switcher demos"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "No data exposure in URLs"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Currency-specific shipping amounts"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Currency-specific coupon amounts"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Currency-specific product pricing"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Approximate product, cart, and checkout amounts"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Auto-fill options for new currency creation"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Control over displaying prices without cents"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Features"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Free"
-msgstr ""
-
-#: assets/build/chunks/669.js:1
-msgid "Pro"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-#: assets/build/chunks/999.js:1
-msgid "Yes"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-#: assets/build/chunks/999.js:1
-msgid "No"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Switcher Name"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Switcher Type"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Sticky"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Show Page"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Template"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "New Switcher"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Create New Switcher"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Type"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "ShortCode"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-#: assets/build/chunks/999.js:1
-msgid "Status"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-#: assets/build/chunks/999.js:1
-msgid "Edit"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Are you sure to delete this switcher?"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Save Switcher"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Close"
-msgstr ""
-
-#: assets/build/chunks/818.js:1
-msgid "Add New Switcher"
-msgstr ""
-
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Select or Upload Media"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Use this media"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Replace"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Upload"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Reset"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Rate"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Auto Update"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Symbol Position"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Left with space"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Right with space"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/603.js:1
+msgid "Extra Fee"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
 msgid "Percent"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Thousand Separator"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Decimal Separator"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Maximum Decimal"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
+msgid "Subtract price after rounding"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
 msgid "Disable Payment Gateways for This Currency"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Select payment gateways"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Symbol:"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Rate:"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Premade Currencies"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Search by Currency Name or Code..."
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "New Currency"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Auto Fill"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Create New Currency"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Failed to load currency details"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Update Currency"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Loading..."
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 #, js-format
 msgid "Rate (1 %s = ?)"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 #, js-format
 msgid "Flag of %s"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 #, js-format
 msgid "Last updated at - %s"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/903.js:1
+msgid "Status"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/603.js:1
+#: assets/build/chunks/903.js:1
+msgid "Action"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/903.js:1
+msgid "Edit"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
 msgid "Are you sure to delete this currency?"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/903.js:1
+msgid "Yes"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
+#: assets/build/chunks/903.js:1
+msgid "No"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
 #, js-format
 msgid "You have used %d/3 free currency"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Upgrade"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
+#: assets/build/chunks/431.js:1
 msgid "Add New Currency"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
-msgid "🎉 Get X-Currency Pro for Free!"
+#: assets/build/chunks/597.js:1
+msgid "Unlimited custom currencies"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
-msgid "You’re currently using the free version of X-Currency. Join our Facebook community to receive the Pro version absolutely free — exclusively for our community members!"
+#: assets/build/chunks/597.js:1
+msgid "WooCommerce analytics compatibility"
 msgstr ""
 
-#: assets/build/chunks/999.js:1
-msgid "Join Now"
+#: assets/build/chunks/597.js:1
+msgid "Control checkout page currency"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Sticky switcher page condition"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Responsive design"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Navigation menu switcher"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Elementor widget integration"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Custom CSS support"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Create custom currencies with custom code"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Cryptocurrency compatibility"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Update base currency"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Custom currency flags"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Automatic currency updates"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Customizable currency update intervals"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Currency-based payment gateways"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Geo-IP-based welcome currency"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Switcher template system for shortcodes and sticky elements"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Pre-built switcher demos"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "No data exposure in URLs"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Currency-specific shipping amounts"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Currency-specific coupon amounts"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Currency-specific product pricing"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Approximate product, cart, and checkout amounts"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Auto-fill options for new currency creation"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Control over displaying prices without cents"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Features"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Free"
+msgstr ""
+
+#: assets/build/chunks/597.js:1
+msgid "Pro"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Round Prices to Whole Numbers"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Enable this option to display prices without cents (e.g., $10 instead of $10.99). Useful for a simplified pricing strategy."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Remove Currency Data from URLs"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "This option removes the currency parameter from the URL to keep links cleaner and more user-friendly."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Save Changes"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Welcome Currency"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Set an initial currency for users based on their location or a fixed currency of your choice. This setting helps personalize the shopping experience for users."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Currency Type"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Please select a currency type."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Based on Geo IP"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Fixed Currency"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Please select a welcome currency."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Approximate Price Settings"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Configure approximate pricing settings to show estimated prices based on a specific or automatic currency selection. This helps provide clarity to users in their preferred currency."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Auto (Based on user location)"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Select currency type"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Please select an approximate currency."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Enable Approximate Product Prices"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Show estimated prices for individual products in the user's preferred currency."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Enable Approximate Cart and Checkout Prices"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Display an estimated total amount for the cart and checkout pages in the user's preferred currency."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Shipping amount by currency"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Specify the exact shipping cost based on the currency selected"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Coupon amount by currency"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Set the value for coupons based on the selected currency"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Product price by currency"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Define the price for each product in different currencies"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Enable Geo IP Rules"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Select whether to include or exclude the countries listed below."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Include"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Exclude"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Select an action"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Countries"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Select countries"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Select the default country for new visitors"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Select a default country"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Currency Rate Aggregator"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Choose the API provider for update currency rate."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Enable Extra Fee for Cart Total"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Enable this option to apply an extra fee to the cart total."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Display Extra Fee Message in Cart"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Enable this option to show a message explaining the extra fee in the cart."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Currency Rate Auto Update"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Automatically update currency rates at a specified interval."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Enable Auto Update"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Update Interval"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Please enter the update interval."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Enter interval value"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Interval Type"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Please select the interval type."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Select interval type"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Get Pro Now"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "⚠️ Changing the base currency can have major effects on your store!"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "This may affect all product pricing and currency conversions. Please proceed with caution."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Select the base currency for your store. All other currencies will be converted based on this, and all product prices will be set using this currency."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Please select a base currency."
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Checkout Currency"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Geo IP Rules"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Rate Auto Update"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Approximate Price"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Rate Aggregator"
+msgstr ""
+
+#: assets/build/chunks/603.js:1
+msgid "Specific Price"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Switcher Name"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Switcher Type"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Sticky"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Show Page"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Template"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "New Switcher"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Create New Switcher"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Type"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "ShortCode"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Are you sure to delete this switcher?"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Save Switcher"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Close"
+msgstr ""
+
+#: assets/build/chunks/903.js:1
+msgid "Add New Switcher"
 msgstr ""

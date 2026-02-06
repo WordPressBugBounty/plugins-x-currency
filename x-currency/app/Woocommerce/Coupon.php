@@ -79,7 +79,7 @@ class Coupon {
             endforeach;
     else :
         ?>
-        <h3 style="margin: 5px 10px; font-weight: normal;"><?php esc_html_e( 'Specific coupon price for each currency.', 'x-currency' )?> <?php echo sprintf( esc_html__( 'To use this feature, %s this option.', 'x-currency' ), '<a href="' . esc_url( admin_url( 'admin.php?page=' . 'x-currency' ) ) . '#/global-settings">' . esc_html__( 'Enable', 'x-currency' ) . '</a>' )?></h3>
+        <h3 style="margin: 5px 10px; font-weight: normal;"><?php esc_html_e( 'Specific coupon price for each currency.', 'x-currency' )?> <?php echo sprintf( esc_html__( 'To use this feature, %s this option.', 'x-currency' ), '<a href="' . esc_url( admin_url( 'admin.php?page=' . 'x-currency' ) ) . '#/settings/specific-price">' . esc_html__( 'Enable', 'x-currency' ) . '</a>' )?></h3>
         <?php
     endif;
     ?>

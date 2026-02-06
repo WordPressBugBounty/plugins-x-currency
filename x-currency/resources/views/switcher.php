@@ -204,7 +204,7 @@ if ( wp_is_block_theme() ) {
 
 ?>
 <div class="x-currency x-currency-shortcode x-currency-shortcode-old switcher-<?php x_currency_render( $template_id )?> open-bottom">
-    <button class="switch">
+    <button class="switch" type="button">
         <div class="switch-elements">
             <?php
             foreach ( $template_json['button_sort_el'] as $element_id ) :

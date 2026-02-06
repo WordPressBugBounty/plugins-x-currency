@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Models;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\WpMVC\Database\Resolver;
 use XCurrency\WpMVC\Database\Eloquent\Model;
 

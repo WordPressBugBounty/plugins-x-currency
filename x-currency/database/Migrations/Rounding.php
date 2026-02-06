@@ -2,6 +2,8 @@
 
 namespace XCurrency\Database\Migrations;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\WpMVC\Contracts\Migration;
 
 class Rounding implements Migration {

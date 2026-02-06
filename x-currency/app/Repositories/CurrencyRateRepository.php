@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Repositories;
 
+defined( 'ABSPATH' ) || exit;
+
 use Exception;
 use XCurrency\App\Models\Currency;
 use XCurrency\App\RateProvider\ProviderBase;

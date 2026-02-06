@@ -1,11 +1,11 @@
 === X-Currency - The Ultimate WooCommerce currency switcher for a smoother shopping experience ===
-Contributors: doatkolom
-Donate link: https://doatkolom.com/
+Contributors: crafium, doatkolom, mdalaminbey
+Donate link: https://crafium.com/
 Tags: currency switcher, woocommerce currency switcher, currency switcher plugin, multi currency, woocommerce
 Requires at least: 6.5
-Tested up to: 6.8
-Requires PHP: 7.4
-Stable tag: 2.0.6
+Tested up to: 6.9
+Requires PHP: 8.1
+Stable tag: 2.3.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,7 +17,7 @@ X-Currency Switcher is a free WooCommerce multi currency switcher for WordPress 
 
 X-Currency is a WooCommerce Currency Switcher tool that is available as a shortcode and sticky.
 
-> **[Demo](https://demo.doatkolom.com/x-currency)** |  **[Get Support/Contact Us](https://doatkolom.com/contact)** | **[Roadmap](https://app.loopedin.io/x-currency)** | **[Make A Feature Request](https://app.loopedin.io/x-currency#/ideas)**
+> **[Demo](https://demo.crafium.com/x-currency)** |  **[Get Support/Contact Us](https://crafium.com/x-currency)** | **[Roadmap](https://app.loopedin.io/x-currency)** | **[Make A Feature Request](https://app.loopedin.io/x-currency#/ideas)**
 
 
 https://youtu.be/jghDa342DSc
@@ -93,12 +93,14 @@ It's a modern style where currency list will appear into a modal with a bigger v
 
 <h4>🚀 Compatibility And Tested With</h4>
 <ul>
+<li><a href="https://wordpress.org/plugins/optincraft/" target="_blank"><strong>OptinCraft</strong></a> The Powerful Drag & Drop Popup Builder for WordPress</li>
 <li><a href="https://wordpress.org/plugins/shopengine/" target="_blank"><strong>ShopEngine</strong></a> Elementor WooCommerce Builder Addons, Variation Swatches, Wishlist, Products Compare – All in One Solution</li>
 <li><a href="https://crocoblock.com/plugins/jetwoobuilder/" target="_blank"><strong>JetWooBuilder</strong></a> Top-rated Elementor WooCommerce plugin</li>
 <li><a href="https://wordpress.org/plugins/breeze/" target="_blank"><strong>Breeze</strong></a> WordPress Cache Plugin</li>
 <li><a href="https://wordpress.org/plugins/packeta/" target="_blank"><strong>Packeta</strong></a></li>
 <li><a href="https://wordpress.org/plugins/woocommerce-product-addon/" target="_blank"><strong>PPOM</strong></a> - Product Addons & Custom Fields for WooCommerce</li>
 <li><a href="https://wordpress.org/plugins/yith-woocommerce-product-add-ons/" target="_blank"><strong>YITH</strong></a> WooCommerce Product Add-Ons</li>
+<li><a href="https://wordpress.org/plugins/variation-monster/" target="_blank"><strong>Variation Monster</strong></a> - Variation Tables, Swatches & Quick View for WooCommerce</li>
 </ul>
 
 ## Privacy Policy 
@@ -123,6 +125,37 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 2.3.1 - 08 Jan 2025 =
+* Fixed: Compatibility issue with Visual composer Builder.
+
+= 2.3.0 - 31 Dec 2025 =
+* Improved: Fix pro version update not working issue.
+
+= 2.2.3 - 30 Dec 2025 =
+* Improved: Updated minimum PHP requirement to 8.1. PHP 7.4 is no longer supported.
+
+= 2.2.2 - 11 Dec 2025 =
+* Fixed: Subtract amount migration issue.
+
+= 2.2.1 - 10 Dec 2025 =
+* Fixed: Coupon exclude sale items feature not working issue.
+
+= 2.2.0 - 08 Dec 2025 =
+* New: Integrate X-Currency with OptinCraft plugin.
+
+= 2.1.3 - 06 Dec 2025 =
+* Tweak: Removed OptinCraft notice.
+
+= 2.1.2 - 03 Dec 2025 =
+* Improved: Added WordPress 6.9 compatibility.
+
+= 2.1.1 - 27 Nov 2025 =
+* Improved: Updated currency rate sample data.
+
+= 2.1.0 - 23 Nov 2025 =
+* New: Added product price subtract amount feature (PRO).
+* Improved: Enhanced dashboard UI and overall user experience.
+
 = 2.0.6 - 29 Sep 2025 =
 * Fixed: Updated date issue in currencies table.
 

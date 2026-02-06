@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Clauses;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use Closure;
 trait Clause
 {
@@ -56,20 +56,20 @@ trait Clause
         if ($column instanceof Closure) {
             $type = 'nested';
             $query = new static($this->model);
-            if (\is_callable($column)) {
-                \call_user_func($column, $query);
+            if (is_callable($column)) {
+                call_user_func($column, $query);
             }
-            $data = \compact('type', 'boolean', 'query', 'name', 'not');
+            $data = compact('type', 'boolean', 'query', 'name', 'not');
         } else {
             // Prepare value and operator for the clause
-            [$value, $operator] = $this->prepare_value_and_operator($value, $operator, \func_num_args() === 2);
+            [$value, $operator] = $this->prepare_value_and_operator($value, $operator, func_num_args() === 2);
             // If the operator is invalid, default to '='
             if ($this->invalid_operator($operator)) {
                 [$value, $operator] = [$operator, '='];
             }
             $type = 'basic';
             // Define the type of the clause
-            $data = \compact('type', 'boolean', 'column', 'operator', 'value', 'not');
+            $data = compact('type', 'boolean', 'column', 'operator', 'value', 'not');
         }
         return $this->set_clause($clause_type, $data, $name);
     }
@@ -129,7 +129,7 @@ trait Clause
     protected function clause_column(string $clause_type, string $first_column, $operator = null, $second_column = null, ?string $name = null, $boolean = 'and')
     {
         // Prepare value and operator for the clause
-        [$second_column, $operator] = $this->prepare_value_and_operator($second_column, $operator, \func_num_args() === 2);
+        [$second_column, $operator] = $this->prepare_value_and_operator($second_column, $operator, func_num_args() === 2);
         // If the operator is invalid, default to '='
         if ($this->invalid_operator($operator)) {
             [$second_column, $operator] = [$operator, '='];
@@ -138,7 +138,7 @@ trait Clause
         // Define the type of the clause
         $column = $first_column;
         $value = $second_column;
-        $data = \compact('type', 'boolean', 'column', 'operator', 'value');
+        $data = compact('type', 'boolean', 'column', 'operator', 'value');
         return $this->set_clause($clause_type, $data, $name);
     }
     /**
@@ -167,15 +167,15 @@ trait Clause
      */
     protected function clause_exists(string $clause_type, $callback, ?string $name = null, $boolean = 'and', $not = \false)
     {
-        if (\is_callable($callback)) {
+        if (is_callable($callback)) {
             $query = new static($this->model);
-            \call_user_func($callback, $query);
+            call_user_func($callback, $query);
         } else {
             $query = $callback;
         }
         $type = 'exists';
         // Define the type of the clause
-        $data = \compact('type', 'query', 'boolean', 'not');
+        $data = compact('type', 'query', 'boolean', 'not');
         return $this->set_clause($clause_type, $data, $name);
     }
     /**
@@ -229,7 +229,7 @@ trait Clause
     {
         $type = 'in';
         // Define the type of the clause
-        $data = \compact('type', 'boolean', 'column', 'values', 'not');
+        $data = compact('type', 'boolean', 'column', 'values', 'not');
         return $this->set_clause($clause_type, $data, $name);
     }
     /**
@@ -286,7 +286,7 @@ trait Clause
     {
         $type = 'like';
         // Define the type of the clause
-        $data = \compact('type', 'boolean', 'column', 'value', 'not');
+        $data = compact('type', 'boolean', 'column', 'value', 'not');
         return $this->set_clause($clause_type, $data, $name);
     }
     /**
@@ -343,7 +343,7 @@ trait Clause
     {
         $type = 'between';
         // Define the type of the clause
-        $data = \compact('type', 'boolean', 'column', 'values', 'not');
+        $data = compact('type', 'boolean', 'column', 'values', 'not');
         return $this->set_clause($clause_type, $data, $name);
     }
     /**
@@ -399,7 +399,7 @@ trait Clause
     {
         $type = 'raw';
         // Define the type of the clause
-        $data = \compact('type', 'boolean', 'sql', 'bindings');
+        $data = compact('type', 'boolean', 'sql', 'bindings');
         return $this->set_clause($clause_type, $data, $name);
     }
     /**
@@ -429,7 +429,7 @@ trait Clause
     {
         $type = 'is_null';
         // Define the type of the clause
-        $data = \compact('type', 'boolean', 'column', 'not');
+        $data = compact('type', 'boolean', 'column', 'not');
         return $this->set_clause($clause_type, $data, $name);
     }
     /**

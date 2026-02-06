@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\DTO;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use ReflectionClass;
 /**
  * Abstract class DTO (Data Transfer Object)
@@ -18,7 +18,7 @@ abstract class DTO
      *
      * @return array
      */
-    public function get_exclude_to_array() : array
+    public function get_exclude_to_array(): array
     {
         return $this->exclude_to_array;
     }
@@ -29,7 +29,7 @@ abstract class DTO
      *
      * @return self
      */
-    public function set_exclude_to_array(array $exclude_to_array) : self
+    public function set_exclude_to_array(array $exclude_to_array): self
     {
         $this->exclude_to_array = $exclude_to_array;
         return $this;
@@ -50,7 +50,7 @@ abstract class DTO
         foreach ($reflection->getProperties() as $property) {
             $property_name = $property->getName();
             // Skip property if the property is excluded
-            if (\in_array($property_name, $exclude_to_array)) {
+            if (in_array($property_name, $exclude_to_array)) {
                 continue;
             }
             // Access the property using reflection
@@ -86,10 +86,10 @@ abstract class DTO
         if ($value instanceof DTO) {
             return $value->to_array();
         }
-        if (!\is_array($value)) {
+        if (!is_array($value)) {
             return $value;
         }
-        return \array_map(function ($item) {
+        return array_map(function ($item) {
             if ($item instanceof DTO) {
                 return $item->to_array();
             }
@@ -102,7 +102,7 @@ abstract class DTO
      * @param string $property The property name to check.
      * @return bool True if the property is initialized, false otherwise.
      */
-    public function is_initialized(string $property) : bool
+    public function is_initialized(string $property): bool
     {
         $reflection = new ReflectionClass($this);
         // Create a reflection class instance for the current object

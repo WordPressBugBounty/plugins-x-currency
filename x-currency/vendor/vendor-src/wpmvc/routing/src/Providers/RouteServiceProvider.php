@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Routing\Providers;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use XCurrency\WpMVC\Routing\Response;
 use XCurrency\WpMVC\Routing\DataBinder;
 use XCurrency\WpMVC\Routing\Ajax;
@@ -24,7 +24,7 @@ abstract class RouteServiceProvider
      */
     public function action_ajax_api_init(WP $wp)
     {
-        if (!isset($wp->request) || 1 !== \preg_match("@^" . static::$properties['ajax']['namespace'] . "/(.*)/?@i", $wp->request)) {
+        if (!isset($wp->request) || 1 !== preg_match("@^" . static::$properties['ajax']['namespace'] . "/(.*)/?@i", $wp->request)) {
             return;
         }
         static::init_routes('ajax');
@@ -38,7 +38,7 @@ abstract class RouteServiceProvider
     /**
      * Fires when preparing to serve a REST API request.
      */
-    public function action_rest_api_init() : void
+    public function action_rest_api_init(): void
     {
         static::init_routes('rest');
     }
@@ -53,10 +53,10 @@ abstract class RouteServiceProvider
         $data_binder->set_namespace(static::$properties[$type]['namespace']);
         include static::$properties['routes-dir'] . "/{$type}/api.php";
         $versions = static::$properties[$type]['versions'];
-        if (\is_array($versions)) {
+        if (is_array($versions)) {
             foreach ($versions as $version) {
                 $version_file = static::$properties['routes-dir'] . "/{$type}/{$version}/api.php";
-                if (\is_file($version_file)) {
+                if (is_file($version_file)) {
                     $data_binder->set_version($version);
                     include $version_file;
                 }

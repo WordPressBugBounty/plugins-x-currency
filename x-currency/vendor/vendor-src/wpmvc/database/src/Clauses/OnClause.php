@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Clauses;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 trait OnClause
 {
     use Clause;
@@ -11,7 +11,7 @@ trait OnClause
      *
      * @return array The array of on clauses.
      */
-    public function get_ons() : array
+    public function get_ons(): array
     {
         return $this->clauses['ons'] ?? [];
     }

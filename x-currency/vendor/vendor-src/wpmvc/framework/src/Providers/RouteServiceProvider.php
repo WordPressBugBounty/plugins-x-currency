@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Providers;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use XCurrency\WpMVC\Contracts\Provider;
 use XCurrency\WpMVC\App;
 use XCurrency\WpMVC\Routing\Providers\RouteServiceProvider as WpMVCRouteServiceProvider;

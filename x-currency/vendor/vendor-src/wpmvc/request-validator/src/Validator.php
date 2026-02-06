@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\RequestValidator;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use XCurrency\WpMVC\Exceptions\Exception;
 use WP_REST_Request;
 class Validator
@@ -37,7 +37,7 @@ class Validator
     public function validate(array $rules, bool $throw_errors = \true)
     {
         foreach ($rules as $input_name => $rule) {
-            $explode_rules = \explode('|', $rule);
+            $explode_rules = explode('|', $rule);
             $this->explode_rules = $explode_rules;
             foreach ($explode_rules as $explode_rule) {
                 static::validate_rule($input_name, $explode_rule);
@@ -54,9 +54,9 @@ class Validator
     }
     protected function validate_rule(string $input_name, string $rule)
     {
-        $rule_explode = \explode(':', $rule, 2);
+        $rule_explode = explode(':', $rule, 2);
         $method = "{$rule_explode[0]}_validator";
-        if (\method_exists(static::class, $method)) {
+        if (method_exists(static::class, $method)) {
             static::$method($input_name, isset($rule_explode[1]) ? $rule_explode[1] : null);
         } else {
             throw new \Exception("{$rule_explode[0]} rule not found");
@@ -79,7 +79,7 @@ class Validator
             return;
         }
         $value = $this->wp_rest_request->get_param($input_name);
-        if (\is_string($value)) {
+        if (is_string($value)) {
             return;
         }
         $this->set_error($input_name, 'string', [':attribute'], [$input_name]);
@@ -88,24 +88,22 @@ class Validator
     {
         if ($this->wp_rest_request->has_param($input_name)) {
             $value = $this->wp_rest_request->get_param($input_name);
-            if (\in_array('numeric', $this->explode_rules) || \in_array('integer', $this->explode_rules)) {
-                $value = \intval($value);
+            if (in_array('numeric', $this->explode_rules) || in_array('integer', $this->explode_rules)) {
+                $value = intval($value);
                 if ($value > $max) {
                     $message_key = 'max.numeric';
                 }
-            } elseif (\in_array('array', $this->explode_rules)) {
-                if (!\is_array($value) || \count($value) > $max) {
+            } elseif (in_array('array', $this->explode_rules)) {
+                if (!is_array($value) || count($value) > $max) {
                     $message_key = 'max.array';
                 }
-            } else {
-                if (!\is_string($value) || \strlen($value) > $max) {
-                    $message_key = 'max.string';
-                }
+            } else if (!is_string($value) || strlen($value) > $max) {
+                $message_key = 'max.string';
             }
             if (!empty($message_key)) {
                 $this->set_error($input_name, $message_key, [':attribute', ':max'], [$input_name, $max]);
             }
-        } elseif (\in_array('file', $this->explode_rules)) {
+        } elseif (in_array('file', $this->explode_rules)) {
             $files = $this->wp_rest_request->get_file_params();
             if (empty($files[$input_name]['size'])) {
                 return;
@@ -122,24 +120,22 @@ class Validator
     {
         if ($this->wp_rest_request->has_param($input_name)) {
             $value = $this->wp_rest_request->get_param($input_name);
-            if (\in_array('numeric', $this->explode_rules) || \in_array('integer', $this->explode_rules)) {
-                $value = \intval($value);
+            if (in_array('numeric', $this->explode_rules) || in_array('integer', $this->explode_rules)) {
+                $value = intval($value);
                 if ($value < $min) {
                     $message_key = 'min.numeric';
                 }
-            } elseif (\in_array('array', $this->explode_rules)) {
-                if (!\is_array($value) || \count($value) < $min) {
+            } elseif (in_array('array', $this->explode_rules)) {
+                if (!is_array($value) || count($value) < $min) {
                     $message_key = 'min.array';
                 }
-            } else {
-                if (!\is_string($value) || \strlen($value) < $min) {
-                    $message_key = 'min.string';
-                }
+            } else if (!is_string($value) || strlen($value) < $min) {
+                $message_key = 'min.string';
             }
             if (!empty($message_key)) {
                 $this->set_error($input_name, $message_key, [':attribute', ':min'], [$input_name, $min]);
             }
-        } elseif (\in_array('file', $this->explode_rules)) {
+        } elseif (in_array('file', $this->explode_rules)) {
             $files = $this->wp_rest_request->get_file_params();
             if (empty($files[$input_name]['size'])) {
                 return;
@@ -154,7 +150,7 @@ class Validator
     }
     protected function boolean_validator(string $input_name)
     {
-        if (!$this->wp_rest_request->has_param($input_name) || \is_bool($this->wp_rest_request->get_param($input_name))) {
+        if (!$this->wp_rest_request->has_param($input_name) || is_bool($this->wp_rest_request->get_param($input_name))) {
             return;
         }
         $this->set_error($input_name, 'boolean', [':attribute'], [$input_name]);
@@ -168,7 +164,7 @@ class Validator
     }
     protected function url_validator(string $input_name)
     {
-        if (!$this->wp_rest_request->has_param($input_name) || \filter_var($this->wp_rest_request->get_param($input_name), \FILTER_VALIDATE_URL)) {
+        if (!$this->wp_rest_request->has_param($input_name) || filter_var($this->wp_rest_request->get_param($input_name), \FILTER_VALIDATE_URL)) {
             return;
         }
         $this->set_error($input_name, 'url', [':attribute'], [$input_name]);
@@ -179,7 +175,7 @@ class Validator
             return;
         }
         $value = $this->wp_rest_request->get_param($input_name);
-        if (\is_string($value) && \preg_match('/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/', $value)) {
+        if (is_string($value) && preg_match('/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/', $value)) {
             return;
         }
         $this->set_error($input_name, 'mac_address', [':attribute'], [$input_name]);
@@ -190,28 +186,28 @@ class Validator
             return;
         }
         $value = $this->wp_rest_request->get_param($input_name);
-        if (\is_string($value) && is_email($value)) {
+        if (is_string($value) && is_email($value)) {
             return;
         }
         $this->set_error($input_name, 'email', [':attribute'], [$input_name]);
     }
     protected function array_validator(string $input_name)
     {
-        if (!$this->wp_rest_request->has_param($input_name) || \is_array($this->wp_rest_request->get_param($input_name))) {
+        if (!$this->wp_rest_request->has_param($input_name) || is_array($this->wp_rest_request->get_param($input_name))) {
             return;
         }
         $this->set_error($input_name, 'array', [':attribute'], [$input_name]);
     }
     protected function numeric_validator(string $input_name)
     {
-        if (!$this->wp_rest_request->has_param($input_name) || \is_numeric($this->wp_rest_request->get_param($input_name))) {
+        if (!$this->wp_rest_request->has_param($input_name) || is_numeric($this->wp_rest_request->get_param($input_name))) {
             return;
         }
         $this->set_error($input_name, 'numeric', [':attribute'], [$input_name]);
     }
     protected function integer_validator(string $input_name)
     {
-        if (!$this->wp_rest_request->has_param($input_name) || \is_int($this->wp_rest_request->get_param($input_name))) {
+        if (!$this->wp_rest_request->has_param($input_name) || is_int($this->wp_rest_request->get_param($input_name))) {
             return;
         }
         $this->set_error($input_name, 'integer', [':attribute'], [$input_name]);
@@ -250,9 +246,9 @@ class Validator
             return;
         }
         $value = $this->wp_rest_request->get_param($input_name);
-        if (\is_string($value)) {
-            \json_decode($value);
-            if (\json_last_error() === \JSON_ERROR_NONE) {
+        if (is_string($value)) {
+            json_decode($value);
+            if (json_last_error() === \JSON_ERROR_NONE) {
                 return;
             }
         }
@@ -264,8 +260,8 @@ class Validator
             return;
         }
         $value = $this->wp_rest_request->get_param($input_name);
-        $item_array = \explode(',', $items);
-        if (\in_array($value, $item_array)) {
+        $item_array = explode(',', $items);
+        if (in_array($value, $item_array)) {
             return;
         }
         $this->set_error($input_name, 'accepted', [':attribute', ':value'], [$input_name, $items]);
@@ -273,12 +269,12 @@ class Validator
     private function set_error(string $input_name, string $rule, array $keys, array $values)
     {
         $message = $this->get_message($rule);
-        $message = (string) \str_replace($keys, $values, $message);
+        $message = (string) str_replace($keys, $values, $message);
         $this->errors[$input_name][] = $message;
     }
     protected function get_message($key)
     {
-        $keys = \explode('.', $key);
+        $keys = explode('.', $key);
         $messages = $this->messages();
         foreach ($keys as $key) {
             if (!isset($messages[$key])) {

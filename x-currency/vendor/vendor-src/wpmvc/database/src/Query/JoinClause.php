@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Query;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use XCurrency\WpMVC\Database\Clauses\OnClause;
 use XCurrency\WpMVC\Database\Eloquent\Model;
 class JoinClause extends Builder
@@ -30,7 +30,7 @@ class JoinClause extends Builder
     public function __construct(string $table, string $type, Model $model)
     {
         parent::__construct($model);
-        $table = \explode(' as ', $table);
+        $table = explode(' as ', $table);
         $this->from($table[0], isset($table[1]) ? $table[1] : null);
         $this->type = $type;
     }

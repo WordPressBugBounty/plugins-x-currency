@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Routing\Contracts;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use WP_REST_Request;
 use WP_Error;
 interface Middleware

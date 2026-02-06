@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Providers;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\WpMVC\Contracts\Provider;
 use XCurrency\WpMVC\View\View;
 

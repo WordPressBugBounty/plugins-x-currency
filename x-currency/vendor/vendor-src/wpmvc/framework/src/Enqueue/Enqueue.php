@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Enqueue;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use XCurrency\WpMVC\App;
 class Enqueue
 {
@@ -27,8 +27,8 @@ class Enqueue
         $src = static::process_src($src);
         $asset_src = App::get_dir($src . '.asset.php');
         $js_deps = [];
-        if (\file_exists($asset_src)) {
-            $asset = (include $asset_src);
+        if (file_exists($asset_src)) {
+            $asset = include $asset_src;
             $js_deps = $asset['dependencies'];
             $version = $asset['version'];
         } else {
@@ -38,7 +38,7 @@ class Enqueue
         /**
          * Load css hot reload js script
          */
-        if (\defined('SCRIPT_DEBUG') && SCRIPT_DEBUG === \true && \file_exists(App::get_dir("{$src}.js"))) {
+        if (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG === \true && file_exists(App::get_dir("{$src}.js"))) {
             wp_enqueue_script("{$handle}-script", App::get_url("{$src}.js"), $js_deps, $version);
         }
     }
@@ -46,9 +46,9 @@ class Enqueue
     {
         $src = static::process_src($src);
         $asset_src = App::get_dir($src . '.asset.php');
-        if (\file_exists($asset_src)) {
-            $asset = (include $asset_src);
-            $deps = \array_merge($asset['dependencies'], $deps);
+        if (file_exists($asset_src)) {
+            $asset = include $asset_src;
+            $deps = array_merge($asset['dependencies'], $deps);
             $version = $asset['version'];
         } else {
             $version = App::$config->get('app.version');
@@ -56,20 +56,20 @@ class Enqueue
         /**
          * Removed self dependency
          */
-        $handlers = \array_filter(\array_merge($asset['dependencies'], $deps), function ($item) use($handle) {
+        $handlers = array_filter(array_merge($asset['dependencies'], $deps), function ($item) use ($handle) {
             return $item !== $handle;
         });
-        $method($handle, App::get_url($src . '.js'), \array_unique($handlers), $version, $in_footer);
+        $method($handle, App::get_url($src . '.js'), array_unique($handlers), $version, $in_footer);
     }
     protected static function process_src(string $src)
     {
-        $path_info = \pathinfo($src);
+        $path_info = pathinfo($src);
         $src = $path_info['filename'];
         if ('\\' !== $path_info['dirname']) {
             $src = $path_info['dirname'] . '/' . $path_info['filename'];
         }
-        $src = \ltrim($src, '.');
-        $src = \ltrim($src, '/');
+        $src = ltrim($src, '.');
+        $src = ltrim($src, '/');
         return 'assets/' . $src;
     }
 }

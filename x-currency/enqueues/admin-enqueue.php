@@ -1,6 +1,9 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\WpMVC\Enqueue\Enqueue;
+use XCurrency\Crafium\OurPlugins\OurPlugins;
 
 Enqueue::style( 'x-currency-icon', 'font/style' );
 
@@ -23,6 +26,8 @@ foreach ( $countries->get_countries() as $key => $country ) {
     $country_list[] = ['value' => $key, 'label' => $country];
 }
 
+$plugins = OurPlugins::enrich_plugins_data( 'x-currency' );
+
 wp_localize_script(
     'x-currency-admin', 'x_currency', [
         'base_currency_id'  => x_currency_base_id(),
@@ -36,7 +41,10 @@ wp_localize_script(
         'asset_url'         => x_currency_url( 'assets' ),
         'preview'           => x_currency_url( 'resources/views/customizer/preview.html' ),
         'countries'         => $country_list,
-        'countries_code'    => x_currency_countries_code()
+        'countries_code'    => x_currency_countries_code(),
+        'install_nonce'     => wp_create_nonce( 'updates' ),
+        'plugins'           => $plugins,
+        'has_optincraft'    => is_file( WP_PLUGIN_DIR . '/optincraft/optincraft.php' ) ? '1' : '0',
     ] 
 );
 

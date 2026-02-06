@@ -1,6 +1,9 @@
 <?php
 
 namespace XCurrency\App\Repositories;
+
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\App\DTO\SwitcherDTO;
 
 class SwitcherRepository {

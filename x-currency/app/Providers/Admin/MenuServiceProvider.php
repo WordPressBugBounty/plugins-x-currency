@@ -2,10 +2,14 @@
 
 namespace XCurrency\App\Providers\Admin;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\WpMVC\Contracts\Provider;
 use XCurrency\WpMVC\View\View;
 
 class MenuServiceProvider implements Provider {
+    const PRO_URL = 'https://crafium.com/x-currency?utm_source=plugin&utm_medium=x-currency_plugin&utm_campaign=early_bird_sale';
+
     public function boot() {
         add_action( 'admin_menu', [ $this, 'action_admin_menu' ] );
         add_action( 'admin_head', [ $this, 'action_admin_head' ] );
@@ -24,6 +28,19 @@ class MenuServiceProvider implements Provider {
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
             }
+
+            #toplevel_page_x-currency li:has(.x-currency-our-plugins-menu-item) a{
+                color: #2ca617 !important;
+                font-weight: 700 !important;
+            }
+            #toplevel_page_x-currency .current:has(.x-currency-our-plugins-menu-item) a{
+                color: #2bc311 !important;
+            }
+
+            #toplevel_page_x-currency li:has(.x-currency-pro-menu-item) a{
+                color: #ffffff !important;
+                background: #10AC84 !important;
+            }
         </style>
         <?php
     }
@@ -38,13 +55,15 @@ class MenuServiceProvider implements Provider {
         add_submenu_page( 'x-currency', esc_html__( 'Currencies', 'x-currency' ), esc_html__( 'Currencies', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/currencies' ) );
         add_submenu_page( 'x-currency', esc_html__( 'Switchers', 'x-currency' ), esc_html__( 'Switchers', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/switchers' ) );
         add_submenu_page( 'x-currency', esc_html__( 'Global Settings', 'x-currency' ), esc_html__( 'Global Settings', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/settings' ) );
-        // add_submenu_page( 'x-currency', esc_html__( 'Contact / Support', 'x-currency' ), esc_html__( 'Contact / Support', 'x-currency' ), 'manage_options', esc_url( $page_url . '#/contact-support' ) );
+        add_submenu_page( 'x-currency', esc_html__( 'Our Plugins', 'x-currency' ), "<span class='x-currency-our-plugins-menu-item'>" . esc_html__( 'Our Plugins', 'x-currency' ) . "</span>", 'manage_options', $page_url . '#/our-plugins' );
+
+        if ( ! function_exists( 'x_currency_pro' ) ) {
+            add_submenu_page( 'x-currency', esc_html__( 'Upgrade to Pro', 'x-currency' ), "<span class='x-currency-pro-menu-item'>" . esc_html__( 'Upgrade to Pro', 'x-currency' ) . "</span>", 'manage_options', self::PRO_URL );
+        }
     }
 
     public function plugin_action_links( $links ) {
         $custom_links = [
-            // '<a href="https://doatkolom.com/contact" target="_blank" title="' . esc_attr__( 'Create support ticket', 'x-currency' ) . '">' . esc_html__( 'Get Support', 'x-currency' ) . '</a>',
-            // '<a href="https://demo.doatkolom.com/x-currency" target="_blank" title="' . esc_attr__( 'Demo', 'x-currency' ) . '">' . esc_html__( 'Demo', 'x-currency' ) . '</a>',
             '<a href="' . esc_url( admin_url( 'admin.php?page=x-currency' ) . '#/currencies' ) . '" title="' . esc_attr__( 'Settings', 'x-currency' ) . '">' . esc_html__( 'Currencies', 'x-currency' ) . '</a>'
         ];
 

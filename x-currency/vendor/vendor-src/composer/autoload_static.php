@@ -4,14 +4,14 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f
+class ComposerStaticInit0667b689d31a47a0548c97feee645591
 {
     public static $files = array (
         'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'X' => 
+        'X' =>
         array (
             'XCurrency\\WpMVC\\Routing\\' => 24,
             'XCurrency\\WpMVC\\RequestValidator\\' => 33,
@@ -19,11 +19,11 @@ class ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f
             'XCurrency\\WpMVC\\Database\\' => 25,
             'XCurrency\\WpMVC\\' => 16,
             'XCurrency\\Psr\\Container\\' => 24,
-            'XCurrency\\PhpDocReader\\' => 23,
             'XCurrency\\Laravel\\SerializableClosure\\' => 38,
             'XCurrency\\Invoker\\' => 18,
             'XCurrency\\Database\\' => 19,
             'XCurrency\\DI\\' => 13,
+            'XCurrency\\Crafium\\OurPlugins\\' => 29,
             'XCurrency\\Bootstrap\\' => 20,
             'XCurrency\\Appsero\\' => 18,
             'XCurrency\\App\\' => 14,
@@ -31,59 +31,59 @@ class ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f
     );
 
     public static $prefixDirsPsr4 = array (
-        'XCurrency\\WpMVC\\Routing\\' => 
+        'XCurrency\\WpMVC\\Routing\\' =>
         array (
             0 => __DIR__ . '/..' . '/wpmvc/routing/src',
         ),
-        'XCurrency\\WpMVC\\RequestValidator\\' => 
+        'XCurrency\\WpMVC\\RequestValidator\\' =>
         array (
             0 => __DIR__ . '/..' . '/wpmvc/request-validator/src',
         ),
-        'XCurrency\\WpMVC\\Helpers\\' => 
+        'XCurrency\\WpMVC\\Helpers\\' =>
         array (
             0 => __DIR__ . '/..' . '/wpmvc/helpers/src',
         ),
-        'XCurrency\\WpMVC\\Database\\' => 
+        'XCurrency\\WpMVC\\Database\\' =>
         array (
             0 => __DIR__ . '/..' . '/wpmvc/database/src',
         ),
-        'XCurrency\\WpMVC\\' => 
+        'XCurrency\\WpMVC\\' =>
         array (
             0 => __DIR__ . '/..' . '/wpmvc/framework/src',
         ),
-        'XCurrency\\Psr\\Container\\' => 
+        'XCurrency\\Psr\\Container\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'XCurrency\\PhpDocReader\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-di/phpdoc-reader/src/PhpDocReader',
-        ),
-        'XCurrency\\Laravel\\SerializableClosure\\' => 
+        'XCurrency\\Laravel\\SerializableClosure\\' =>
         array (
             0 => __DIR__ . '/..' . '/laravel/serializable-closure/src',
         ),
-        'XCurrency\\Invoker\\' => 
+        'XCurrency\\Invoker\\' =>
         array (
             0 => __DIR__ . '/..' . '/php-di/invoker/src',
         ),
-        'XCurrency\\Database\\' => 
+        'XCurrency\\Database\\' =>
         array (
             0 => __DIR__ . '/../..' . '/../database',
         ),
-        'XCurrency\\DI\\' => 
+        'XCurrency\\DI\\' =>
         array (
             0 => __DIR__ . '/..' . '/php-di/php-di/src',
         ),
-        'XCurrency\\Bootstrap\\' => 
+        'XCurrency\\Crafium\\OurPlugins\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/crafium/our-plugins/src',
+        ),
+        'XCurrency\\Bootstrap\\' =>
         array (
             0 => __DIR__ . '/../..' . '/../bootstrap',
         ),
-        'XCurrency\\Appsero\\' => 
+        'XCurrency\\Appsero\\' =>
         array (
             0 => __DIR__ . '/..' . '/appsero/client/src',
         ),
-        'XCurrency\\App\\' => 
+        'XCurrency\\App\\' =>
         array (
             0 => __DIR__ . '/../..' . '/../app',
         ),
@@ -96,9 +96,9 @@ class ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite3b5106fd4bfaebb76935a415c7ce24f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0667b689d31a47a0548c97feee645591::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0667b689d31a47a0548c97feee645591::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit0667b689d31a47a0548c97feee645591::$classMap;
 
         }, null, ClassLoader::class);
     }

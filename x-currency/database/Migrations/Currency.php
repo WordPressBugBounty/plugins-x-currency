@@ -2,6 +2,8 @@
 
 namespace XCurrency\Database\Migrations;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\App\Models\Currency as ModelsCurrency;
 use XCurrency\App\Repositories\CurrencyRepository;
 use XCurrency\App\Repositories\SettingRepository;
@@ -43,6 +45,7 @@ class Currency implements Migration {
 			extra_fee_type VARCHAR(100) NOT NULL,
 			thousand_separator VARCHAR(50) NOT NULL,
 			rounding VARCHAR(50) DEFAULT 'disabled',
+			subtract_amount FLOAT(24) DEFAULT 0,
 			max_decimal INT NOT NULL,
 			decimal_separator VARCHAR(50) NOT NULL,
 			symbol_position VARCHAR(50) NOT NULL,

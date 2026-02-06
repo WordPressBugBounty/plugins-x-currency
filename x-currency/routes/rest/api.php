@@ -1,8 +1,10 @@
 <?php
 
+defined( 'ABSPATH' ) || exit;
+
+use XCurrency\App\Http\Controllers\Admin\OptinCraftController;
 use XCurrency\App\Http\Controllers\CurrencyController;
 use XCurrency\App\Http\Controllers\GeoIpController;
-use XCurrency\App\Http\Controllers\NoticeController;
 use XCurrency\App\Http\Controllers\RateController;
 use XCurrency\App\Http\Controllers\SettingController;
 use XCurrency\App\Http\Controllers\SwitcherController;
@@ -50,6 +52,6 @@ Route::group(
         Route::post( 'switcher_organizer', [SwitcherController::class, 'organizer'] );
         Route::post( 'create_switcher', [SwitcherController::class, 'create'] );
         Route::post( 'update_switcher', [SwitcherController::class, 'update'] );
-        Route::get( 'notice_maybe_latter', [NoticeController::class, 'maybe_latter'] );
+        Route::post( 'setup-optincraft', [OptinCraftController::class, 'setup'] );
     }, ['admin']
 );

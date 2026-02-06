@@ -59,7 +59,7 @@ class License
     public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->option_key = 'appsero_' . \md5($this->client->slug) . '_manage_license';
+        $this->option_key = 'appsero_' . md5($this->client->slug) . '_manage_license';
         $this->schedule_hook = $this->client->slug . '_license_check_event';
         // Creating WP Ajax Endpoint to refresh license remotely
         add_action('wp_ajax_appsero_refresh_license_' . $this->client->hash, [$this, 'refresh_license_api']);
@@ -137,7 +137,7 @@ class License
         if (is_wp_error($response)) {
             return ['success' => \false, 'error' => $response->get_error_message()];
         }
-        $response = \json_decode(wp_remote_retrieve_body($response), \true);
+        $response = json_decode(wp_remote_retrieve_body($response), \true);
         if (empty($response) || isset($response['exception'])) {
             return ['success' => \false, 'error' => $this->client->__trans('Unknown error occurred, Please try again.')];
         }
@@ -227,7 +227,7 @@ class License
                 <div class="appsero-license-details">
                     <p>
                         <?php 
-        \printf($this->client->__trans('Activate <strong>%s</strong> by your license key to get professional support and automatic update from your WordPress dashboard.'), $this->client->name);
+        printf($this->client->__trans('Activate <strong>%s</strong> by your license key to get professional support and automatic update from your WordPress dashboard.'), $this->client->name);
         ?>
                     </p>
                     <form method="post" novalidate="novalidate" spellcheck="false">
@@ -519,7 +519,7 @@ class License
             echo $license['remaining'] ? '' : 'occupied';
             ?>">
                         <?php 
-            \printf($this->client->__trans('%1$d out of %2$d'), $license['remaining'], $license['activation_limit']);
+            printf($this->client->__trans('%1$d out of %2$d'), $license['remaining'], $license['activation_limit']);
             ?>
                     </p>
                 <?php 
@@ -660,21 +660,21 @@ class License
      */
     private function create_menu_page()
     {
-        \call_user_func('add_menu_page', $this->menu_args['page_title'], $this->menu_args['menu_title'], $this->menu_args['capability'], $this->menu_args['menu_slug'], [$this, 'menu_output'], $this->menu_args['icon_url'], $this->menu_args['position']);
+        call_user_func('add_menu_page', $this->menu_args['page_title'], $this->menu_args['menu_title'], $this->menu_args['capability'], $this->menu_args['menu_slug'], [$this, 'menu_output'], $this->menu_args['icon_url'], $this->menu_args['position']);
     }
     /**
      * Add submenu page
      */
     private function create_submenu_page()
     {
-        \call_user_func('add_submenu_page', $this->menu_args['parent_slug'], $this->menu_args['page_title'], $this->menu_args['menu_title'], $this->menu_args['capability'], $this->menu_args['menu_slug'], [$this, 'menu_output'], $this->menu_args['position']);
+        call_user_func('add_submenu_page', $this->menu_args['parent_slug'], $this->menu_args['page_title'], $this->menu_args['menu_title'], $this->menu_args['capability'], $this->menu_args['menu_slug'], [$this, 'menu_output'], $this->menu_args['position']);
     }
     /**
      * Add submenu page
      */
     private function create_options_page()
     {
-        \call_user_func('add_options_page', $this->menu_args['page_title'], $this->menu_args['menu_title'], $this->menu_args['capability'], $this->menu_args['menu_slug'], [$this, 'menu_output'], $this->menu_args['position']);
+        call_user_func('add_options_page', $this->menu_args['page_title'], $this->menu_args['menu_title'], $this->menu_args['capability'], $this->menu_args['menu_slug'], [$this, 'menu_output'], $this->menu_args['position']);
     }
     /**
      * Schedule daily sicense checker event
@@ -682,8 +682,8 @@ class License
     public function schedule_cron_event()
     {
         if (!wp_next_scheduled($this->schedule_hook)) {
-            wp_schedule_event(\time(), 'daily', $this->schedule_hook);
-            wp_schedule_single_event(\time() + 20, $this->schedule_hook);
+            wp_schedule_event(time(), 'daily', $this->schedule_hook);
+            wp_schedule_single_event(time() + 20, $this->schedule_hook);
         }
     }
     /**
@@ -720,8 +720,8 @@ class License
             return isset($license['key']) ? $license['key'] : '';
         }
         if ('deactive' === $action) {
-            $key_length = \strlen($license['key']);
-            return \str_pad(\substr($license['key'], 0, $key_length / 2), $key_length, '*');
+            $key_length = strlen($license['key']);
+            return str_pad(substr($license['key'], 0, $key_length / 2), $key_length, '*');
         }
         return '';
     }

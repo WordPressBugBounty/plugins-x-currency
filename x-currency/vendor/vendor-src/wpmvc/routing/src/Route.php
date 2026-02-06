@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Routing;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use XCurrency\WpMVC\Routing\Providers\RouteServiceProvider;
 use Exception;
 use WP_Error;
@@ -17,9 +17,9 @@ class Route
     {
         $previous_route_prefix = static::$route_prefix;
         $previous_route_middleware = static::$group_middleware;
-        static::$route_prefix .= '/' . \trim($prefix, '/');
-        static::$group_middleware = \array_merge(static::$group_middleware, $middleware);
-        \call_user_func($callback);
+        static::$route_prefix .= '/' . trim($prefix, '/');
+        static::$group_middleware = array_merge(static::$group_middleware, $middleware);
+        call_user_func($callback);
         static::$route_prefix = $previous_route_prefix;
         static::$group_middleware = $previous_route_middleware;
     }
@@ -54,9 +54,9 @@ class Route
         $routes = ['index' => ['method' => 'GET', 'route' => $route], 'store' => ['method' => 'POST', 'route' => $route], 'show' => ['method' => 'GET', 'route' => $route . '/{id}'], 'update' => ['method' => 'PATCH', 'route' => $route . '/{id}'], 'delete' => ['method' => 'DELETE', 'route' => $route . '/{id}']];
         if (!empty($take)) {
             if (isset($take['type']) && 'only' === $take['type']) {
-                $routes = \array_intersect_key($routes, \array_flip($take['items']));
+                $routes = array_intersect_key($routes, array_flip($take['items']));
             } else {
-                $routes = \array_diff_key($routes, \array_flip($take['items']));
+                $routes = array_diff_key($routes, array_flip($take['items']));
             }
         }
         foreach ($routes as $callback_method => $args) {
@@ -68,8 +68,8 @@ class Route
         $data_binder = RouteServiceProvider::$container->get(DataBinder::class);
         $namespace = $data_binder->get_namespace();
         $full_route = static::get_final_route($route);
-        $middleware = \array_merge(static::$group_middleware, $middleware);
-        rest_get_server()->register_route($namespace, $full_route, [['methods' => $method, 'callback' => function (WP_REST_Request $wp_rest_request) use($callback, $full_route) {
+        $middleware = array_merge(static::$group_middleware, $middleware);
+        rest_get_server()->register_route($namespace, $full_route, [['methods' => $method, 'callback' => function (WP_REST_Request $wp_rest_request) use ($callback, $full_route) {
             RouteServiceProvider::$container->set(WP_REST_Request::class, $wp_rest_request);
             $properties = RouteServiceProvider::get_properties();
             if (!empty($properties['rest_response_action_hook'])) {
@@ -79,7 +79,7 @@ class Route
                 return apply_filters($properties['rest_response_filter_hook'], static::callback($callback), $wp_rest_request, $full_route);
             }
             return static::callback($callback);
-        }, 'permission_callback' => function () use($middleware, $full_route) {
+        }, 'permission_callback' => function () use ($middleware, $full_route) {
             $permission = Middleware::is_user_allowed($middleware);
             $properties = RouteServiceProvider::get_properties();
             if (!empty($properties['rest_permission_filter_hook'])) {
@@ -95,10 +95,10 @@ class Route
     {
         try {
             $response = RouteServiceProvider::$container->call($callback);
-            if (!\is_array($response)) {
+            if (!is_array($response)) {
                 exit;
             }
-            $status_code = \intval($response['status_code']);
+            $status_code = intval($response['status_code']);
             static::set_status_code($status_code);
             $response = $response['data'];
             if ($status_code > 399 && 600 > $status_code) {
@@ -107,23 +107,21 @@ class Route
             }
             return $response;
         } catch (Exception $ex) {
-            $status_code = \intval($ex->getCode());
+            $status_code = intval($ex->getCode());
             static::set_status_code($status_code);
             $response = ['data' => ['status_code' => $status_code]];
             $message = $ex->getMessage();
             if (!empty($message)) {
                 $response['message'] = $message;
-            } else {
-                if (\method_exists($ex, 'get_messages')) {
-                    $messages = $ex->get_messages();
-                    if (!empty($messages)) {
-                        $response['messages'] = $messages;
-                    } else {
-                        $response['message'] = 'Something went wrong.';
-                    }
+            } else if (method_exists($ex, 'get_messages')) {
+                $messages = $ex->get_messages();
+                if (!empty($messages)) {
+                    $response['messages'] = $messages;
                 } else {
                     $response['message'] = 'Something went wrong.';
                 }
+            } else {
+                $response['message'] = 'Something went wrong.';
             }
             return $response;
         }
@@ -136,7 +134,7 @@ class Route
          *
          * @param WP_HTTP_Response $result  Result to send to the client. Usually a <code>WP_REST_Response</code>.
          */
-        add_filter('rest_post_dispatch', function (WP_HTTP_Response $result) use($status_code) {
+        add_filter('rest_post_dispatch', function (WP_HTTP_Response $result) use ($status_code) {
             $result->set_status($status_code);
             return $result;
         });
@@ -144,9 +142,9 @@ class Route
     protected static function get_final_route(string $route)
     {
         if (!empty(static::$route_prefix)) {
-            $route = \rtrim(static::$route_prefix, '/') . '/' . \ltrim($route, '/');
+            $route = rtrim(static::$route_prefix, '/') . '/' . ltrim($route, '/');
         }
-        $route = \trim($route, '/');
+        $route = trim($route, '/');
         $route = static::format_route_regex($route);
         $data_binder = RouteServiceProvider::$container->get(DataBinder::class);
         $namespace = $data_binder->get_namespace();
@@ -156,29 +154,29 @@ class Route
         }
         return "/{$namespace}/{$route}";
     }
-    protected static function format_route_regex(string $route) : string
+    protected static function format_route_regex(string $route): string
     {
-        if (\strpos($route, '}') === \false) {
+        if (strpos($route, '}') === \false) {
             return $route;
         }
-        \preg_match_all('#\\{(.*?)\\}#', $route, $params);
-        if (\strpos($route, '?}') !== \false) {
+        preg_match_all('#\{(.*?)\}#', $route, $params);
+        if (strpos($route, '?}') !== \false) {
             return static::optional_param($route, $params);
         } else {
             return static::required_param($route, $params);
         }
     }
-    protected static function optional_param(string $route, array $params) : string
+    protected static function optional_param(string $route, array $params): string
     {
         foreach ($params[0] as $key => $value) {
-            $route = \str_replace('/' . $value, '(?:/(?P<' . \str_replace('?', '', $params[1][$key]) . '>[-\\w]+))?', $route);
+            $route = str_replace('/' . $value, '(?:/(?P<' . str_replace('?', '', $params[1][$key]) . '>[-\w]+))?', $route);
         }
         return $route;
     }
-    protected static function required_param(string $route, array $params) : string
+    protected static function required_param(string $route, array $params): string
     {
         foreach ($params[0] as $key => $value) {
-            $route = \str_replace($value, '(?P<' . $params[1][$key] . '>[-\\w]+)', $route);
+            $route = str_replace($value, '(?P<' . $params[1][$key] . '>[-\w]+)', $route);
         }
         return $route;
     }

@@ -50,10 +50,10 @@ class Insights
      */
     public function __construct($client, $name = null, $file = null)
     {
-        if (\is_string($client) && !empty($name) && !empty($file)) {
+        if (is_string($client) && !empty($name) && !empty($file)) {
             $client = new Client($client, $name, $file);
         }
-        if (\is_object($client) && \is_a($client, 'XCurrency\\Appsero\\Client')) {
+        if (is_object($client) && is_a($client, 'XCurrency\Appsero\Client')) {
             $this->client = $client;
         }
     }
@@ -167,12 +167,12 @@ class Insights
         }
         // Send a maximum of once per week.
         $last_send = $this->get_last_send();
-        if ($last_send && $last_send > \strtotime('-1 week')) {
+        if ($last_send && $last_send > strtotime('-1 week')) {
             return;
         }
         $tracking_data = $this->get_tracking_data();
         $response = $this->client->send_request($tracking_data, 'track');
-        update_option($this->client->slug . '_tracking_last_send', \time());
+        update_option($this->client->slug . '_tracking_last_send', time());
     }
     /**
      * Get the tracking data points
@@ -183,25 +183,25 @@ class Insights
     {
         $all_plugins = $this->get_all_plugins();
         $users = get_users(array('role' => 'administrator', 'orderby' => 'ID', 'order' => 'ASC', 'number' => 1, 'paged' => 1));
-        $admin_user = \is_array($users) && !empty($users) ? $users[0] : \false;
+        $admin_user = is_array($users) && !empty($users) ? $users[0] : \false;
         $first_name = '';
         $last_name = '';
         if ($admin_user) {
             $first_name = $admin_user->first_name ? $admin_user->first_name : $admin_user->display_name;
             $last_name = $admin_user->last_name;
         }
-        $data = array('url' => esc_url(home_url()), 'site' => $this->get_site_name(), 'admin_email' => get_option('admin_email'), 'first_name' => $first_name, 'last_name' => $last_name, 'hash' => $this->client->hash, 'server' => $this->get_server_info(), 'wp' => $this->get_wp_info(), 'users' => $this->get_user_counts(), 'active_plugins' => \count($all_plugins['active_plugins']), 'inactive_plugins' => \count($all_plugins['inactive_plugins']), 'ip_address' => $this->get_user_ip_address(), 'project_version' => $this->client->project_version, 'tracking_skipped' => \false, 'is_local' => $this->is_local_server());
+        $data = array('url' => esc_url(home_url()), 'site' => $this->get_site_name(), 'admin_email' => get_option('admin_email'), 'first_name' => $first_name, 'last_name' => $last_name, 'hash' => $this->client->hash, 'server' => $this->get_server_info(), 'wp' => $this->get_wp_info(), 'users' => $this->get_user_counts(), 'active_plugins' => count($all_plugins['active_plugins']), 'inactive_plugins' => count($all_plugins['inactive_plugins']), 'ip_address' => $this->get_user_ip_address(), 'project_version' => $this->client->project_version, 'tracking_skipped' => \false, 'is_local' => $this->is_local_server());
         // Add Plugins.
         if ($this->plugin_data) {
             $plugins_data = array();
             foreach ($all_plugins['active_plugins'] as $slug => $plugin) {
-                $slug = \strstr($slug, '/', \true);
+                $slug = strstr($slug, '/', \true);
                 if (!$slug) {
                     continue;
                 }
                 $plugins_data[$slug] = array('name' => isset($plugin['name']) ? $plugin['name'] : '', 'version' => isset($plugin['version']) ? $plugin['version'] : '');
             }
-            if (\array_key_exists($this->client->slug, $plugins_data)) {
+            if (array_key_exists($this->client->slug, $plugins_data)) {
                 unset($plugins_data[$this->client->slug]);
             }
             $data['plugins'] = $plugins_data;
@@ -226,10 +226,10 @@ class Insights
      */
     protected function get_extra_data()
     {
-        if (\is_callable($this->extra_data)) {
-            return \call_user_func($this->extra_data);
+        if (is_callable($this->extra_data)) {
+            return call_user_func($this->extra_data);
         }
-        if (\is_array($this->extra_data)) {
+        if (is_array($this->extra_data)) {
             return $this->extra_data;
         }
         return array();
@@ -243,7 +243,7 @@ class Insights
     {
         $data = array('Server environment details (php, mysql, server, WordPress versions)', 'Number of users in your site', 'Site language', 'Number of active and inactive plugins', 'Site name and URL', 'Your name and email address');
         if ($this->plugin_data) {
-            \array_splice($data, 4, 0, array("active plugins' name"));
+            array_splice($data, 4, 0, array("active plugins' name"));
         }
         return $data;
     }
@@ -289,7 +289,7 @@ class Insights
         $host = isset($_SERVER['HTTP_HOST']) ? sanitize_text_field(wp_unslash($_SERVER['HTTP_HOST'])) : 'localhost';
         $ip = isset($_SERVER['SERVER_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['SERVER_ADDR'])) : '127.0.0.1';
         $is_local = \false;
-        if (\in_array($ip, array('127.0.0.1', '::1'), \true) || !\strpos($host, '.') || \in_array(\strrchr($host, '.'), array('.test', '.testing', '.local', '.localhost', '.localdomain'), \true)) {
+        if (in_array($ip, array('127.0.0.1', '::1'), \true) || !strpos($host, '.') || in_array(strrchr($host, '.'), array('.test', '.testing', '.local', '.localhost', '.localdomain'), \true)) {
             $is_local = \true;
         }
         return apply_filters('appsero_is_local', $is_local);
@@ -303,7 +303,7 @@ class Insights
     {
         $hook_name = wp_unslash($this->client->slug . '_tracker_send_event');
         if (!wp_next_scheduled($hook_name)) {
-            wp_schedule_event(\time(), 'weekly', $hook_name);
+            wp_schedule_event(time(), 'weekly', $hook_name);
         }
     }
     /**
@@ -334,14 +334,14 @@ class Insights
         $optin_url = wp_nonce_url(add_query_arg($this->client->slug . '_tracker_optin', 'true'), '_wpnonce');
         $optout_url = wp_nonce_url(add_query_arg($this->client->slug . '_tracker_optout', 'true'), '_wpnonce');
         if (empty($this->notice)) {
-            $notice = \sprintf($this->client->__trans('Want to help make <strong>%1$s</strong> even more awesome? Allow %1$s to collect diagnostic data and usage information.'), $this->client->name);
+            $notice = sprintf($this->client->__trans('Want to help make <strong>%1$s</strong> even more awesome? Allow %1$s to collect diagnostic data and usage information.'), $this->client->name);
         } else {
             $notice = $this->notice;
         }
         $policy_url = 'https://appsero.com/privacy-policy/';
         $notice .= ' (<a class="' . $this->client->slug . '-insights-data-we-collect" href="#">' . $this->client->__trans('what we collect') . '</a>)';
-        $notice .= '<p class="description" style="display:none;">' . \implode(', ', $this->data_we_collect()) . '. ';
-        $notice .= 'We are using Appsero to collect your data. <a href="' . $policy_url . '" target="_blank">Learn more</a> about how Appsero collects and handle your data.</p>';
+        $notice .= '<p class="description" style="display:none;">' . implode(', ', $this->data_we_collect()) . '. ';
+        $notice .= 'We are using Appsero to collect your data. <a href="' . $policy_url . '" target="_blank">Learn more</a> &nearr;</p>';
         echo '<div class="updated"><p>';
         echo wp_kses_post($notice);
         echo '</p><p class="submit">';
@@ -432,7 +432,7 @@ class Insights
         // Ensure REQUEST_URI is properly sanitized before use
         $request_uri = esc_url_raw($request_uri);
         foreach ($inaccessible_pages as $page) {
-            if (\false !== \strpos($request_uri, $page)) {
+            if (\false !== strpos($request_uri, $page)) {
                 return \true;
             }
         }
@@ -488,15 +488,15 @@ class Insights
         if (isset($_SERVER['SERVER_SOFTWARE']) && !empty($_SERVER['SERVER_SOFTWARE'])) {
             $server_data['software'] = sanitize_text_field(wp_unslash($_SERVER['SERVER_SOFTWARE']));
         }
-        if (\function_exists('phpversion')) {
-            $server_data['php_version'] = \phpversion();
+        if (function_exists('phpversion')) {
+            $server_data['php_version'] = phpversion();
         }
         $server_data['mysql_version'] = $wpdb->db_version();
         $server_data['php_max_upload_size'] = size_format(wp_max_upload_size());
-        $server_data['php_default_timezone'] = \date_default_timezone_get();
-        $server_data['php_soap'] = \class_exists('SoapClient') ? 'Yes' : 'No';
-        $server_data['php_fsockopen'] = \function_exists('fsockopen') ? 'Yes' : 'No';
-        $server_data['php_curl'] = \function_exists('curl_init') ? 'Yes' : 'No';
+        $server_data['php_default_timezone'] = date_default_timezone_get();
+        $server_data['php_soap'] = class_exists('SoapClient') ? 'Yes' : 'No';
+        $server_data['php_fsockopen'] = function_exists('fsockopen') ? 'Yes' : 'No';
+        $server_data['php_curl'] = function_exists('curl_init') ? 'Yes' : 'No';
         return $server_data;
     }
     /**
@@ -506,7 +506,7 @@ class Insights
      */
     private function get_wp_info()
     {
-        $wp_data = array('memory_limit' => WP_MEMORY_LIMIT, 'debug_mode' => \defined('WP_DEBUG') && WP_DEBUG ? 'Yes' : 'No', 'locale' => get_locale(), 'version' => get_bloginfo('version'), 'multisite' => is_multisite() ? 'Yes' : 'No', 'theme_slug' => get_stylesheet());
+        $wp_data = array('memory_limit' => WP_MEMORY_LIMIT, 'debug_mode' => defined('WP_DEBUG') && WP_DEBUG ? 'Yes' : 'No', 'locale' => get_locale(), 'version' => get_bloginfo('version'), 'multisite' => is_multisite() ? 'Yes' : 'No', 'theme_slug' => get_stylesheet());
         $theme = wp_get_theme($wp_data['theme_slug']);
         $wp_data['theme_name'] = $theme->get('Name');
         $wp_data['theme_version'] = $theme->get('Version');
@@ -521,10 +521,10 @@ class Insights
      */
     private function get_all_plugins()
     {
-        if (!\function_exists('get_plugins')) {
+        if (!function_exists('get_plugins')) {
             include ABSPATH . '/wp-admin/includes/plugin.php';
         }
-        $plugins = \get_plugins();
+        $plugins = get_plugins();
         $active_plugins_keys = get_option('active_plugins', array());
         $active_plugins = array();
         foreach ($plugins as $k => $v) {
@@ -535,7 +535,7 @@ class Insights
             if (isset($v['PluginURI'])) {
                 $formatted['plugin_uri'] = wp_strip_all_tags($v['PluginURI']);
             }
-            if (\in_array($k, $active_plugins_keys, \true)) {
+            if (in_array($k, $active_plugins_keys, \true)) {
                 unset($plugins[$k]);
                 $active_plugins[$k] = $formatted;
             } else {
@@ -586,7 +586,7 @@ class Insights
         }
         $hook_name = $this->client->slug . '_tracker_send_event';
         if (!wp_next_scheduled($hook_name)) {
-            wp_schedule_event(\time(), 'weekly', $hook_name);
+            wp_schedule_event(time(), 'weekly', $hook_name);
         }
         delete_option($this->client->slug . '_tracking_last_send');
         $this->send_tracking_data(\true);
@@ -614,8 +614,8 @@ class Insights
      */
     public function plugin_action_links($links)
     {
-        if (\array_key_exists('deactivate', $links)) {
-            $links['deactivate'] = \str_replace('<a', '<a class="' . $this->client->slug . '-deactivate-link"', $links['deactivate']);
+        if (array_key_exists('deactivate', $links)) {
+            $links['deactivate'] = str_replace('<a', '<a class="' . $this->client->slug . '-deactivate-link"', $links['deactivate']);
         }
         return $links;
     }
@@ -650,7 +650,7 @@ class Insights
         }
         $data = $this->get_tracking_data();
         $data['reason_id'] = sanitize_text_field(wp_unslash($_POST['reason_id']));
-        $data['reason_info'] = isset($_REQUEST['reason_info']) ? \trim(sanitize_text_field(wp_unslash($_REQUEST['reason_info']))) : '';
+        $data['reason_info'] = isset($_REQUEST['reason_info']) ? trim(sanitize_text_field(wp_unslash($_REQUEST['reason_info']))) : '';
         $this->client->send_request($data, 'deactivate');
         /*
          * Fire after the plugin _uninstall_reason_submitted
@@ -709,7 +709,7 @@ class Insights
         ?>
                     </ul>
                     <?php 
-        if ($custom_reasons && \is_array($custom_reasons)) {
+        if ($custom_reasons && is_array($custom_reasons)) {
             ?>
                         <ul class="wd-de-reasons wd-de-others-reasons">
                             <?php 
@@ -740,7 +740,7 @@ class Insights
                     <div class="wd-dr-modal-reason-input"><textarea></textarea></div>
                     <p class="wd-dr-modal-reasons-bottom">
                         <?php 
-        echo \sprintf($this->client->__trans('We share your data with <a href="%1$s" target="_blank">Appsero</a> to troubleshoot problems &amp; make product improvements. <a href="%2$s" target="_blank">Learn more</a> about how Appsero handles your data.'), esc_url('https://appsero.com/'), esc_url('https://appsero.com/privacy-policy'));
+        echo sprintf($this->client->__trans('We share your data with <a href="%1$s" target="_blank">Appsero</a> to troubleshoot problems &amp; make product improvements. <a href="%2$s" target="_blank">Learn more</a> &nearr;'), esc_url('https://appsero.com/'), esc_url('https://appsero.com/privacy-policy'));
         ?>
                     </p>
                 </div>
@@ -877,8 +877,8 @@ class Insights
         if (is_wp_error($response)) {
             return '';
         }
-        $ip = \trim(wp_remote_retrieve_body($response));
-        if (!\filter_var($ip, \FILTER_VALIDATE_IP)) {
+        $ip = trim(wp_remote_retrieve_body($response));
+        if (!filter_var($ip, \FILTER_VALIDATE_IP)) {
             return '';
         }
         return $ip;

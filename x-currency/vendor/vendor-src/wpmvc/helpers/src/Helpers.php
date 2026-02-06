@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Helpers;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use Exception;
 class Helpers
 {
@@ -20,15 +20,15 @@ class Helpers
         // Construct the path to the main plugin file
         $main_file = $plugin_dir . '/' . $plugin_slug . '.php';
         // Check if the file exists
-        if (!\file_exists($main_file)) {
+        if (!file_exists($main_file)) {
             return null;
             // Plugin main file not found
         }
         // Read the file contents
-        $file_contents = \file_get_contents($main_file);
+        $file_contents = file_get_contents($main_file);
         // Use a regex to find the version
-        if (\preg_match('/^\\s*\\* Version:\\s*(.+)$/mi', $file_contents, $matches)) {
-            return \trim($matches[1]);
+        if (preg_match('/^\s*\* Version:\s*(.+)$/mi', $file_contents, $matches)) {
+            return trim($matches[1]);
         }
         return null;
         // Version not found
@@ -77,7 +77,7 @@ class Helpers
      */
     public static function delete_attachments_by_ids($attachment_ids)
     {
-        if (!\is_array($attachment_ids)) {
+        if (!is_array($attachment_ids)) {
             $attachment_ids = [$attachment_ids];
         }
         $deleted_attachments = [];
@@ -124,11 +124,11 @@ class Helpers
     public static function maybe_json_decode($value)
     {
         // Check if the input is a string; JSON must be a string
-        if (\is_string($value)) {
+        if (is_string($value)) {
             // Try to decode the JSON string
-            $decoded = \json_decode($value, \true);
+            $decoded = json_decode($value, \true);
             // Check if json_decode succeeded and the result is not null unless the value is explicitly "null"
-            if (\json_last_error() === \JSON_ERROR_NONE) {
+            if (json_last_error() === \JSON_ERROR_NONE) {
                 return $decoded;
             }
         }
@@ -147,7 +147,7 @@ class Helpers
     public static function is_one_level_array(array $array)
     {
         foreach ($array as $value) {
-            if (\is_array($value)) {
+            if (is_array($value)) {
                 return \false;
                 // Found an inner array, not a one-level array
             }
@@ -167,7 +167,7 @@ class Helpers
     public static function array_merge_deep($array1, $array2)
     {
         foreach ($array2 as $key => $value) {
-            if (\is_array($value) && isset($array1[$key]) && \is_array($array1[$key])) {
+            if (is_array($value) && isset($array1[$key]) && is_array($array1[$key])) {
                 $array1[$key] = Helpers::array_merge_deep($array1[$key], $value);
             } else {
                 $array1[$key] = $value;
@@ -187,7 +187,7 @@ class Helpers
     public static function remove_null_values(array $array)
     {
         foreach ($array as $key => $value) {
-            if (\is_null($value)) {
+            if (is_null($value)) {
                 unset($array[$key]);
                 // Remove element with null value
             }
@@ -205,24 +205,24 @@ class Helpers
     public static function get_user_ip_address()
     {
         // Check for IP from shared Internet/ISP (HTTP_CLIENT_IP)
-        if (!empty($_SERVER['HTTP_CLIENT_IP']) && \filter_var($_SERVER['HTTP_CLIENT_IP'], \FILTER_VALIDATE_IP)) {
+        if (!empty($_SERVER['HTTP_CLIENT_IP']) && filter_var($_SERVER['HTTP_CLIENT_IP'], \FILTER_VALIDATE_IP)) {
             // Sanitize and return the IP address
             return sanitize_text_field(wp_unslash($_SERVER['HTTP_CLIENT_IP']));
         }
         // Check for IP addresses passed through proxies (HTTP_X_FORWARDED_FOR)
         if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             // Sanitize and explode the list of IPs from the forwarded header
-            $ip_addresses = \explode(',', sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR'])));
+            $ip_addresses = explode(',', sanitize_text_field(wp_unslash($_SERVER['HTTP_X_FORWARDED_FOR'])));
             // Loop through each IP address and return the first valid one
             foreach ($ip_addresses as $ip) {
-                $ip = \trim($ip);
-                if (\filter_var($ip, \FILTER_VALIDATE_IP)) {
+                $ip = trim($ip);
+                if (filter_var($ip, \FILTER_VALIDATE_IP)) {
                     return $ip;
                 }
             }
         }
         // Check for the remote IP address (REMOTE_ADDR)
-        if (!empty($_SERVER['REMOTE_ADDR']) && \filter_var($_SERVER['REMOTE_ADDR'], \FILTER_VALIDATE_IP)) {
+        if (!empty($_SERVER['REMOTE_ADDR']) && filter_var($_SERVER['REMOTE_ADDR'], \FILTER_VALIDATE_IP)) {
             // Sanitize and return the remote IP address
             return sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR']));
         }

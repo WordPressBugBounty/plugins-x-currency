@@ -69,7 +69,7 @@ class Shipping {
         $base_currency_id    = x_currency_base_id();
 
         if ( empty( $x_currency['global_settings']['specific_shipping_amount'] ) || $x_currency['global_settings']['specific_shipping_amount'] != 'true' ) {
-            $data['title'] .= ' ' . sprintf( esc_html__( 'To use this feature, %s this option.', 'x-currency' ), '<a href="' . admin_url( 'admin.php?page=' . 'x-currency' ) . '#/global-settings">' . esc_html__( 'Enable', 'x-currency' ) . '</a>' );
+            $data['title'] .= ' ' . sprintf( esc_html__( 'To use this feature, %s this option.', 'x-currency' ), '<a href="' . admin_url( 'admin.php?page=' . 'x-currency' ) . '#/settings/specific-price">' . esc_html__( 'Enable', 'x-currency' ) . '</a>' );
         }
         $fields['x_currency'] = [
             'title'   => '<h3 class="cursor-text" style="margin: 5px 0 17px 0; color: var(--wp-admin-theme-color); font-size:30px"><i class="xc-icon-logo" style="margin-right: 10px; font-size:30px;"></i>X-Currency</h3>

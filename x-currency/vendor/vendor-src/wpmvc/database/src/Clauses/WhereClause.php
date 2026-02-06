@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Clauses;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 trait WhereClause
 {
     use Clause;
@@ -11,7 +11,7 @@ trait WhereClause
      *
      * @return array The array of where clauses.
      */
-    public function get_wheres() : array
+    public function get_wheres(): array
     {
         return $this->clauses['wheres'] ?? [];
     }

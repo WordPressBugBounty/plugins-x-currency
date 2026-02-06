@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use XCurrency\DI\Container;
 use XCurrency\WpMVC\Contracts\Provider;
 use XCurrency\WpMVC\Providers\EnqueueServiceProvider;
@@ -29,7 +29,7 @@ class App
         if (!empty(static::$loaded)) {
             return;
         }
-        if (!\function_exists('get_plugin_data')) {
+        if (!function_exists('get_plugin_data')) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
         $container = new Container();
@@ -56,24 +56,24 @@ class App
     }
     public static function get_dir(string $dir = '')
     {
-        return static::$root_dir . \ltrim($dir, '/');
+        return static::$root_dir . ltrim($dir, '/');
     }
     public static function get_url(string $url = '')
     {
-        return static::$root_url . \ltrim($url, '/');
+        return static::$root_url . ltrim($url, '/');
     }
-    protected function boot_core_service_providers() : void
+    protected function boot_core_service_providers(): void
     {
         $this->boot_service_providers($this->core_service_providers());
     }
-    protected function boot_plugin_service_providers() : void
+    protected function boot_plugin_service_providers(): void
     {
         $this->boot_service_providers(static::$config->get('app.providers'));
         if (is_admin()) {
             $this->boot_service_providers(static::$config->get('app.admin_providers'));
         }
     }
-    protected function boot_service_providers(array $providers) : void
+    protected function boot_service_providers(array $providers): void
     {
         foreach ($providers as $provider) {
             $provider_instance = static::$container->get($provider);

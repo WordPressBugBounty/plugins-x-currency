@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Contracts;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 interface Provider
 {
     public function boot();

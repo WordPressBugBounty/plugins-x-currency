@@ -10,16 +10,17 @@ use XCurrency\App\Providers\ProVersionUpdateServiceProvider;
 /**
  * Plugin Name:       X-Currency
  * Description:       Currency Switcher for WooCommerce custom currency, exchange rates, currency by country, pay in selected currency
- * Version:           2.0.6
+ * Version:           2.3.1
  * Requires at least: 6.5
- * Requires PHP:      7.4
- * Tested up to:      6.8
- * Author:            DoatKolom
- * Author URI:        https://doatkolom.com/
+ * Requires PHP:      8.1
+ * Tested up to:      6.9
+ * Author:            Crafium
+ * Author URI:        https://crafium.com/
  * License:           GPL v3 or later
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       x-currency
  * Domain Path:       /languages
+ * Requires Plugins:  woocommerce
  */
 
 require_once __DIR__ . '/vendor/vendor-src/autoload.php';
@@ -48,11 +49,6 @@ final class XCurrency {
             } 
         );
 
-        if ( ! $this->is_compatible() ) {
-            add_action( 'admin_notices', [$this, 'admin_notice_missing_main_plugin'] );
-            return;
-        }
-
         $client = new \XCurrency\Appsero\Client( '5b5a97ed-213e-4a32-baef-a62e9ec0c2f5', 'X-Currency', __FILE__ );
         $client->insights()->init();
 
@@ -79,12 +75,6 @@ final class XCurrency {
         );
 
         add_action( 'plugins_loaded', [ $this, 'stop_load_pro' ], 5 );
-
-        add_action(
-            'init', function() : void {
-                load_plugin_textdomain( "x-currency", false, __DIR__ . DIRECTORY_SEPARATOR . "languages" );
-            } 
-        );
     }
     
     public function stop_load_pro() : void {
@@ -97,64 +87,14 @@ final class XCurrency {
                     $current_version = $plugin_data['Version'];
                 }
 
-                $required_pro_version = '2.0.0';
+                $required_pro_version = '2.3.0';
 
                 if ( -1 === version_compare( $current_version, $required_pro_version ) ) {
-                    add_action( 'admin_notices', [ $this, 'action_admin_notices' ] );
                     return true;
                 }
                 return false;
             }
         );
-    }
-
-    public function action_admin_notices() {
-        ?>
-        <?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
-<div class="notice notice-error" style="padding: 20px; font-size: 15px; line-height: 1.6;">
-    <p style="margin-bottom: 10px;">
-        <strong style="font-size: 16px;">⚠️ X-Currency Pro Update Required</strong>
-    </p>
-    <p style="margin-bottom: 10px;">
-        Your current version of <strong>X-Currency Pro</strong> is not compatible with the installed <strong>X-Currency Free</strong> plugin.<br>
-        Please update X-Currency Pro to ensure compatibility.
-    </p>
-    <p style="margin-bottom: 10px;">
-        Automatic updates from your dashboard will be available <strong>after version 2.0.0</strong>.
-    </p>
-    <p style="margin-bottom: 0;">
-        <a href="https://facebook.com/groups/doatkolom" target="_blank" class="button button-primary">
-            Get X-Currency Pro from Facebook Group
-        </a>
-    </p>
-</div>
-
-        <?php
-    }
-
-    public function admin_notice_missing_main_plugin() {
-        $btn = [];
-        if ( file_exists( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php' ) ) {
-            $btn['label'] = esc_html__( 'Activate WooCommerce', 'x-currency' );
-            $btn['url']   = wp_nonce_url( 'plugins.php?action=activate&plugin=woocommerce/woocommerce.php&plugin_status=all&paged=1', 'activate-plugin_woocommerce/woocommerce.php' );
-        } else {
-            $btn['label'] = esc_html__( 'Install WooCommerce', 'x-currency' );
-            $btn['url']   = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=woocommerce' ), 'install-plugin_woocommerce' );
-        }
-        ?>
-        <div class="notice notice-error is-dismissible" style="padding-bottom: 10px;">
-            <p><?php esc_html_e( 'X-Currency requires the WooCommerce plugin, which is not currently running.', 'x-currency' )?></p>
-            <a href="<?php echo esc_url( $btn['url'] ) ?>" class="button-primary"><?php echo esc_html( $btn['label'] )?></a>
-        </div>
-        <?php
-    }
-
-    public function is_compatible() {
-        $plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'woocommerce/woocommerce.php';
-        if ( in_array( $plugin_path, wp_get_active_and_valid_plugins() ) ) {
-            return true;
-        }
-        return false;
     }
 }
 

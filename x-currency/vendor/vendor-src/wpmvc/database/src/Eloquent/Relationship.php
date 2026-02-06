@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Eloquent;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use XCurrency\WpMVC\Database\Eloquent\Relations\BelongsToMany;
 use XCurrency\WpMVC\Database\Eloquent\Relations\BelongsToOne;
 use XCurrency\WpMVC\Database\Eloquent\Relations\HasOne;
@@ -36,7 +36,7 @@ class Relationship
             if ($relationship instanceof BelongsToOne) {
                 if (empty($relationship->wheres)) {
                     $relations[$key]['relation_status'] = \false;
-                    $local_ids = \array_unique(\array_column($parent_items, $local_key));
+                    $local_ids = array_unique(array_column($parent_items, $local_key));
                 } else {
                     $relation_ids = $this->get_where_in_ids($parent_items, $local_key, $relationship->wheres);
                     $local_ids = $relation_ids['column_ids'];
@@ -44,7 +44,7 @@ class Relationship
                     $relations[$key]['relation_ids'] = $relation_ids['ids'];
                 }
             } else {
-                $local_ids = \array_unique(\array_column($parent_items, $local_key));
+                $local_ids = array_unique(array_column($parent_items, $local_key));
             }
             if (empty($local_ids)) {
                 continue;
@@ -79,7 +79,7 @@ class Relationship
                  * @var Relation $relationship
                  */
                 $relationship = $relation['relationship'];
-                if ($relationship instanceof BelongsToOne && \true === $relation['relation_status'] && !\in_array($item->id, $relation['relation_ids'])) {
+                if ($relationship instanceof BelongsToOne && \true === $relation['relation_status'] && !in_array($item->id, $relation['relation_ids'])) {
                     continue;
                 }
                 $local_value = $item->{$relationship->local_key};
@@ -88,7 +88,7 @@ class Relationship
                 } else {
                     $foreign_key = $relationship->foreign_key;
                 }
-                $children_items = \array_values(\array_filter($relation['items'], function ($single_item) use($local_value, $foreign_key) {
+                $children_items = array_values(array_filter($relation['items'], function ($single_item) use ($local_value, $foreign_key) {
                     return $single_item->{$foreign_key} == $local_value;
                 }));
                 if ($relationship instanceof HasOne || $relationship instanceof BelongsToOne) {
@@ -133,7 +133,7 @@ class Relationship
                 $column_ids[] = $item->{$column_key};
             }
         }
-        return \compact('ids', 'column_ids');
+        return compact('ids', 'column_ids');
     }
     protected function evaluate_condition($left_operand, $operator, $right_operand)
     {

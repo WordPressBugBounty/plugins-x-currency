@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Repositories;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use XCurrency\WpMVC\DTO\DTO;
 use XCurrency\WpMVC\Database\Query\Builder;
 /**
@@ -18,7 +18,7 @@ abstract class Repository
      *
      * @return Builder An instance of the query builder.
      */
-    public abstract function get_query_builder() : Builder;
+    abstract public function get_query_builder(): Builder;
     /**
      * Insert a new record into the database.
      *
@@ -106,8 +106,8 @@ abstract class Repository
      */
     protected function process_values(array $values)
     {
-        return \array_map(function ($value) {
-            return \is_array($value) || \is_object($value) && \get_class($value) === 'stdClass' ? wp_json_encode($value) : $value;
+        return array_map(function ($value) {
+            return is_array($value) || is_object($value) && get_class($value) === 'stdClass' ? wp_json_encode($value) : $value;
         }, $values);
     }
 }

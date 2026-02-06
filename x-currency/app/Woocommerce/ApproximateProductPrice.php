@@ -2,10 +2,10 @@
 
 namespace XCurrency\App\Woocommerce;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\App\Repositories\CurrencyRateRepository;
 use XCurrency\App\Repositories\CurrencyRepository;
-
-defined( 'ABSPATH' ) || exit;
 
 class ApproximateProductPrice {
     public $currency;

@@ -1,6 +1,9 @@
 <?php
 
 namespace XCurrency\App\RateProvider;
+
+defined( 'ABSPATH' ) || exit;
+
 use Exception;
 
 class OpenExchangeRates extends ProviderBase {

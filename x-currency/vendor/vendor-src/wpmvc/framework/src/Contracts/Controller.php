@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Contracts;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 abstract class Controller
 {
     public \WP_REST_Request $wp_rest_request;

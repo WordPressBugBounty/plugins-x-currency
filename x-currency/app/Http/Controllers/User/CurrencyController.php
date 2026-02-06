@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Http\Controllers\User;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\App\Http\Controllers\Controller;
 use XCurrency\App\Repositories\CurrencyRepository;
 use XCurrency\WpMVC\Routing\Response;

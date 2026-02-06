@@ -2,6 +2,8 @@
 
 namespace XCurrency\Database\Migrations;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\App\Models\Currency;
 use XCurrency\WpMVC\Contracts\Migration;
 

@@ -2,9 +2,9 @@
 
 namespace XCurrency\App\Woocommerce;
 
-use XCurrency\App\Repositories\CurrencyRepository;
-
 defined( 'ABSPATH' ) || exit;
+
+use XCurrency\App\Repositories\CurrencyRepository;
 
 class Report {
     /**

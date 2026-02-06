@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Http\Controllers;
 
+defined( 'ABSPATH' ) || exit;
+
 use WP_REST_Request;
 use XCurrency\App\Http\Controllers\Controller;
 use XCurrency\App\Models\Currency;

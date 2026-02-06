@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Eloquent\Relations;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use XCurrency\WpMVC\Database\Eloquent\Model;
 abstract class Relation
 {

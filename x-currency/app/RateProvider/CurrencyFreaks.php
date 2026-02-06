@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\RateProvider;
 
+defined( 'ABSPATH' ) || exit;
+
 use Exception;
 
 class CurrencyFreaks extends ProviderBase {

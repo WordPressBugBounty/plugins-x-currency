@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Repositories;
 
+defined( 'ABSPATH' ) || exit;
+
 use Exception;
 use XCurrency\App\Models\Currency;
 
@@ -217,6 +219,7 @@ class CurrencyRepository {
                 'thousand_separator'       => $data['thousand_separator'],
                 'max_decimal'              => $data['max_decimal'],
                 'rounding'                 => $data['rounding'],
+                'subtract_amount'          => (float) ( $data['subtract_amount'] ?? 0 ),
                 'decimal_separator'        => $data['decimal_separator'],
                 'symbol_position'          => $data['symbol_position'],
                 'disable_payment_gateways' => maybe_serialize( $data['disable_payment_gateways'] ),
@@ -260,6 +263,7 @@ class CurrencyRepository {
                 'thousand_separator'       => $data['thousand_separator'],
                 'max_decimal'              => $data['max_decimal'],
                 'rounding'                 => $data['rounding'],
+                'subtract_amount'          => (float) ( $data['subtract_amount'] ?? 0 ),
                 'decimal_separator'        => $data['decimal_separator'],
                 'symbol_position'          => $data['symbol_position'],
                 'disable_payment_gateways' => maybe_serialize( $data['disable_payment_gateways'] )

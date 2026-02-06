@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Providers;
 
+defined( 'ABSPATH' ) || exit;
+
 use WC_Product;
 use XCurrency\App\Repositories\CurrencyRepository;
 use XCurrency\App\Woocommerce\ApproximateProductPrice;
@@ -122,12 +124,14 @@ class WoocommerceServiceProvider implements Provider {
 
         switch ( $this->settings->rounding ) {
             case 'up':
-                return ceil( $price );
+                $rounded_price = ceil( $price );
             case 'down':
-                return floor( $price );
+                $rounded_price = floor( $price );
             default:
-                return round( $price );
+                $rounded_price = round( $price );
         }
+
+        return apply_filters( 'x_currency_rounded_price', $rounded_price, $price, $this->settings );
     }
 
     public function woocommerce_get_price_html( $price, WC_Product $product ) {
@@ -204,7 +208,8 @@ class WoocommerceServiceProvider implements Provider {
             $price = x_currency_exchange( $price );
         }
 
-        return $price;
+        //https://wordpress.org/support/topic/problem-with-coupons-3/
+        return 0 == $price ? '' : $price;
     }
 
     /**

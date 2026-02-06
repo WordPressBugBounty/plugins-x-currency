@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Eloquent;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use XCurrency\WpMVC\Database\Eloquent\Relations\BelongsToMany;
 use XCurrency\WpMVC\Database\Eloquent\Relations\BelongsToOne;
 use XCurrency\WpMVC\Database\Eloquent\Relations\HasMany;
@@ -11,8 +11,8 @@ use XCurrency\WpMVC\Database\Query\Builder;
 use XCurrency\WpMVC\Database\Resolver;
 abstract class Model
 {
-    static abstract function get_table_name() : string;
-    public abstract function resolver() : Resolver;
+    abstract static function get_table_name(): string;
+    abstract public function resolver(): Resolver;
     /**
      * Begin querying the model.
      *

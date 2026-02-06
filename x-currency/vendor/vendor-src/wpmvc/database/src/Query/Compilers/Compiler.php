@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Query\Compilers;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use XCurrency\WpMVC\Database\Query\Builder;
 use XCurrency\WpMVC\Database\Query\JoinClause;
 class Compiler
@@ -32,17 +32,17 @@ class Compiler
      */
     public function compile_insert(Builder $query, array $values)
     {
-        if (!\is_array(\reset($values))) {
+        if (!is_array(reset($values))) {
             $values = [$values];
         } else {
             foreach ($values as $key => $value) {
-                \ksort($value);
+                ksort($value);
                 $values[$key] = $value;
             }
         }
-        $columns = $this->columnize(\array_keys(\reset($values)));
-        $parameters = \implode(', ', \array_map(function ($record) use($query) {
-            return '(' . \implode(', ', \array_map(function ($item) use($query) {
+        $columns = $this->columnize(array_keys(reset($values)));
+        $parameters = implode(', ', array_map(function ($record) use ($query) {
+            return '(' . implode(', ', array_map(function ($item) use ($query) {
                 return $query->set_binding($item);
             }, $record)) . ')';
         }, $values));
@@ -58,8 +58,8 @@ class Compiler
      */
     public function compile_update(Builder $query, array $values)
     {
-        $keys = \array_keys($values);
-        $columns = \implode(', ', \array_map(function ($value, $key) use($query) {
+        $keys = array_keys($values);
+        $columns = implode(', ', array_map(function ($value, $key) use ($query) {
             return $key . ' = ' . $query->set_binding($value);
         }, $values, $keys));
         $where = $this->compile_wheres($query);
@@ -106,7 +106,7 @@ class Compiler
      */
     protected function compile_columns(Builder $query, $columns)
     {
-        if (!\is_null($query->aggregate)) {
+        if (!is_null($query->aggregate)) {
             return;
         }
         if ($query->distinct) {
@@ -140,7 +140,7 @@ class Compiler
      */
     protected function compile_from(Builder $query, $table)
     {
-        if (\is_null($query->as)) {
+        if (is_null($query->as)) {
             return 'from ' . $table;
         }
         return "from {$table} as {$query->as}";
@@ -190,13 +190,13 @@ class Compiler
                     break;
                 case 'in':
                     $in = $where['not'] ? 'not in' : 'in';
-                    $values = \implode(', ', \array_map(function ($value) use($query) {
+                    $values = implode(', ', array_map(function ($value) use ($query) {
                         return $query->set_binding($value);
                     }, $where['values']));
                     $where_query .= " {$where['boolean']} {$where['column']} {$in} ({$values})";
                     break;
                 case 'column':
-                    if (\is_null($where['value'])) {
+                    if (is_null($where['value'])) {
                         $where_query .= " {$where['boolean']} {$where['column']}";
                     } else {
                         $where_query .= " {$where['boolean']} {$where['column']} {$where['operator']} {$where['value']}";
@@ -235,15 +235,15 @@ class Compiler
                             break;
                     }
                     if (!empty($nested_items)) {
-                        $sql = \ltrim($this->compile_where_or_having($nested_query, $nested_items, $type), $type);
+                        $sql = ltrim($this->compile_where_or_having($nested_query, $nested_items, $type), $type);
                         $query->set_bindings($nested_query->get_bindings());
                         $nested = $where['not'] ? "{$where['boolean']} not" : $where['boolean'];
                         $where_query .= " {$nested} ({$sql} )";
                     }
             }
         }
-        $where_query = \trim($this->remove_leading_boolean($where_query));
-        if (\in_array($where_query, ['where', 'having', 'on', 'where not', 'having not', 'on not'], \true)) {
+        $where_query = trim($this->remove_leading_boolean($where_query));
+        if (in_array($where_query, ['where', 'having', 'on', 'where not', 'having not', 'on not'], \true)) {
             return '';
         }
         return $where_query;
@@ -257,7 +257,7 @@ class Compiler
      */
     protected function compile_joins(Builder $query, $joins)
     {
-        return \implode(' ', \array_map(function (JoinClause $join) {
+        return implode(' ', array_map(function (JoinClause $join) {
             if (!empty($join->columns) || !empty($join->get_wheres())) {
                 $query = "({$join->to_sql()})";
             } else {
@@ -267,7 +267,7 @@ class Compiler
             if (!empty($join->joins)) {
                 $query = "({$query} {$this->compile_joins($join, $join->joins)})";
             }
-            return $join->bind_values(\trim("{$join->type} join {$query} {$this->compile_ons($join)}"));
+            return $join->bind_values(trim("{$join->type} join {$query} {$this->compile_ons($join)}"));
         }, $joins));
     }
     /**
@@ -282,7 +282,7 @@ class Compiler
         if (empty($orders)) {
             return '';
         }
-        return 'order by ' . \implode(', ', \array_map(function ($order) {
+        return 'order by ' . implode(', ', array_map(function ($order) {
             return $order['column'] . ' ' . $order['direction'];
         }, $orders));
     }
@@ -330,7 +330,7 @@ class Compiler
      */
     protected function compile_groups(Builder $query, $groups)
     {
-        return 'group by ' . \implode(', ', $groups);
+        return 'group by ' . implode(', ', $groups);
     }
     /**
      * Concatenate an array of segments, removing empties.
@@ -340,7 +340,7 @@ class Compiler
      */
     protected function concatenate($segments)
     {
-        return \implode(' ', \array_filter($segments, function ($value) {
+        return implode(' ', array_filter($segments, function ($value) {
             return (string) $value !== '';
         }));
     }
@@ -352,7 +352,7 @@ class Compiler
      */
     public function columnize(array $columns)
     {
-        return \implode(', ', $columns);
+        return implode(', ', $columns);
     }
     /**
      * Remove the leading boolean from a statement.
@@ -362,6 +362,6 @@ class Compiler
      */
     protected function remove_leading_boolean($value)
     {
-        return \preg_replace('/and |or /i', '', $value, 1);
+        return preg_replace('/and |or /i', '', $value, 1);
     }
 }

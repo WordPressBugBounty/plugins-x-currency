@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Schema;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 class ForeignKey
 {
     /**
@@ -50,7 +50,7 @@ class ForeignKey
      * @param string $reference_column The referenced column name.
      * @return self
      */
-    public function references(string $reference_column) : self
+    public function references(string $reference_column): self
     {
         $this->reference_column = $reference_column;
         return $this;
@@ -61,7 +61,7 @@ class ForeignKey
      * @param string $reference_table The referenced table name (without prefix).
      * @return self
      */
-    public function on(string $reference_table) : self
+    public function on(string $reference_table): self
     {
         global $wpdb;
         $this->reference_table = $wpdb->prefix . $reference_table;
@@ -73,9 +73,9 @@ class ForeignKey
      * @param string $action The action to perform on delete (e.g., CASCADE, SET NULL).
      * @return self
      */
-    public function on_delete(string $action) : self
+    public function on_delete(string $action): self
     {
-        $this->on_delete = \strtoupper($action);
+        $this->on_delete = strtoupper($action);
         return $this;
     }
     /**
@@ -84,9 +84,9 @@ class ForeignKey
      * @param string $action The action to perform on update (e.g., CASCADE, SET NULL).
      * @return self
      */
-    public function on_update(string $action) : self
+    public function on_update(string $action): self
     {
-        $this->on_update = \strtoupper($action);
+        $this->on_update = strtoupper($action);
         return $this;
     }
     /**
@@ -94,7 +94,7 @@ class ForeignKey
      *
      * @return string
      */
-    public function get_column() : string
+    public function get_column(): string
     {
         return $this->column;
     }
@@ -103,7 +103,7 @@ class ForeignKey
      *
      * @return string
      */
-    public function get_reference_table() : string
+    public function get_reference_table(): string
     {
         return $this->reference_table;
     }
@@ -112,7 +112,7 @@ class ForeignKey
      *
      * @return string
      */
-    public function get_reference_column() : string
+    public function get_reference_column(): string
     {
         return $this->reference_column;
     }
@@ -121,7 +121,7 @@ class ForeignKey
      *
      * @return string|null
      */
-    public function get_on_delete() : ?string
+    public function get_on_delete(): ?string
     {
         return $this->on_delete;
     }
@@ -130,7 +130,7 @@ class ForeignKey
      *
      * @return string|null
      */
-    public function get_on_update() : ?string
+    public function get_on_update(): ?string
     {
         return $this->on_update;
     }

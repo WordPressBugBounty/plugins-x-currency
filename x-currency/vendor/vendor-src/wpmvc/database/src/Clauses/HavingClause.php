@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Clauses;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 trait HavingClause
 {
     use Clause;
@@ -11,7 +11,7 @@ trait HavingClause
      *
      * @return array The array of having clauses.
      */
-    public function get_havings() : array
+    public function get_havings(): array
     {
         return $this->clauses['havings'] ?? [];
     }

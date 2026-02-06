@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Routing;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 class DataBinder
 {
     protected string $namespace;
@@ -15,11 +15,11 @@ class DataBinder
     {
         $this->version = $version;
     }
-    public function get_namespace() : string
+    public function get_namespace(): string
     {
         return $this->namespace;
     }
-    public function get_version() : string
+    public function get_version(): string
     {
         return $this->version;
     }

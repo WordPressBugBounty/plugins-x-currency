@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Http\Controllers;
 
+defined( 'ABSPATH' ) || exit;
+
 use Exception;
 use WC_Payment_Gateways;
 use WP_REST_Request;

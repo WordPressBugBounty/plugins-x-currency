@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Routing;
 
-\defined('ABSPATH') || exit;
+defined('ABSPATH') || exit;
 use XCurrency\WpMVC\Routing\Providers\RouteServiceProvider;
 use XCurrency\WpMVC\Routing\Contracts\Middleware as MiddlewareContract;
 use WP_Error;
@@ -22,7 +22,7 @@ class Middleware
     {
         $container = RouteServiceProvider::$container;
         foreach ($middleware as $middleware_name) {
-            if (!\array_key_exists($middleware_name, static::$middleware)) {
+            if (!array_key_exists($middleware_name, static::$middleware)) {
                 continue;
             }
             $current_middleware = static::$middleware[$middleware_name];

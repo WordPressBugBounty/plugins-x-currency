@@ -2,6 +2,8 @@
 
 namespace XCurrency\App\Http\Middleware;
 
+defined( 'ABSPATH' ) || exit;
+
 use XCurrency\WpMVC\Routing\Contracts\Middleware;
 use WP_REST_Request;
 

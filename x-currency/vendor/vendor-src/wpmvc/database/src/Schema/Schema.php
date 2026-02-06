@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Schema;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use wpdb;
 class Schema
 {
@@ -34,7 +34,7 @@ class Schema
         if ($return) {
             return $sql;
         }
-        if (!\function_exists('XCurrency\\dbDelta')) {
+        if (!function_exists('XCurrency\dbDelta')) {
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         }
         dbDelta($sql);
@@ -124,7 +124,7 @@ class Schema
      *
      * @return void
      */
-    protected static function apply_foreign_keys(string $table_name, array $foreign_keys) : void
+    protected static function apply_foreign_keys(string $table_name, array $foreign_keys): void
     {
         global $wpdb;
         foreach ($foreign_keys as $fk) {
@@ -139,7 +139,7 @@ class Schema
              */
             $exists = $wpdb->get_results($wpdb->prepare("\n                SELECT CONSTRAINT_NAME\n                FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE\n                WHERE TABLE_SCHEMA = %s\n                AND TABLE_NAME = %s\n                AND CONSTRAINT_NAME = %s", DB_NAME, $table_name, $constraint));
             if (empty($exists)) {
-                $alter_sql = \sprintf("ALTER TABLE `%s` ADD CONSTRAINT `%s` FOREIGN KEY (`%s`) REFERENCES %s(`%s`)%s%s;", $table_name, $constraint, $column, $reference, $ref_column, $on_delete ? " ON DELETE {$on_delete}" : "", $on_update ? " ON UPDATE {$on_update}" : "");
+                $alter_sql = sprintf("ALTER TABLE `%s` ADD CONSTRAINT `%s` FOREIGN KEY (`%s`) REFERENCES %s(`%s`)%s%s;", $table_name, $constraint, $column, $reference, $ref_column, $on_delete ? " ON DELETE {$on_delete}" : "", $on_update ? " ON UPDATE {$on_update}" : "");
                 //phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
                 $wpdb->query($alter_sql);
             }

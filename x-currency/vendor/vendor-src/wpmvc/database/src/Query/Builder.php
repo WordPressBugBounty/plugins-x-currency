@@ -2,7 +2,7 @@
 
 namespace XCurrency\WpMVC\Database\Query;
 
-\defined("ABSPATH") || exit;
+defined("ABSPATH") || exit;
 use DateTime;
 use InvalidArgumentException;
 use XCurrency\WpMVC\Database\Eloquent\Model;
@@ -116,7 +116,7 @@ class Builder extends Relationship
     public function from(string $table, $as = null)
     {
         $this->from = $this->model->resolver()->table($table);
-        $this->as = \is_null($as) ? $table : $as;
+        $this->as = is_null($as) ? $table : $as;
         return $this;
     }
     /**
@@ -127,7 +127,7 @@ class Builder extends Relationship
      */
     public function select($columns = ['*'])
     {
-        $this->columns = \is_array($columns) ? $columns : \func_get_args();
+        $this->columns = is_array($columns) ? $columns : func_get_args();
         return $this;
     }
     /**
@@ -150,16 +150,16 @@ class Builder extends Relationship
      */
     public function with($relations, $callback = null)
     {
-        if (!\is_array($relations)) {
+        if (!is_array($relations)) {
             $relations = [$relations => $callback];
         }
         foreach ($relations as $relation => $callback) {
-            if (\is_int($relation)) {
+            if (is_int($relation)) {
                 $relation = $callback;
             }
             $current =& $this->relations;
             // Traverse the items string and create nested arrays
-            $items = \explode('.', $relation);
+            $items = explode('.', $relation);
             foreach ($items as $key) {
                 if (!isset($current[$key])) {
                     $query = new static($this->model);
@@ -170,8 +170,8 @@ class Builder extends Relationship
                 $current =& $current[$key]['children'];
             }
             // Apply the callback to the last item
-            if (\is_callable($callback)) {
-                \call_user_func($callback, $query);
+            if (is_callable($callback)) {
+                call_user_func($callback, $query);
             }
         }
         return $this;
@@ -183,7 +183,7 @@ class Builder extends Relationship
      */
     public function with_count($relations, $callback = null)
     {
-        $relation_keys = \explode(' as ', $relations);
+        $relation_keys = explode(' as ', $relations);
         /**
          * @var Relation $relationship
          */
@@ -198,10 +198,10 @@ class Builder extends Relationship
         $columns = $this->columns;
         $columns[] = "COALESCE({$join_alias}.{$total_key}, 0) as {$total_key}";
         $this->select($columns);
-        return $this->left_join("{$table_name} as {$join_alias}", function (JoinClause $join) use($relationship, $total_key, $callback) {
+        return $this->left_join("{$table_name} as {$join_alias}", function (JoinClause $join) use ($relationship, $total_key, $callback) {
             $join->on_column("{$join->as}.{$relationship->foreign_key}", '=', "{$this->as}.{$relationship->local_key}")->select("{$join->as}.{$relationship->foreign_key}", "COUNT(*) AS {$total_key}")->group_by("{$join->as}.{$relationship->foreign_key}");
-            if (\is_callable($callback)) {
-                \call_user_func($callback, $join);
+            if (is_callable($callback)) {
+                call_user_func($callback, $join);
             }
         });
     }
@@ -219,14 +219,12 @@ class Builder extends Relationship
     public function join($table, $first, $operator = null, $second = null, $type = 'inner', $where = \false)
     {
         $join = new JoinClause($table, $type, $this->model);
-        if (\is_callable($first)) {
-            \call_user_func($first, $join);
+        if (is_callable($first)) {
+            call_user_func($first, $join);
+        } else if ($where) {
+            $join->where($first, $operator, $second);
         } else {
-            if ($where) {
-                $join->where($first, $operator, $second);
-            } else {
-                $join->on_column($first, $operator, $second);
-            }
+            $join->on_column($first, $operator, $second);
         }
         $this->joins[] = $join;
         return $this;
@@ -267,7 +265,7 @@ class Builder extends Relationship
      */
     public function group_by($groups)
     {
-        $this->groups = \is_array($groups) ? $groups : \func_get_args();
+        $this->groups = is_array($groups) ? $groups : func_get_args();
         return $this;
     }
     /**
@@ -279,8 +277,8 @@ class Builder extends Relationship
      */
     public function order_by($column, $direction = 'asc')
     {
-        $direction = \strtolower($direction);
-        if (!\in_array($direction, ['asc', 'desc'], \true)) {
+        $direction = strtolower($direction);
+        if (!in_array($direction, ['asc', 'desc'], \true)) {
             throw new InvalidArgumentException('Order direction must be "asc" or "desc".');
         }
         $this->orders[] = ['column' => $column, 'direction' => $direction];
@@ -313,7 +311,7 @@ class Builder extends Relationship
      */
     public function offset(int $value)
     {
-        $this->offset = \max(0, $value);
+        $this->offset = max(0, $value);
         return $this;
     }
     /**
@@ -324,7 +322,7 @@ class Builder extends Relationship
      */
     public function limit(int $value)
     {
-        $this->limit = \max(1, $value);
+        $this->limit = max(1, $value);
         return $this;
     }
     /**
@@ -475,7 +473,7 @@ class Builder extends Relationship
         /**
          * @var wpdb $wpdb
          */
-        $sql_query = $wpdb->prepare($sql, ...\array_map(
+        $sql_query = $wpdb->prepare($sql, ...array_map(
             //phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
             function ($value) {
                 return $value instanceof DateTime ? $value->format('Y-m-d H:i:s') : $value;
@@ -493,11 +491,11 @@ class Builder extends Relationship
      */
     public function set_binding($value)
     {
-        if (\is_null($value)) {
+        if (is_null($value)) {
             return "null";
         }
         $this->bindings[] = $value;
-        $type = \gettype($value);
+        $type = gettype($value);
         if ('integer' === $type || 'boolean' === $type) {
             return '%d';
         }
@@ -512,7 +510,7 @@ class Builder extends Relationship
     }
     public function set_bindings(array $bindings)
     {
-        return $this->bindings = \array_merge($this->bindings, $bindings);
+        return $this->bindings = array_merge($this->bindings, $bindings);
     }
     public function aggregate($function, $columns = ['*'])
     {
@@ -532,7 +530,7 @@ class Builder extends Relationship
      */
     protected function set_aggregate($function, $columns)
     {
-        $this->aggregate = \compact('function', 'columns');
+        $this->aggregate = compact('function', 'columns');
         if (empty($this->groups)) {
             $this->orders = null;
         }
@@ -619,7 +617,7 @@ class Builder extends Relationship
      */
     protected function invalid_operatorAndValue($operator, $value)
     {
-        return \is_null($value) && \in_array($operator, $this->operators) && !\in_array($operator, ['=', '<>', '!=']);
+        return is_null($value) && in_array($operator, $this->operators) && !in_array($operator, ['=', '<>', '!=']);
     }
     /**
      * Determine if the given operator is supported.
@@ -629,6 +627,6 @@ class Builder extends Relationship
      */
     protected function invalid_operator($operator)
     {
-        return !\is_string($operator) || !\in_array(\strtolower($operator), $this->operators, \true);
+        return !is_string($operator) || !in_array(strtolower($operator), $this->operators, \true);
     }
 }
