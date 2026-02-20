@@ -4,12 +4,8 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0667b689d31a47a0548c97feee645591
+class ComposerStaticInit9d83d24936d801854eda36192d13dcc9
 {
-    public static $files = array (
-        'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
         'X' =>
         array (
@@ -17,12 +13,10 @@ class ComposerStaticInit0667b689d31a47a0548c97feee645591
             'XCurrency\\WpMVC\\RequestValidator\\' => 33,
             'XCurrency\\WpMVC\\Helpers\\' => 24,
             'XCurrency\\WpMVC\\Database\\' => 25,
+            'XCurrency\\WpMVC\\Container\\' => 26,
             'XCurrency\\WpMVC\\' => 16,
             'XCurrency\\Psr\\Container\\' => 24,
-            'XCurrency\\Laravel\\SerializableClosure\\' => 38,
-            'XCurrency\\Invoker\\' => 18,
             'XCurrency\\Database\\' => 19,
-            'XCurrency\\DI\\' => 13,
             'XCurrency\\Crafium\\OurPlugins\\' => 29,
             'XCurrency\\Bootstrap\\' => 20,
             'XCurrency\\Appsero\\' => 18,
@@ -47,6 +41,10 @@ class ComposerStaticInit0667b689d31a47a0548c97feee645591
         array (
             0 => __DIR__ . '/..' . '/wpmvc/database/src',
         ),
+        'XCurrency\\WpMVC\\Container\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/wpmvc/container/src',
+        ),
         'XCurrency\\WpMVC\\' =>
         array (
             0 => __DIR__ . '/..' . '/wpmvc/framework/src',
@@ -55,21 +53,9 @@ class ComposerStaticInit0667b689d31a47a0548c97feee645591
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'XCurrency\\Laravel\\SerializableClosure\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/laravel/serializable-closure/src',
-        ),
-        'XCurrency\\Invoker\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/php-di/invoker/src',
-        ),
         'XCurrency\\Database\\' =>
         array (
             0 => __DIR__ . '/../..' . '/../database',
-        ),
-        'XCurrency\\DI\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/php-di/php-di/src',
         ),
         'XCurrency\\Crafium\\OurPlugins\\' =>
         array (
@@ -96,9 +82,9 @@ class ComposerStaticInit0667b689d31a47a0548c97feee645591
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0667b689d31a47a0548c97feee645591::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0667b689d31a47a0548c97feee645591::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit0667b689d31a47a0548c97feee645591::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9d83d24936d801854eda36192d13dcc9::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9d83d24936d801854eda36192d13dcc9::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9d83d24936d801854eda36192d13dcc9::$classMap;
 
         }, null, ClassLoader::class);
     }

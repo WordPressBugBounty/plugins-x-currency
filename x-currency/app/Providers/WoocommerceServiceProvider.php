@@ -120,6 +120,10 @@ class WoocommerceServiceProvider implements Provider {
     }
 
     public function round_price( $price ) {
+        if ( is_string( $price ) && $price === '' ) {
+            return $price;
+        }
+
         $price = (float) $price;
 
         switch ( $this->settings->rounding ) {

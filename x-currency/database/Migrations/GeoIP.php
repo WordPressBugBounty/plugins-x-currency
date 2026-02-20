@@ -15,9 +15,9 @@ class GeoIP implements Migration {
     public function execute(): bool {
         global $wpdb;
 
-        $currency = $wpdb->get_results( "select * from {$wpdb->prefix}x_currency limit 1" );
+        $column_exists = $wpdb->get_results( "SHOW COLUMNS FROM {$wpdb->prefix}x_currency LIKE 'geo_ip_status'" );
 
-        if ( isset( $currency[0]->geo_ip_status ) ) {
+        if ( ! empty( $column_exists ) ) {
             return true;
         }
 

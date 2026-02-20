@@ -2,7 +2,7 @@
 
 namespace XCurrency\Crafium\OurPlugins;
 
-defined('ABSPATH') || exit;
+\defined('ABSPATH') || exit;
 class OurPlugins
 {
     /**
@@ -13,12 +13,12 @@ class OurPlugins
      */
     protected static function get_plugin_path(string $slug)
     {
-        if (!function_exists('get_plugins')) {
+        if (!\function_exists('get_plugins')) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
-        $plugins = get_plugins();
+        $plugins = \get_plugins();
         foreach ($plugins as $plugin_path => $plugin_data) {
-            $path_parts = explode('/', $plugin_path);
+            $path_parts = \explode('/', $plugin_path);
             if ($path_parts[0] === $slug) {
                 return $plugin_path;
             }
@@ -31,7 +31,7 @@ class OurPlugins
      * @param string $slug Plugin slug.
      * @return bool True if installed, false otherwise.
      */
-    protected static function is_plugin_installed(string $slug): bool
+    protected static function is_plugin_installed(string $slug) : bool
     {
         return self::get_plugin_path($slug) !== \false;
     }
@@ -41,9 +41,9 @@ class OurPlugins
      * @param string $slug Plugin slug.
      * @return bool True if activated, false otherwise.
      */
-    protected static function is_plugin_activated(string $slug): bool
+    protected static function is_plugin_activated(string $slug) : bool
     {
-        if (!function_exists('XCurrency\is_plugin_active')) {
+        if (!\function_exists('XCurrency\\is_plugin_active')) {
             require_once ABSPATH . 'wp-admin/includes/plugin.php';
         }
         $plugin_path = self::get_plugin_path($slug);
@@ -58,7 +58,7 @@ class OurPlugins
      * @param array $plugin_data Plugin data array with at least 'slug' key.
      * @return array Plugin data with added 'installed', 'activated' keys.
      */
-    protected static function enrich_plugin_data(array $plugin_data): array
+    protected static function enrich_plugin_data(array $plugin_data) : array
     {
         if (!isset($plugin_data['slug'])) {
             return $plugin_data;
@@ -71,7 +71,7 @@ class OurPlugins
             $args = ['action' => 'activate', 'plugin' => $slug . '/' . $slug . '.php', '_wpnonce' => wp_create_nonce('activate-plugin_' . $slug . '/' . $slug . '.php')];
             $activateUrl = add_query_arg($args, self_admin_url('plugins.php'));
         }
-        return array_merge($plugin_data, ['installed' => $installed, 'activated' => $activated, 'activateUrl' => $activateUrl]);
+        return \array_merge($plugin_data, ['installed' => $installed, 'activated' => $activated, 'activateUrl' => $activateUrl]);
     }
     /**
      * Enrich multiple plugins data with installation and activation status.
@@ -79,11 +79,11 @@ class OurPlugins
      * @param array $plugins_data Array of plugin data arrays.
      * @return array Array of enriched plugin data.
      */
-    public static function enrich_plugins_data(string $current_plugin_slug): array
+    public static function enrich_plugins_data(string $current_plugin_slug) : array
     {
-        return array_map([self::class, 'enrich_plugin_data'], self::get_plugins_data($current_plugin_slug));
+        return \array_map([self::class, 'enrich_plugin_data'], self::get_plugins_data($current_plugin_slug));
     }
-    protected static function get_plugins_data(string $current_plugin_slug): array
+    protected static function get_plugins_data(string $current_plugin_slug) : array
     {
         $cache_key = $current_plugin_slug . '_plugins_data';
         $cached_data = get_transient($cache_key);
@@ -94,8 +94,8 @@ class OurPlugins
         if (is_wp_error($response) || 200 !== wp_remote_retrieve_response_code($response)) {
             return [];
         }
-        $response_data = json_decode(wp_remote_retrieve_body($response), \true);
-        if (!is_array($response_data)) {
+        $response_data = \json_decode(wp_remote_retrieve_body($response), \true);
+        if (!\is_array($response_data)) {
             return [];
         }
         $plugins_data = [];

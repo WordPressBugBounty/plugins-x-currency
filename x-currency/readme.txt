@@ -4,8 +4,8 @@ Donate link: https://crafium.com/
 Tags: currency switcher, woocommerce currency switcher, currency switcher plugin, multi currency, woocommerce
 Requires at least: 6.5
 Tested up to: 6.9
-Requires PHP: 8.1
-Stable tag: 2.3.1
+Requires PHP: 7.4
+Stable tag: 2.4.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -125,6 +125,10 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 2.4.0 - 20 Feb 2026 =
+* Improved: Restored PHP 7.4 support.
+* Fixed: Product sale price conflict with rounded price.
+
 = 2.3.1 - 08 Jan 2025 =
 * Fixed: Compatibility issue with Visual composer Builder.
 
