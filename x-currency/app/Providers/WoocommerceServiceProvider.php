@@ -124,15 +124,19 @@ class WoocommerceServiceProvider implements Provider {
             return $price;
         }
 
-        $price = (float) $price;
+        $price         = (float) $price;
+        $rounded_price = $price;
 
         switch ( $this->settings->rounding ) {
             case 'up':
                 $rounded_price = ceil( $price );
+                break;
             case 'down':
                 $rounded_price = floor( $price );
-            default:
+                break;
+            case 'nearest':
                 $rounded_price = round( $price );
+                break;
         }
 
         return apply_filters( 'x_currency_rounded_price', $rounded_price, $price, $this->settings );

@@ -14,7 +14,7 @@ class SubtractAmount implements Migration {
     public function execute(): bool {
         global $wpdb;
 
-        $column_exists = $wpdb->get_results( $wpdb->prepare( "SHOW COLUMNS FROM {$wpdb->prefix}x_currency LIKE 'subtract_amount'" ) );
+        $column_exists = $wpdb->get_results( $wpdb->prepare( "SHOW COLUMNS FROM {$wpdb->prefix}x_currency LIKE %s", $wpdb->esc_like( 'subtract_amount' ) ) );
 
         if ( ! empty( $column_exists ) ) {
             return true;

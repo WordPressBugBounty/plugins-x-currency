@@ -46,16 +46,6 @@ class SettingController extends Controller {
         );
     }
 
-    public function setting_inputs() {
-        return Response::send(
-            [
-                'message' => esc_html__( 'Settings Input Retrieved Successfully!', 'x-currency' ),
-                'data'    => $this->setting_repository->input_fields_with_value(),
-                'status'  => 'success'
-            ]
-        );
-    }
-
     public function save_settings( Validator $validator, WP_REST_Request $request ) {
         $validator->validate(
             [

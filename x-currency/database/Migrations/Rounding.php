@@ -14,7 +14,7 @@ class Rounding implements Migration {
     public function execute(): bool {
         global $wpdb;
 
-        $column_exists = $wpdb->get_results( "SHOW COLUMNS FROM {$wpdb->prefix}x_currency LIKE 'rounding'" );
+        $column_exists = $wpdb->get_results( $wpdb->prepare( "SHOW COLUMNS FROM {$wpdb->prefix}x_currency LIKE %s", $wpdb->esc_like( 'rounding' ) ) );
 
         if ( ! empty( $column_exists ) ) {
             return true;

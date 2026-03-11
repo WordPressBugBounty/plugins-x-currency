@@ -38,14 +38,11 @@ Route::group(
         );
 
         Route::post( 'currency_organizer', [CurrencyController::class, 'organizer'] );
-        Route::get( 'currency_input_fields', [CurrencyController::class, 'input_fields'] );
         Route::get( 'attachment/{id}', [CurrencyController ::class, 'attachment'] );
         Route::get( 'payment-gateways', [CurrencyController ::class, 'payment_gateways'] );
-        Route::get( 'geo_input_fields', [GeoIpController::class, 'input_fields'] );
         Route::post( 'save_currency_geo_locations', [GeoIpController::class, 'save_currency_geo_location'] );
         Route::post( 'exchange_all', [RateController::class, 'exchange_all'] );
         Route::post( 'exchange/{id}', [RateController::class, 'exchange_single'] );
-        Route::get( 'setting_inputs', [SettingController::class, 'setting_inputs'] );
         Route::get( 'settings', [SettingController::class, 'get_settings'] );
         Route::post( 'settings', [SettingController::class, 'save_settings'] );
         Route::get( 'pages', [SwitcherController::class, 'pages'] );

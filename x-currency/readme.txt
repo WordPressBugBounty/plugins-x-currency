@@ -5,7 +5,7 @@ Tags: currency switcher, woocommerce currency switcher, currency switcher plugin
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -125,6 +125,9 @@ Yes, it will work.
 == Screenshots ==
 
 == Changelog ==
+= 2.4.1 - 11 Mar 2026 =
+* New: Added advanced rounding options (Nearest 10, 100, 1000) for currency conversions (PRO).
+
 = 2.4.0 - 20 Feb 2026 =
 * Improved: Restored PHP 7.4 support.
 * Fixed: Product sale price conflict with rounded price.
