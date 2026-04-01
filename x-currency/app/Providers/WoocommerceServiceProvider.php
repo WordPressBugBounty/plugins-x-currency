@@ -66,8 +66,9 @@ class WoocommerceServiceProvider implements Provider {
             if ( isset( $_GET['page'] ) && $_GET['page'] == 'wc-reports' ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 ( x_currency_singleton( Report::class ) )->boot();
             }
+        }
 
-        } elseif ( ! empty( $this->settings ) ) {
+        if ( ! empty( $this->settings ) && apply_filters( 'x_currency_is_allowed_exchange_for_current_page', ! is_admin() ) ) {
             add_action( 'wp', [$this, 'action_reference_wp'] );
 
             if ( 'disabled' !== $this->settings->rounding ) {

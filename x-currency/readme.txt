@@ -5,7 +5,7 @@ Tags: currency switcher, woocommerce currency switcher, currency switcher plugin
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.4.2
+Stable tag: 2.5.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -123,6 +123,9 @@ Yes, it will work with any standard WordPress theme.
 Yes, it will work.
 
 == Screenshots ==
+= 2.5.0 - 01 Apr 2026 =
+* New: Added a currency selection field on the order edit page (PRO).
+* New: Introduced additional options for currency rounding (PRO).
 
 == Changelog ==
 = 2.4.2 - 17 Mar 2026 =

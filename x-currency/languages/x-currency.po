@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: X-Currency 2.4.2\n"
+"Project-Id-Version: X-Currency 2.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/x-currency\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-16T18:06:48+00:00\n"
+"POT-Creation-Date: 2026-04-01T00:47:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.13.0-alpha\n"
 "X-Domain: x-currency\n"
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: app/Providers/WoocommerceServiceProvider.php:567
+#: app/Providers/WoocommerceServiceProvider.php:568
 #, php-format
 msgid "Extra fee %s for %s currency"
 msgstr ""
@@ -601,6 +601,30 @@ msgstr ""
 
 #: assets/build/chunks/431.js:1
 msgid "Nearest 1000"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
+msgid "Up 10"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
+msgid "Up 100"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
+msgid "Up 1000"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
+msgid "Down 10"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
+msgid "Down 100"
+msgstr ""
+
+#: assets/build/chunks/431.js:1
+msgid "Down 1000"
 msgstr ""
 
 #: assets/build/chunks/431.js:1
