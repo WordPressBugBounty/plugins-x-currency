@@ -3,9 +3,9 @@ Contributors: crafium, doatkolom, mdalaminbey
 Donate link: https://crafium.com/
 Tags: currency switcher, woocommerce currency switcher, currency switcher plugin, multi currency, woocommerce
 Requires at least: 6.5
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.5.0
+Stable tag: 2.5.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -123,6 +123,9 @@ Yes, it will work with any standard WordPress theme.
 Yes, it will work.
 
 == Screenshots ==
+= 2.5.1 - 23 May 2026 =
+* Fixed: Welcome Currency popup demo import issue.
+
 = 2.5.0 - 01 Apr 2026 =
 * New: Added a currency selection field on the order edit page (PRO).
 * New: Introduced additional options for currency rounding (PRO).
