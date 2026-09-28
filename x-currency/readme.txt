@@ -13,7 +13,7 @@ Woo Currency Switcher lets you handle multi-currency seamlessly, allowing custom
 
 == Description ==
 
-X-Currency Switcher is a free WooCommerce multi currency switcher for WordPress sites. With this plugin, you can create multiple custom currencies with flags, custom codes, money symbols, extra fees, money sign positions, and many more. X-currency also has the most powerful customizer available in the currency switcher market. You can create modern and unlimited switchers for your site. We provide 6 different readymade switcher templates so that you can create a beautiful currency switcher on the fly.  You can show approximate product prices on shop, single, cart, and checkout pages. You can set up different coupons, and shipping rates for each currency. It allows you to exchange currency rates automatically and pay in the selected currency. 
+X-Currency Switcher is a WooCommerce multi currency switcher for WordPress sites. With this plugin, you can create multiple custom currencies with flags, custom codes, money symbols, extra fees, money sign positions, and many more. X-currency also has the most powerful customizer available in the currency switcher market. You can create modern and unlimited switchers for your site. We provide 4 different readymade switcher templates so that you can create a beautiful currency switcher on the fly.  You can show approximate product prices on shop, single, cart, and checkout pages. You can set up different coupons, and shipping rates for each currency. It allows you to exchange currency rates automatically and pay in the selected currency. 
 
 X-Currency is a WooCommerce Currency Switcher tool that is available as a shortcode and sticky.
 
@@ -25,7 +25,7 @@ https://youtu.be/jghDa342DSc
 
 ## 🔥 Custom Currency Support ##
 
-Our currency switcher allows you to create unlimited currency including custom currency like Bitcoin and many more.
+Our currency switcher allows you to create custom currency like Bitcoin and many more.
 
 ## 🔥 Update Base Currency ##
 
@@ -48,7 +48,7 @@ You have the control to let the site visitors see prices in their country curren
 
 ## 🔥 Readymade Switcher Demo ##
 
-For currency swithcer style, we're giving you template system. You can create unlimited template with our powerful customizer. [Watch the video](https://youtu.be/jghDa342DSc) to know more about it.
+For currency swithcer style, we're giving you template system. [Watch the video](https://youtu.be/jghDa342DSc) to know more about it.
 
 
 ## 🔥 Currency Auto Update ##
@@ -75,21 +75,9 @@ You can set a fixed coupon amount for each coupon code and each currency.
 
 Shows approximate product price on the shop page, single page, cart page and checkout page. Page condition settings also added with this feature.
 
-## 🚀 Update All Product Price According To Base Currency ##
-
-You can change default product price currency. It's a powerful feature that can help you to entirely change your base currency
-
-## 🚀 Custom Css ##
+## 🚀 Custom CSS (PRO) ##
 
 Make your currency switcher style more beautiful than before. It's a powerful feature for the guy who can write css code.
-
-## 🚀 Hooks For Developers - Coming soon ##
-
-We allows you to change any prices out of WooCommerce. Like pricing table or any other places where switching currency is important
-
-## ⏰ Modal Dropdown Style - coming soon ##
-
-It's a modern style where currency list will appear into a modal with a bigger view. It helps to create better user experice 
 
 <h4>🚀 Compatibility And Tested With</h4>
 <ul>
